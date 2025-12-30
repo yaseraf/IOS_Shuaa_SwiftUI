@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		485B6EE42E2E2BB5005359C7 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 485B6EE32E2E2BB5005359C7 /* Swinject */; };
+		485B6EE92E2E2D38005359C7 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 485B6EE82E2E2D38005359C7 /* SwiftUICharts */; };
+		485B6EEC2E2E2D93005359C7 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 485B6EEB2E2E2D93005359C7 /* SDWebImageSwiftUI */; };
+		485B6EEF2E2E2DBF005359C7 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 485B6EEE2E2E2DBF005359C7 /* Lottie */; };
+		485B6EF42E2E2E1E005359C7 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 485B6EF32E2E2E1E005359C7 /* IQKeyboardManagerSwift */; };
+		485B6EF72E2E2EE3005359C7 /* FlagAndCountryCode in Frameworks */ = {isa = PBXBuildFile; productRef = 485B6EF62E2E2EE3005359C7 /* FlagAndCountryCode */; };
+		48B2F0A82E4DE392003A2BE6 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 48B2F0A72E4DE392003A2BE6 /* FSCalendar */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		48395E7C2E27B57E007CFC53 /* Shuaa_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuaa_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		48395E7E2E27B57E007CFC53 /* Shuaa_SwiftUI */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shuaa_SwiftUI;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		48395E792E27B57E007CFC53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				485B6EEC2E2E2D93005359C7 /* SDWebImageSwiftUI in Frameworks */,
+				485B6EE42E2E2BB5005359C7 /* Swinject in Frameworks */,
+				485B6EE92E2E2D38005359C7 /* SwiftUICharts in Frameworks */,
+				485B6EEF2E2E2DBF005359C7 /* Lottie in Frameworks */,
+				485B6EF42E2E2E1E005359C7 /* IQKeyboardManagerSwift in Frameworks */,
+				48B2F0A82E4DE392003A2BE6 /* FSCalendar in Frameworks */,
+				485B6EF72E2E2EE3005359C7 /* FlagAndCountryCode in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		48395E732E27B57E007CFC53 = {
+			isa = PBXGroup;
+			children = (
+				48395E7E2E27B57E007CFC53 /* Shuaa_SwiftUI */,
+				48395E7D2E27B57E007CFC53 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		48395E7D2E27B57E007CFC53 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48395E7C2E27B57E007CFC53 /* Shuaa_SwiftUI.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48395E7B2E27B57E007CFC53 /* Shuaa_SwiftUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48395E8A2E27B57F007CFC53 /* Build configuration list for PBXNativeTarget "Shuaa_SwiftUI" */;
+			buildPhases = (
+				48395E782E27B57E007CFC53 /* Sources */,
+				48395E792E27B57E007CFC53 /* Frameworks */,
+				48395E7A2E27B57E007CFC53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				48395E7E2E27B57E007CFC53 /* Shuaa_SwiftUI */,
+			);
+			name = Shuaa_SwiftUI;
+			packageProductDependencies = (
+				485B6EE32E2E2BB5005359C7 /* Swinject */,
+				485B6EE82E2E2D38005359C7 /* SwiftUICharts */,
+				485B6EEB2E2E2D93005359C7 /* SDWebImageSwiftUI */,
+				485B6EEE2E2E2DBF005359C7 /* Lottie */,
+				485B6EF32E2E2E1E005359C7 /* IQKeyboardManagerSwift */,
+				485B6EF62E2E2EE3005359C7 /* FlagAndCountryCode */,
+				48B2F0A72E4DE392003A2BE6 /* FSCalendar */,
+			);
+			productName = QSC_SwiftUI;
+			productReference = 48395E7C2E27B57E007CFC53 /* Shuaa_SwiftUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		48395E742E27B57E007CFC53 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1610;
+				LastUpgradeCheck = 1610;
+				TargetAttributes = {
+					48395E7B2E27B57E007CFC53 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+				};
+			};
+			buildConfigurationList = 48395E772E27B57E007CFC53 /* Build configuration list for PBXProject "Shuaa_SwiftUI" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ar,
+			);
+			mainGroup = 48395E732E27B57E007CFC53;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				485B6EE22E2E2BB5005359C7 /* XCRemoteSwiftPackageReference "Swinject" */,
+				485B6EE72E2E2D38005359C7 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+				485B6EEA2E2E2D93005359C7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				485B6EED2E2E2DBF005359C7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				485B6EF22E2E2E1E005359C7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				485B6EF52E2E2EE3005359C7 /* XCRemoteSwiftPackageReference "FlagAndCountryCode" */,
+				48B2F0A62E4DE392003A2BE6 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 48395E7D2E27B57E007CFC53 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				48395E7B2E27B57E007CFC53 /* Shuaa_SwiftUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		48395E7A2E27B57E007CFC53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		48395E782E27B57E007CFC53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		48395E882E27B57F007CFC53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		48395E892E27B57F007CFC53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		48395E8B2E27B57F007CFC53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_ASSET_PATHS = "\"QSC_SwiftUI/Resources\"";
+				DEVELOPMENT_TEAM = H4YC3YVWTW;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "QSC-SwiftUI-Info.plist";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "This app needs to access your Face ID feature.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "The app needs to access your photo library";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs to access your photo library";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qsc.fit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		48395E8C2E27B57F007CFC53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_ASSET_PATHS = "\"QSC_SwiftUI/Resources\"";
+				DEVELOPMENT_TEAM = H4YC3YVWTW;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "QSC-SwiftUI-Info.plist";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "This app needs to access your Face ID feature.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "The app needs to access your photo library";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs to access your photo library";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qsc.fit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		48395E772E27B57E007CFC53 /* Build configuration list for PBXProject "Shuaa_SwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48395E882E27B57F007CFC53 /* Debug */,
+				48395E892E27B57F007CFC53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48395E8A2E27B57F007CFC53 /* Build configuration list for PBXNativeTarget "Shuaa_SwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48395E8B2E27B57F007CFC53 /* Debug */,
+				48395E8C2E27B57F007CFC53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		485B6EE22E2E2BB5005359C7 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
+		485B6EE72E2E2D38005359C7 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/willdale/SwiftUICharts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.4;
+			};
+		};
+		485B6EEA2E2E2D93005359C7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.3;
+			};
+		};
+		485B6EED2E2E2DBF005359C7 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.2;
+			};
+		};
+		485B6EF22E2E2E1E005359C7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.1;
+			};
+		};
+		485B6EF52E2E2EE3005359C7 /* XCRemoteSwiftPackageReference "FlagAndCountryCode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/FlagAndCountryCode";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.3;
+			};
+		};
+		48B2F0A62E4DE392003A2BE6 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		485B6EE32E2E2BB5005359C7 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 485B6EE22E2E2BB5005359C7 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		485B6EE82E2E2D38005359C7 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 485B6EE72E2E2D38005359C7 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
+		485B6EEB2E2E2D93005359C7 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 485B6EEA2E2E2D93005359C7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		485B6EEE2E2E2DBF005359C7 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 485B6EED2E2E2DBF005359C7 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		485B6EF32E2E2E1E005359C7 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 485B6EF22E2E2E1E005359C7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		485B6EF62E2E2EE3005359C7 /* FlagAndCountryCode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 485B6EF52E2E2EE3005359C7 /* XCRemoteSwiftPackageReference "FlagAndCountryCode" */;
+			productName = FlagAndCountryCode;
+		};
+		48B2F0A72E4DE392003A2BE6 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 48B2F0A62E4DE392003A2BE6 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 48395E742E27B57E007CFC53 /* Project object */;
+}
