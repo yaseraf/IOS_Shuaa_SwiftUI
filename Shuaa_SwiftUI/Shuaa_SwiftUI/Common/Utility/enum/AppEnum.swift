@@ -158,7 +158,7 @@ enum HomeTabBarItem{
             case .home:
                 "home".localized
             case .orderList:
-                "orderList".localized
+                "order_list".localized
             case .trade:
                 "trade".localized
             case .accounts:
@@ -172,15 +172,15 @@ enum HomeTabBarItem{
         get{
             switch self {
             case .home:
-                "home".localized
+                "ic_home".localized
             case .orderList:
-                "orderList".localized
+                "ic_orderList".localized
             case .trade:
-                "trade".localized
+                "ic_trades".localized
             case .accounts:
-                "accounts".localized
+                "ic_accounts".localized
             case .portfolio:
-                "portfolio".localized
+                "ic_portfolio".localized
             }
 
         }

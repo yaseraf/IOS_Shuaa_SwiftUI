@@ -20,7 +20,7 @@ class ManageCoordinator:  ObservableObject {
 
     func start() {
         self.navigationController.viewControllers = []
-        openManageScene()
+//        openManageScene()
     }
 
     func restart() {
@@ -29,21 +29,21 @@ class ManageCoordinator:  ObservableObject {
 }
 extension ManageCoordinator:ManageCoordinatorProtocol{
 
-    func openManageScene() {
-        let viewModel = ManageViewModel(coordinator: self)
-        let view = ManageScene(viewModel: viewModel)
-        let viewWithCoordinator = view.withThemeEnvironment
-        let viewController = UIHostingController(rootView: viewWithCoordinator)
-        self.navigationController.pushViewController(viewController, animated: true)
-    }
+//    func openManageScene() {
+//        let viewModel = ManageViewModel(coordinator: self)
+//        let view = ManageScene(viewModel: viewModel)
+//        let viewWithCoordinator = view.withThemeEnvironment
+//        let viewController = UIHostingController(rootView: viewWithCoordinator)
+//        self.navigationController.pushViewController(viewController, animated: true)
+//    }
     
-    func openSettingScene() {
-        let viewModel = SettingViewModel(coordinator: self)
-        let view = SettingScene(viewModel: viewModel)
-        let viewWithCoordinator = view.withThemeEnvironment
-        let viewController = UIHostingController(rootView: viewWithCoordinator)
-        self.navigationController.pushViewController(viewController, animated: true)
-    }
+//    func openSettingScene() {
+//        let viewModel = SettingViewModel(coordinator: self)
+//        let view = SettingScene(viewModel: viewModel)
+//        let viewWithCoordinator = view.withThemeEnvironment
+//        let viewController = UIHostingController(rootView: viewWithCoordinator)
+//        self.navigationController.pushViewController(viewController, animated: true)
+//    }
     
     func openTransactionScene() {
         let viewModel = TransactionsViewModel(coordinator: self)

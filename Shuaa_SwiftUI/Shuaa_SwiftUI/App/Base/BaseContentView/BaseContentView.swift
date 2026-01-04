@@ -44,7 +44,7 @@ struct BaseContentView <Content: View>: View  {
                 gradientBgView
                     .ignoresSafeArea()
             case .white:
-                Color.colorBG
+                Color.colorBackground
                     .ignoresSafeArea()
             case .blackWithAlpha:
                 Color.black.opacity(0.2)

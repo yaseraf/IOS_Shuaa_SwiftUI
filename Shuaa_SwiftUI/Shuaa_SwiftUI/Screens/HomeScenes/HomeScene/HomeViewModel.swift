@@ -79,7 +79,52 @@ extension HomeViewModel {
 
 // MARK: Routing
 extension HomeViewModel {
+    func openAccountInformationScene() {
         
+    }
+    
+    func openMyDocumentsScene() {
+
+    }
+    
+    func openMarketsInsightScene() {
+
+    }
+    
+    func openMyAlertsScene() {
+
+    }
+    
+    func openAccountStatementsScene() {
+
+    }
+    
+    func openCashDepositScene() {
+
+    }
+    
+    func openEquityTransferScene() {
+
+    }
+    
+    func openTransferScene() {
+
+    }
+    
+    func openClientPortalScene() {
+
+    }
+    
+    func openIpoScene() {
+
+    }
+    
+    func openSettingsScene() {
+
+        coordinator.openManageScene()
+        
+    }
+    
     func openAlertsScene() {
         SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getGenericCoordinator().openAlertsScene()
     }

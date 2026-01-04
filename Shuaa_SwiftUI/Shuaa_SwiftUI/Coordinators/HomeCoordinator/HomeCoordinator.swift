@@ -157,5 +157,21 @@ extension HomeCoordinator:HomeCoordinatorProtocol{
         viewController.sheetPresentationController?.detents = [.medium(), .large()]
         self.navigationController.topViewController?.present(viewController, animated: true)
     }
+    
+    func openManageScene() {
+        let viewModel = ManageViewModel(coordinator: self)
+        let view = ManageScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
 
+    func openSettingScene() {
+        let viewModel = SettingViewModel(coordinator: self)
+        let view = SettingScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
 }

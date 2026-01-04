@@ -55,8 +55,8 @@ extension Color {
 //-------------------------------------------------------------------------------
     
 // MARK: LIGHT
-  private static let colorTextPrimaryLight: Color = Color.init(hex: "#24180E")
-  private static let colorPrimaryLight: Color = Color.init(hex: "#374FA3")
+//  private static let colorTextPrimaryLight: Color = Color.init(hex: "#24180E")
+//  private static let colorPrimaryLight: Color = Color.init(hex: "#374FA3")
   private static let colorBorderLight: Color = Color.init(hex: "#F0EEED")
   private static let colorBorderSecondaryLight: Color = Color.init(hex: "#989898")
   private static let colorBGLight: Color = Color.init(hex: "#FFFFFF")
@@ -67,7 +67,7 @@ extension Color {
   private static let colorStockWithdrawalHeaderGradientLight: Color = Color.init(hex: "#EAEEFF")
   private static let colorBGTableLight: Color = Color.init(hex: "#F8FAFC")
   private static let colorAlertLight: Color = Color.init(hex: "#E52E2E")
-  private static let colorTextSecondaryLight: Color = Color.init(hex: "#948F8D")
+//  private static let colorTextSecondaryLight: Color = Color.init(hex: "#948F8D")
   private static let colorBGSecondaryLight: Color = Color.init(hex: "#EBEDF6")
   private static let colorBGHeaderLight: Color = Color.init(hex: "#EBEDF6")
   private static let colorPositiveLight: Color = Color.init(hex: "#00B050")
@@ -120,12 +120,25 @@ extension Color {
   private static let colorChartOrange_F79009: Color = Color.init(hex: "#F79009")
   private static let colorChartOther_98A5B3: Color = Color.init(hex: "#98A5B3")
     
+  // Shuaa Colors
+  private static let colorPrimaryLight: Color = Color.init(hex: "#22438A")
+  private static let colorBaseLight: Color = Color.init(hex: "#FFFFFF")
+  private static let colorGreenLight: Color = Color.init(hex: "#0FBE00")
+  private static let colorRedLight: Color = Color.init(hex: "#EB0600")
+  private static let colorBlueLight: Color = Color.init(hex: "#63AAD5")
+  private static let colorSymbolLight: Color = Color.init(hex: "#FFFFFF")
+  private static let colorTextFieldLight: Color = Color.init(hex: "#537387")
+  private static let colorTextPrimaryLight: Color = Color.init(hex: "#23448B")
+  private static let colorTextSecondaryLight: Color = Color.init(hex: "#8E8E8E")
+  private static let colorBackgroundLight: Color = Color.init(hex: "#0A3754")
+  private static let colorBackgroundSecondaryLight: Color = Color.init(hex: "#FFFFFF")
+
 //-------------------------------------------------------------------------------
     
 // MARK: DARK
     
-    private static let colorTextPrimaryDark: Color = Color.init(hex: "#FFFFFF")
-    private static let colorPrimaryDark: Color = Color.init(hex: "#374FA3")
+//    private static let colorTextPrimaryDark: Color = Color.init(hex: "#FFFFFF")
+//    private static let colorPrimaryDark: Color = Color.init(hex: "#374FA3")
     private static let colorBorderDark: Color = Color.init(hex: "#212A36")
     private static let colorBGDark: Color = Color.init(hex: "#0B0E13")
     private static let colorBGThirdDark: Color = Color.init(hex: "#1C1C1C")
@@ -135,7 +148,7 @@ extension Color {
     private static let colorStockWithdrawalHeaderGradientDark: Color = Color.init(hex: "#22367C")
     private static let colorBGTableDark: Color = Color.init(hex: "#1C212E")
     private static let colorAlertDark: Color = Color.init(hex: "#E52E2E")
-    private static let colorTextSecondaryDark: Color = Color.init(hex: "#EEE9E7")
+//    private static let colorTextSecondaryDark: Color = Color.init(hex: "#EEE9E7")
     private static let colorBGSecondaryDark: Color = Color.init(hex: "#1E222F")
     private static let colorBGHeaderDark: Color = Color.init(hex: "#1E232F")
     private static let colorPositiveDark: Color = Color.init(hex: "#FFFFFF")
@@ -178,11 +191,61 @@ extension Color {
     static let colorSuccess50_092A18: Color = Color.init(hex: "#092A18")
     static let colorBGPrimary_161E26: Color = Color.init(hex: "161E26")
 
+    // Shuaa Colors
+    private static let colorPrimaryDark: Color = Color.init(hex: "#D1D3D4")
+    private static let colorBaseDark: Color = Color.init(hex: "#000000")
+    private static let colorGreenDark: Color = Color.init(hex: "#0FBE00")
+    private static let colorRedDark: Color = Color.init(hex: "#EB0600")
+    private static let colorBlueDark: Color = Color.init(hex: "#63AAD5")
+    private static let colorSymbolDark: Color = Color.init(hex: "#FFFFFF")
+    private static let colorTextFieldDark: Color = Color.init(hex: "#5D5E5F")
+    private static let colorTextPrimaryDark: Color = Color.init(hex: "#D1D3D4")
+    private static let colorTextSecondaryDark: Color = Color.init(hex: "#8C8E8E")
+    private static let colorBackgroundDark: Color = Color.init(hex: "#18191B")
+    private static let colorBackgroundSecondaryDark: Color = Color.init(hex: "#242625")
+
     // Properties with getters
     
+    //Shuaa Colors
     static var colorPrimary: Color {
         get {
             AppUtility.shared.isDarkTheme ? colorPrimaryDark : colorPrimaryLight
+        }
+    }
+    
+    static var colorBase: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorBaseDark : colorBaseLight
+        }
+    }
+    
+    static var colorGreen: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorGreenDark : colorGreenLight
+        }
+    }
+    
+    static var colorRed: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorRedDark : colorRedLight
+        }
+    }
+    
+    static var colorBlue: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorBlueDark : colorBlueLight
+        }
+    }
+    
+    static var colorSymbol: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorSymbolDark : colorSymbolLight
+        }
+    }
+    
+    static var colorTextField: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorTextFieldDark : colorTextFieldLight
         }
     }
     
@@ -197,6 +260,38 @@ extension Color {
             AppUtility.shared.isDarkTheme ? colorTextSecondaryDark : colorTextSecondaryLight
         }
     }
+    
+    static var colorBackground: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorBackgroundDark : colorBackgroundLight
+        }
+    }
+    
+    static var colorBackgroundSecondary: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorBackgroundSecondaryDark : colorBackgroundSecondaryLight
+        }
+    }
+    
+    // -----------------------------------------------------
+    
+//    static var colorPrimary: Color {
+//        get {
+//            AppUtility.shared.isDarkTheme ? colorPrimaryDark : colorPrimaryLight
+//        }
+//    }
+    
+//    static var colorTextPrimary: Color {
+//        get {
+//            AppUtility.shared.isDarkTheme ? colorTextPrimaryDark : colorTextPrimaryLight
+//        }
+//    }
+//    
+//    static var colorTextSecondary: Color {
+//        get {
+//            AppUtility.shared.isDarkTheme ? colorTextSecondaryDark : colorTextSecondaryLight
+//        }
+//    }
     
     static var colorBGSecondary: Color {
         get {

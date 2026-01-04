@@ -10,6 +10,9 @@ import SwiftUI
 
 struct ManageContentView:View {
     
+    @State var symbolSearch = ""
+    @State var isMenuOpen = false
+    
     var onSettingTap:()->Void
     var onContactUsTap: () -> Void
     var onAppRatingTap: () -> Void
@@ -31,6 +34,13 @@ struct ManageContentView:View {
     
     var body: some View {
         VStack {
+
+            SharedHeaderView(symbolSearch: symbolSearch, isMenuOpen: isMenuOpen, withBackButton: true, onMenuTap: {
+                isMenuOpen.toggle()
+            })
+
+            titleView
+            
             ScrollView(showsIndicators: false) {
                 
                 manageAccountView
@@ -49,6 +59,12 @@ struct ManageContentView:View {
             
 //            HomeBottomBarView(selectedItem: .menu)
 //                .frame(maxWidth: .infinity)
+        }
+    }
+    
+    private var titleView: some View {
+        VStack {
+            
         }
     }
     

@@ -29,7 +29,7 @@ struct BaseScene <Content:View> :View{
             case .gradient:
                 gradientBgView.ignoresSafeArea()
             case .white:
-                Color.colorBG.ignoresSafeArea()
+                Color.colorBackground.ignoresSafeArea()
             case .blackWithAlpha:
                 Color.black.opacity(0.2).ignoresSafeArea()
             case .clear:

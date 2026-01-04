@@ -10,11 +10,11 @@ import WebKit
 
 class ManageViewModel: ObservableObject {
     
-    private let coordinator: ManageCoordinatorProtocol
+    private let coordinator: HomeCoordinatorProtocol
     
     @Published var newsData: [GetAllMarketNewsBySymbolUIModel]?
 
-    init(coordinator: ManageCoordinatorProtocol) {
+    init(coordinator: HomeCoordinatorProtocol) {
         self.coordinator = coordinator
         
         getNewsData()
@@ -25,63 +25,63 @@ class ManageViewModel: ObservableObject {
     }
     
     func openContactUsScene() {
-        coordinator.openContactUsScene()
+//        coordinator.openContactUsScene()
     }
     
     func openAppRatingScene() {
-        coordinator.openAppRatingScene()
+//        coordinator.openAppRatingScene()
     }
     
     func openLogoutConfirmationScene() {
-        coordinator.openLogoutConfirmationScene()
+//        coordinator.openLogoutConfirmationScene()
     }
     
     func openTransactionsScene() {
-        coordinator.openTransactionScene()
+//        coordinator.openTransactionScene()
     }
     
     func openMarketSummaryScene() {
-        coordinator.openMarketSummaryScene()
+//        coordinator.openMarketSummaryScene()
     }
     
     func openMarketReportsScene() {
-        coordinator.openMarketReportsScene()
+//        coordinator.openMarketReportsScene()
     }
     
     func openTradingIndexScene() {
-        coordinator.openTradeIndexScene()
+//        coordinator.openTradeIndexScene()
     }
     
     func openSectorsIndexScene() {
-        coordinator.openIndustrialSectorScene()
+//        coordinator.openIndustrialSectorScene()
     }
     
     func openMarketDealsScene() {
-        coordinator.openMarketDealsScene()
+//        coordinator.openMarketDealsScene()
     }
     
     func openMarketNewsScene() {
-        coordinator.openNewsScene(newsData: newsData ?? [])
+//        coordinator.openNewsScene(newsData: newsData ?? [])
     }
     
     func openListOfCompaniesScene() {
-        coordinator.openListOfCompaniesScene()
+//        coordinator.openListOfCompaniesScene()
     }
     
     func openNotificationsScene() {
-        coordinator.openNotificationsScene()
+//        coordinator.openNotificationsScene()
     }
     
     func openChangePasswordScene() {
-        coordinator.openManageChangePasswordScene()
+//        coordinator.openManageChangePasswordScene()
     }
     
     func openAccountReportsScene() {
-        coordinator.openAccountReportsScene()
+//        coordinator.openAccountReportsScene()
     }
     
     func openBalanceDetailsScene() {
-        coordinator.openBalanceDetailsScene()
+//        coordinator.openBalanceDetailsScene()
     }
     
     func openPersonalInformationScene() {
@@ -89,7 +89,7 @@ class ManageViewModel: ObservableObject {
     }
     
     func openUploadDocumentTap() {
-        coordinator.openDocumentsScene()
+//        coordinator.openDocumentsScene()
     }
     
     

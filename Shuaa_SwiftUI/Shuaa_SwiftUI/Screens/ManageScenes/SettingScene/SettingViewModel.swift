@@ -9,7 +9,7 @@ import Foundation
 
 class SettingViewModel: ObservableObject {
     
-    private var coordinator: ManageCoordinatorProtocol
+    private var coordinator: HomeCoordinatorProtocol
     
     @Published var themeToggle: Bool
     @Published var companiesLogoToggle: Bool = true
@@ -17,7 +17,7 @@ class SettingViewModel: ObservableObject {
     @Published var biometricLoginToggle: Bool = false
     @Published var pinLoginToggle: Bool = false
     
-    init(coordinator: ManageCoordinatorProtocol) {
+    init(coordinator: HomeCoordinatorProtocol) {
         self.coordinator = coordinator
         
         if AppUtility.shared.isDarkTheme {

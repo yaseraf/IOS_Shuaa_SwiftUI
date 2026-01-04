@@ -15,4 +15,9 @@ protocol HomeCoordinatorProtocol: AnyObject,Coordinator {
     func openNewsDetailsScene(selectedNews: GetAllMarketNewsBySymbolUIModel)
     func openChartScene(selectedStock:GetCompaniesLookupsUIModel)
     func openFilterScene(delegate: WatchlistFilterDelegate, categoryFilter: [FilterCategoryModel], specificSharesFilter: SpecificShareTypes, sectorTypeFilter: SectorTypes)
+    
+    // -----------------
+    
+    func openManageScene()
+    func openSettingScene()
 }

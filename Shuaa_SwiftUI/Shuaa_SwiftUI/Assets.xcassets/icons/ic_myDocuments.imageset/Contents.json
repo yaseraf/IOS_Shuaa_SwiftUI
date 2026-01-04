@@ -5,11 +5,11 @@
       "scale" : "1x"
     },
     {
+      "filename" : "upload_documents.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "portfolio.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

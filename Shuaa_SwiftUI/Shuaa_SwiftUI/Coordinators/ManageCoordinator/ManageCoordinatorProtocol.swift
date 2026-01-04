@@ -10,8 +10,8 @@ import Foundation
 import FlagAndCountryCode
 
 protocol ManageCoordinatorProtocol: AnyObject,Coordinator {
-    func openManageScene()
-    func openSettingScene()
+//    func openManageScene()
+//    func openSettingScene()
     func openTransactionScene()
     func openCashInScene()
     func openCashOutScene()
