@@ -19,15 +19,15 @@ struct HomeBottomBarView: View {
     var body: some View {
 
         HStack{
-            getItemView(item: .pricing)
+            getItemView(item: .home)
+            Spacer()
+            getItemView(item: .orderList)
+            Spacer()
+            getItemView(item: .trade)
+            Spacer()
+            getItemView(item: .accounts)
             Spacer()
             getItemView(item: .portfolio)
-            Spacer()
-            getItemView(item: .orders)
-            Spacer()
-            getItemView(item: .favourite)
-            Spacer()
-            getItemView(item: .menu)
         }
         .padding(.horizontal, 20)
         .frame(maxWidth: .infinity)
@@ -62,27 +62,27 @@ struct HomeBottomBarView: View {
 
     func actionTapBarITem(item:HomeTabBarItem){
         switch item {
-        case .pricing:
+        case .home:
             SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getHomeCoordinator().start()
-        case .portfolio:
+        case .orderList:
             if UserDefaultController().isPreviewMode == true {
                 SceneDelegate.getAppCoordinator()?.startFlow(startWith: .login)
             } else {
                 SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getPortfolioCoordinator().start()
             }
-        case .orders:
+        case .trade:
             if UserDefaultController().isPreviewMode == true {
                 SceneDelegate.getAppCoordinator()?.startFlow(startWith: .login)
             } else {
                 SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getTradeCoordinator().start()
             }
-        case .favourite:
+        case .accounts:
             if UserDefaultController().isPreviewMode == true {
                 SceneDelegate.getAppCoordinator()?.startFlow(startWith: .login)
             } else {
                 SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getFavoriteCoordinator().start()
             }
-        case .menu:
+        case .portfolio:
             if UserDefaultController().isPreviewMode == true {
                 SceneDelegate.getAppCoordinator()?.startFlow(startWith: .login)
             } else {
@@ -93,6 +93,6 @@ struct HomeBottomBarView: View {
     }
 }
 
-#Preview {
-    HomeBottomBarView(selectedItem: .pricing)
-}
+//#Preview {
+//    HomeBottomBarView(selectedItem: .pricing)
+//}

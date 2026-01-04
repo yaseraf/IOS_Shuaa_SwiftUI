@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 extension Font {
-
+    
     enum ThemeFont {
         case thin
         case extraLight
@@ -44,7 +44,24 @@ extension Font {
         }
     }
     
+    enum PTSansThemeFont {
+        case regular
+        case bold
+        var value: String {
+            switch self {
+            case .regular:
+                "PTSans-Regular"
+            case .bold:
+                "PTSans-Bold"
+            }
+        }
+    }
+    
     static func apply(_ type: Font.ThemeFont = .regular, size: CGFloat ) -> Font {
+        return .custom(type.value, size: size)
+    }
+    
+    static func applyPTSans(_ type: Font.PTSansThemeFont = .regular, size: CGFloat ) -> Font {
         return .custom(type.value, size: size)
     }
 }

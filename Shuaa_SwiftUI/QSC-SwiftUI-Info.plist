@@ -32,6 +32,8 @@
 		<string>NotoSansArabic-Bold.ttf</string>
 		<string>NotoSansArabic-ExtraBold.ttf</string>
 		<string>NotoSansArabic-Black.ttf</string>
+		<string>PTSans-Bold.ttf</string>
+		<string>PTSans-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

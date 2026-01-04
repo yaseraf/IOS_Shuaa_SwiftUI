@@ -47,8 +47,8 @@ struct ManageContentView:View {
             
             Spacer()
             
-            HomeBottomBarView(selectedItem: .menu)
-                .frame(maxWidth: .infinity)
+//            HomeBottomBarView(selectedItem: .menu)
+//                .frame(maxWidth: .infinity)
         }
     }
     

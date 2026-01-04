@@ -36,8 +36,8 @@ struct OrderListContentView: View {
             
             bottomButtonsView
             
-            HomeBottomBarView(selectedItem: .orders)
-                .frame(maxWidth: .infinity)
+//            HomeBottomBarView(selectedItem: .orders)
+//                .frame(maxWidth: .infinity)
         }
     }
     

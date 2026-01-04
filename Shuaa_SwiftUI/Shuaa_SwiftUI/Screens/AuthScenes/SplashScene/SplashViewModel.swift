@@ -161,7 +161,7 @@ extension SplashViewModel {
     }
     
     func openLoginScene() {
-        coordinator.startFlow(startWith: .boarding)
+        coordinator.startFlow(startWith: .login)
 //        SceneDelegate.getAppCoordinator()?.showHomeFlow() // For Testing
     }
     

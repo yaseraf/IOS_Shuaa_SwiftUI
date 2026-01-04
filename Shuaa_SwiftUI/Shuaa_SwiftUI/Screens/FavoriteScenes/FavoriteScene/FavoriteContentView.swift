@@ -58,7 +58,7 @@ struct FavoriteContentView: View {
             
             Spacer()
             
-            HomeBottomBarView(selectedItem: .favourite)
+//            HomeBottomBarView(selectedItem: .favourite)
         }
         .onAppear {
             // Manually update every second

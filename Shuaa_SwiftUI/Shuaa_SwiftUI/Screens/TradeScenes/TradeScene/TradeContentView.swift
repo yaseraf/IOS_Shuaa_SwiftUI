@@ -97,8 +97,8 @@ struct TradeContentView: View {
                 
                 bottomButtonView
                 
-                HomeBottomBarView(selectedItem: .orders)
-                    .frame(maxWidth: .infinity)
+//                HomeBottomBarView(selectedItem: .orders)
+//                    .frame(maxWidth: .infinity)
             }
         }
     }

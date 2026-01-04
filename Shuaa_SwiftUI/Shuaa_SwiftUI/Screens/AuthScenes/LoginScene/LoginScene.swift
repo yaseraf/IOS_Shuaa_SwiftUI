@@ -15,8 +15,8 @@ struct LoginScene: BaseSceneType {
     @State var viewTypeAction:BaseSceneViewType = DefaultBaseSceneViewType()
     
     var body: some View {
-        BaseScene(contentView: {
-            BaseContentView(withScroll:false, content: {
+        BaseScene(backgroundType: .white, contentView: {
+            BaseContentView(withScroll:false, backgroundType: .white, content: {
                 LoginContentView(showMessagePopUp: $viewModel.showMessagePopUp, loginMessage: $viewModel.loginMessage, username: $viewModel.username, password: $viewModel.password, isRememberMe: $viewModel.isRememberMe, showAlert: $viewModel.showAlert, loginData: $viewModel.loginData, onSignInTap: { username, password, isRememberMe in
                     viewModel.callUsrAuthinticationByEmailAndMobileAPI(username: username, password: password, isRememberMe: isRememberMe, tokenID: "")
                 }, onForgotNameTap: {
@@ -33,6 +33,10 @@ struct LoginScene: BaseSceneType {
                     viewModel.faceId(username: username, password: password, isRememberMe: true)
                 }, onReLoginTap: { username, password, isRememberMe in
                     viewModel.callUsrAuthinticationByEmailAndMobileAPI(username: username, password: password, isRememberMe: isRememberMe, tokenID: "1")
+                }, onSignUpTap: {
+                    SceneDelegate.getAppCoordinator()?.showHomeFlow()
+                }, onVideoTutorialTap: {
+                    
                 })
                 .onViewDidLoad {
                     loginAPI()

@@ -146,41 +146,41 @@ enum PasswordValidationType{
     }
 }
 enum HomeTabBarItem{
-    case pricing
+    case home
+    case orderList
+    case trade
+    case accounts
     case portfolio
-    case orders
-    case favourite
-    case menu
 
     var title:String {
         get{
             switch self {
-            case .pricing:
-                "pricing".localized
+            case .home:
+                "home".localized
+            case .orderList:
+                "orderList".localized
+            case .trade:
+                "trade".localized
+            case .accounts:
+                "accounts".localized
             case .portfolio:
                 "portfolio".localized
-            case .orders:
-                "orders".localized
-            case .favourite:
-                "favourite".localized
-            case .menu:
-                "menu".localized
             }
         }
     }
     var iconName:String {
         get{
             switch self {
-            case .pricing:
-                "ic_pricing".localized
+            case .home:
+                "home".localized
+            case .orderList:
+                "orderList".localized
+            case .trade:
+                "trade".localized
+            case .accounts:
+                "accounts".localized
             case .portfolio:
-                "ic_portfolio".localized
-            case .orders:
-                "ic_orders".localized
-            case .favourite:
-                "ic_favorite".localized
-            case .menu:
-                "ic_menu".localized
+                "portfolio".localized
             }
 
         }
