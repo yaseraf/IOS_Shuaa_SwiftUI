@@ -8,6 +8,8 @@
 
 import Foundation
 import IQKeyboardManagerSwift
+import UIKit
+
 extension AppDelegate{
 
     func setup() {
@@ -30,5 +32,5 @@ extension AppDelegate{
         if !Connection_Hub.shared.isConnected() {
             Connection_Hub.shared.connection?.start()
         }
-    }
+    }    
 }

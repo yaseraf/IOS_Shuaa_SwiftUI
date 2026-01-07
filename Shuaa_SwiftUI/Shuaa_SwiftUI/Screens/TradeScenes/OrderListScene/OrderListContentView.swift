@@ -11,6 +11,10 @@ import SDWebImageSwiftUI
 
 struct OrderListContentView: View {
     
+    @State var symbolSearch = ""
+    @State var isMenuOpen = false
+    @State var showMarketDetails = true
+
     var userData:Binding<GetUserAccountsUIModel?>
     var orderListData:Binding<[OrderListUIModel]?>
     var filteredSymbol:Binding<String>
@@ -25,19 +29,28 @@ struct OrderListContentView: View {
     var onSellTap:(TypeOfTrade)->Void
     
     var body: some View {
-        VStack {
-            headerView
+        ZStack {
+            VStack {
+                
+                SharedHeaderView(symbolSearch: symbolSearch, isMenuOpen: isMenuOpen, withBackButton: false, onMenuTap: {
+                    isMenuOpen.toggle()
+                })
+                
+                accountView
+                
+                contentView
+                
+                Spacer()
+                
+                bottomButtonsView
+                
+                HomeBottomBarView(selectedItem: .home)
+
+            }
             
-            accountView
-            
-            contentView
-            
-            Spacer()
-            
-            bottomButtonsView
-            
-//            HomeBottomBarView(selectedItem: .orders)
-//                .frame(maxWidth: .infinity)
+            // Side Menu
+            SharedSideMenuView(isMenuOpen: $isMenuOpen)
+
         }
     }
     
@@ -618,4 +631,22 @@ enum  StatusType{
             Color.colorSuccess50
         }
     }
+}
+
+#Preview {
+    OrderListContentView(userData: .constant(.testUIModel()), orderListData: .constant([]), filteredSymbol: .constant(""), filteredOSSList: .constant([]), onPortfolioTap: {
+        
+    }, onStockTap: { _,_ in
+        
+    }, onBackTap: {
+        
+    }, onSearchTap: {
+        
+    }, onResetTap: {
+        
+    }, onBuyTap: { _ in
+        
+    }, onSellTap: { _ in
+        
+    })
 }

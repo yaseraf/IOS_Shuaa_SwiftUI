@@ -107,4 +107,5 @@ extension ManageViewModel {
         
         fontSize = UserDefaultController().fontSizeChangeResult
     }
+
 }

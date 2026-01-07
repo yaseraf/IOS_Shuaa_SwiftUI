@@ -16,19 +16,7 @@ struct HomeContentView: View {
     @State var symbolSearch = ""
     @State var isMenuOpen = false
     @State var showMarketDetails = true
-    
-    var onAccountInformationTap:()->Void
-    var onMyDocumentsTap:()->Void
-    var onMarketsInsightTap:()->Void
-    var onMyAlertsTap:()->Void
-    var onAccountStatements:()->Void
-    var onCashDeposit:()->Void
-    var onEquityTransferTap:()->Void
-    var onTransfersTap:()->Void
-    var onClientPortalTap:()->Void
-    var onIPOTap:()->Void
-    var onSettingsTap:()->Void
-        
+            
     var body: some View {
         ZStack {
             VStack {
@@ -48,23 +36,12 @@ struct HomeContentView: View {
                 Spacer()
                 
                 HomeBottomBarView(selectedItem: .home)
-                    .frame(maxWidth: .infinity)
+
             }
                         
             // Side Menu
-            SharedSideMenuView(isMenuOpen: $isMenuOpen, onAccountInformationTap: onAccountInformationTap, onMyDocumentsTap: onMyDocumentsTap, onMarketsInsightTap: onMarketsInsightTap, onMyAlertsTap: onMyAlertsTap, onAccountStatements: onAccountStatements, onCashDeposit: onCashDeposit, onEquityTransferTap: onEquityTransferTap, onTransfersTap: onTransfersTap, onClientPortalTap: onClientPortalTap, onIPOTap: onIPOTap, onSettingsTap: onSettingsTap)
+            SharedSideMenuView(isMenuOpen: $isMenuOpen)
         }
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                Button(action: {
-//                    withAnimation(.easeInOut(duration: 0.3)) {
-//                        isMenuOpen.toggle()
-//                    }
-//                }) {
-//                    Image(systemName: "line.3.horizontal")
-//                }
-//            }
-//        }
     }
         
     private var marketsView: some View {
@@ -235,7 +212,7 @@ struct HomeContentView: View {
 
         .background(RoundedRectangle(cornerRadius: 12).fill(Color.colorBackgroundSecondary))
         .padding(.vertical, 8)
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 12)
     }
     
     private var chartView: some View {
@@ -254,44 +231,51 @@ struct HomeContentView: View {
         .frame(maxWidth: .infinity)
         .background(RoundedRectangle(cornerRadius: 12).fill(Color.colorBackgroundSecondary))
         .padding(.vertical, 8)
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 12)
     }
     
     private var stocksView: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 32) {
+            HStack(spacing: 0) {
                 actionButton(action: {
                     
                 }, image: "ic_overview", title: "overview".localized)
+                
+                Spacer()
                 
                 actionButton(action: {
                     
                 }, image: "ic_tops", title: "top_stocks".localized)
 
+                Spacer()
+                
                 actionButton(action: {
                     
                 }, image: "ic_marketT&S", title: "market_time_sale".localized)
 
+                Spacer()
+                
                 actionButton(action: {
                     
                 }, image: "ic_watchlist", title: "watchlist".localized)
             }
             .padding(.vertical, 12)
+            .padding(.horizontal, 24)
             
             Color.colorTextPrimary
                 .frame(height: 0.7)
-                .padding(.horizontal, 24)
+                .padding(.horizontal, 12)
             
             VStack(spacing: 12) {
                 stocksHorizontalStack
-                    .padding(.horizontal, 24)
+                    .padding(.horizontal, 12)
             }
             .padding(.vertical, 12)
         }
         .frame(maxWidth: .infinity)
         .background(RoundedRectangle(cornerRadius: 12).fill(Color.colorBackgroundSecondary))
         .padding(.vertical, 8)
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 12)
 
     }
     
@@ -385,27 +369,5 @@ struct HomeContentView: View {
 }
 
 #Preview {
-    HomeContentView(marketsData: .constant([MarketsUIModel(marketName: "ADX", marketStatus: "Pre-Open adjustment", marketDate: Date().toString(dateFormat: .yyMMddWithTime), lastTradePrice: "9,306.77", netChange: "3.36", netChangePerc: "0.04%", symbolsTraded: "2", tradesUp: "1", tradesEqual: "0", tradesDown: "1", turnover: "17,815,738", volume: "514,895", trades: "254")]), stocksData: .constant([StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), .initializer(),  .initializer(), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), .initializer(), .initializer(), .initializer(), .initializer(), .initializer(), .initializer()]), symbolSearch: "", onAccountInformationTap: {
-        
-    }, onMyDocumentsTap: {
-        
-    }, onMarketsInsightTap: {
-        
-    }, onMyAlertsTap: {
-        
-    }, onAccountStatements: {
-        
-    }, onCashDeposit: {
-        
-    }, onEquityTransferTap: {
-        
-    }, onTransfersTap: {
-        
-    }, onClientPortalTap: {
-        
-    }, onIPOTap: {
-        
-    }, onSettingsTap: {
-        
-    })
+    HomeContentView(marketsData: .constant([MarketsUIModel(marketName: "ADX", marketStatus: "Pre-Open adjustment", marketDate: Date().toString(dateFormat: .yyMMddWithTime), lastTradePrice: "9,306.77", netChange: "3.36", netChangePerc: "0.04%", symbolsTraded: "2", tradesUp: "1", tradesEqual: "0", tradesDown: "1", turnover: "17,815,738", volume: "514,895", trades: "254")]), stocksData: .constant([StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), .initializer(),  .initializer(), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), .initializer(), .initializer(), .initializer(), .initializer(), .initializer(), .initializer()]), symbolSearch: "")
 }

@@ -12,17 +12,7 @@ struct SharedSideMenuView: View {
     
     @Binding var isMenuOpen:Bool
     
-    var onAccountInformationTap:()->Void
-    var onMyDocumentsTap:()->Void
-    var onMarketsInsightTap:()->Void
-    var onMyAlertsTap:()->Void
-    var onAccountStatements:()->Void
-    var onCashDeposit:()->Void
-    var onEquityTransferTap:()->Void
-    var onTransfersTap:()->Void
-    var onClientPortalTap:()->Void
-    var onIPOTap:()->Void
-    var onSettingsTap:()->Void
+    @ObservedObject var viewModel: SharedSideMenuViewModel = SharedSideMenuViewModel()
 
     var body: some View {
         ZStack {
@@ -42,17 +32,18 @@ struct SharedSideMenuView: View {
                 
                 SideMenuView(
                     isMenuOpen: $isMenuOpen,
-                    onAccountInformationTap: onAccountInformationTap,
-                    onMyDocumentsTap: onMyDocumentsTap,
-                    onMarketsInsightTap: onMarketsInsightTap,
-                    onMyAlertsTap: onMyAlertsTap,
-                    onAccountStatements: onAccountStatements,
-                    onCashDeposit: onCashDeposit,
-                    onEquityTransferTap: onEquityTransferTap,
-                    onTransfersTap: onTransfersTap,
-                    onClientPortalTap: onClientPortalTap,
-                    onIPOTap: onIPOTap,
-                    onSettingsTap: onSettingsTap
+                    onAccountInformationTap: viewModel.openAccountInformationScene,
+                    onMyDocumentsTap: viewModel.openMyDocumentsScene,
+                    onMarketsInsightTap: viewModel.openMarketsInsightScene,
+                    onMyAlertsTap: viewModel.openMyAlertsScene,
+                    onAccountStatements: viewModel.openAccountStatementsScene,
+                    onCashDeposit: viewModel.openCashDepositScene,
+                    onEquityTransferTap: viewModel.openEquityTransferScene,
+                    onTransfersTap: viewModel.openTransferScene,
+                    onClientPortalTap: viewModel.openClientPortalScene,
+                    onIPOTap: viewModel.openIpoScene,
+                    onSettingsTap: viewModel.openSettingsScene,
+                    onLogoutTap: viewModel.onLogout
                 )
                     .frame(width: UIScreen.main.bounds.width * 0.5)
                     .background(Color.white)
@@ -77,7 +68,8 @@ struct SideMenuView: View {
     var onClientPortalTap:()->Void
     var onIPOTap:()->Void
     var onSettingsTap:()->Void
-
+    var onLogoutTap:()->Void
+    
     var body: some View {
         VStack(spacing: 0) {
             // Header with logo
@@ -118,6 +110,7 @@ struct SideMenuView: View {
             // Logout Button
             Button(action: {
                 // Logout action
+                onLogoutTap()
             }) {
                 Text("logout".localized)
                     .font(.apply(.semiBold, size: 16))
@@ -151,7 +144,7 @@ struct MenuItemView: View {
                     .foregroundColor(Color.colorPrimary)
                 
                 Text(title)
-                    .font(.apply(.bold, size: 16))
+                    .font(.apply(.bold, size: 14))
                     .foregroundColor(Color.colorPrimary)
                 
                 Spacer()
@@ -191,5 +184,7 @@ struct MenuItemView: View {
         
     }, onSettingsTap: {
             
+    }, onLogoutTap: {
+        
     })
 }

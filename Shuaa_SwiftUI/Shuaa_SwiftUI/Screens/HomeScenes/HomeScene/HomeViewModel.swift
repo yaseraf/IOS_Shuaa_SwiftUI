@@ -87,52 +87,6 @@ extension HomeViewModel {
 
 // MARK: Routing
 extension HomeViewModel {
-    func openAccountInformationScene() {
-        
-    }
-    
-    func openMyDocumentsScene() {
-
-    }
-    
-    func openMarketsInsightScene() {
-
-    }
-    
-    func openMyAlertsScene() {
-
-    }
-    
-    func openAccountStatementsScene() {
-
-    }
-    
-    func openCashDepositScene() {
-
-    }
-    
-    func openEquityTransferScene() {
-
-    }
-    
-    func openTransferScene() {
-
-    }
-    
-    func openClientPortalScene() {
-
-    }
-    
-    func openIpoScene() {
-
-    }
-    
-    func openSettingsScene() {
-
-        coordinator.openManageScene()
-        
-    }
-    
     func openAlertsScene() {
         SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getGenericCoordinator().openAlertsScene()
     }
@@ -317,17 +271,17 @@ extension HomeViewModel {
 // MARK: FUNCTIONS
 extension HomeViewModel {
     
-//    func connectDelegates() {
-//        Connection_Hub.shared.marketWatchDelegate = self
-//        Connection_Hub.shared.connectionDelegate = self
-//    }
+    //    func connectDelegates() {
+    //        Connection_Hub.shared.marketWatchDelegate = self
+    //        Connection_Hub.shared.connectionDelegate = self
+    //    }
     
-//    func resetData() {
-//        marketWatchData = []
-//        topGainerData = []
-//        topLoserData = []
-//        mostActiveData = []
-//    }
+    //    func resetData() {
+    //        marketWatchData = []
+    //        topGainerData = []
+    //        topLoserData = []
+    //        mostActiveData = []
+    //    }
     
     func connectAndSetupSignalR() {
         connectionHubAPIResult = .onLoading(show: true)
@@ -338,166 +292,167 @@ extension HomeViewModel {
         }
     }
     
-//    func filterData() {
-//        var filteredMarketWatchStocks: [GetMarketWatchByProfileIDUIModel] {
-//            tempMarketWatchData?.filter { item in
-//                
-//                // 1. Specific share filter
-//                if specificShareFilter == .islamic {
-//                    guard item.islM?.lowercased() == "y" else { return false }
-//                }
-//                
-//                // 2. Sector type filter
-//                switch sectorTypeFilter {
-//                case .active:
-//                    guard Double(item.executed ?? "") ?? 0 > 0 else { return false }
-//                    
-//                case .up:
-//                    guard Double(item.netChangePerc ?? "") ?? 0 > 0 else { return false }
-//                    
-//                case .down:
-//                    guard Double(item.netChangePerc ?? "") ?? 0 < 0 else { return false }
-//                    
-//                case .constant:
-//                    guard Double(item.netChangePerc ?? "") ?? 0  == 0 else { return false }
-//                    
-//                case .favorites:
-//                    return true
-//                case .none:
-//                    debugPrint("no sector filter selected")
-//                }
-//
-//                // 3. Category filter
-//                if !categoryFilter.isEmpty && !categoryFilter.contains(where: { $0.name.lowercased() == "all" }) {
-//                    let sectorName = AppUtility.shared.isRTL ? item.sectorA?.lowercased() : item.sectorE?.lowercased()
-////                    guard categoryFilter.contains(where: {$0.name.lowercased() == sectorName}) else { return false }
-//                    guard categoryFilter.contains(where: { word in item.sectorE?.lowercased().contains(word.name) ?? false}) else { return false }
-//                }
-//                
-//                return true
-//            } ?? []
-//        }
-//        var filteredTopGainerStocks: [GetMarketWatchByProfileIDUIModel] {
-//            tempTopGainerData?.filter { item in
-//                
-//                // 1. Specific share filter
-//                if specificShareFilter == .islamic {
-//                    guard item.islM?.lowercased() == "y" else { return false }
-//                }
-//                
-//                // 2. Sector type filter
-//                switch sectorTypeFilter {
-//                case .active:
-//                    guard Double(item.executed ?? "") ?? 0 > 0 else { return false }
-//                    
-//                case .up:
-//                    guard Double(item.netChangePerc ?? "") ?? 0 > 0 else { return false }
-//                    
-//                case .down:
-//                    guard Double(item.netChangePerc ?? "") ?? 0 < 0 else { return false }
-//                    
-//                case .constant:
-//                    guard Double(item.netChangePerc ?? "") ?? 0  == 0 else { return false }
-//                    
-//                case .favorites:
-//                    return true
-//                case .none:
-//                    debugPrint("no sector filter selected")
-//                }
-//
-//                // 3. Category filter
-//                if !categoryFilter.isEmpty && !categoryFilter.contains(where: { $0.name.lowercased() == "all" }) {
-//                    let sectorName = AppUtility.shared.isRTL ? item.sectorA?.lowercased() : item.sectorE?.lowercased()
-////                    guard categoryFilter.contains(where: {$0.name.lowercased() == sectorName}) else { return false }
-//                    guard categoryFilter.contains(where: { word in item.sectorE?.lowercased().contains(word.name) ?? false}) else { return false }
-//                }
-//                
-//                return true
-//            } ?? []
-//        }
-//        var filteredTopLoserStocks: [GetMarketWatchByProfileIDUIModel] {
-//            tempTopLoserData?.filter { item in
-//                
-//                // 1. Specific share filter
-//                if specificShareFilter == .islamic {
-//                    guard item.islM?.lowercased() == "y" else { return false }
-//                }
-//                
-//                // 2. Sector type filter
-//                switch sectorTypeFilter {
-//                case .active:
-//                    guard Double(item.executed ?? "") ?? 0 > 0 else { return false }
-//                    
-//                case .up:
-//                    guard Double(item.netChangePerc ?? "") ?? 0 > 0 else { return false }
-//                    
-//                case .down:
-//                    guard Double(item.netChangePerc ?? "") ?? 0 < 0 else { return false }
-//                    
-//                case .constant:
-//                    guard Double(item.netChangePerc ?? "") ?? 0  == 0 else { return false }
-//                    
-//                case .favorites:
-//                    return true
-//                case .none:
-//                    debugPrint("no sector filter selected")
-//                }
-//
-//                // 3. Category filter
-//                if !categoryFilter.isEmpty && !categoryFilter.contains(where: { $0.name.lowercased() == "all" }) {
-//                    let sectorName = AppUtility.shared.isRTL ? item.sectorA?.lowercased() : item.sectorE?.lowercased()
-////                    guard categoryFilter.contains(where: {$0.name.lowercased() == sectorName}) else { return false }
-//                    guard categoryFilter.contains(where: { word in item.sectorE?.lowercased().contains(word.name) ?? false}) else { return false }
-//                }
-//                
-//                return true
-//            } ?? []
-//        }
-//        var filteredMostActiveStocks: [GetMarketWatchByProfileIDUIModel] {
-//            tempMostActiveData?.filter { item in
-//                
-//                // 1. Specific share filter
-//                if specificShareFilter == .islamic {
-//                    guard item.islM?.lowercased() == "y" else { return false }
-//                }
-//                
-//                // 2. Sector type filter
-//                switch sectorTypeFilter {
-//                case .active:
-//                    guard Double(item.executed ?? "") ?? 0 > 0 else { return false }
-//                    
-//                case .up:
-//                    guard Double(item.netChangePerc ?? "") ?? 0 > 0 else { return false }
-//                    
-//                case .down:
-//                    guard Double(item.netChangePerc ?? "") ?? 0 < 0 else { return false }
-//                    
-//                case .constant:
-//                    guard Double(item.netChangePerc ?? "") ?? 0  == 0 else { return false }
-//                    
-//                case .favorites:
-//                    return true
-//                case .none:
-//                    debugPrint("no sector filter selected")
-//                }
-//
-//                // 3. Category filter
-//                if !categoryFilter.isEmpty && !categoryFilter.contains(where: { $0.name.lowercased() == "all" }) {
-//                    let sectorName = AppUtility.shared.isRTL ? item.sectorA?.lowercased() : item.sectorE?.lowercased()
-////                    guard categoryFilter.contains(where: {$0.name.lowercased() == sectorName}) else { return false }
-//                    guard categoryFilter.contains(where: { word in item.sectorE?.lowercased().contains(word.name) ?? false}) else { return false }
-//                }
-//                
-//                return true
-//            } ?? []
-//        }
-//                
-//        marketWatchData = filteredMarketWatchStocks
-//        topGainerData = filteredTopGainerStocks
-//        topLoserData = filteredTopLoserStocks
-//        mostActiveData = filteredMostActiveStocks
-//                
-//    }
+    //    func filterData() {
+    //        var filteredMarketWatchStocks: [GetMarketWatchByProfileIDUIModel] {
+    //            tempMarketWatchData?.filter { item in
+    //
+    //                // 1. Specific share filter
+    //                if specificShareFilter == .islamic {
+    //                    guard item.islM?.lowercased() == "y" else { return false }
+    //                }
+    //
+    //                // 2. Sector type filter
+    //                switch sectorTypeFilter {
+    //                case .active:
+    //                    guard Double(item.executed ?? "") ?? 0 > 0 else { return false }
+    //
+    //                case .up:
+    //                    guard Double(item.netChangePerc ?? "") ?? 0 > 0 else { return false }
+    //
+    //                case .down:
+    //                    guard Double(item.netChangePerc ?? "") ?? 0 < 0 else { return false }
+    //
+    //                case .constant:
+    //                    guard Double(item.netChangePerc ?? "") ?? 0  == 0 else { return false }
+    //
+    //                case .favorites:
+    //                    return true
+    //                case .none:
+    //                    debugPrint("no sector filter selected")
+    //                }
+    //
+    //                // 3. Category filter
+    //                if !categoryFilter.isEmpty && !categoryFilter.contains(where: { $0.name.lowercased() == "all" }) {
+    //                    let sectorName = AppUtility.shared.isRTL ? item.sectorA?.lowercased() : item.sectorE?.lowercased()
+    ////                    guard categoryFilter.contains(where: {$0.name.lowercased() == sectorName}) else { return false }
+    //                    guard categoryFilter.contains(where: { word in item.sectorE?.lowercased().contains(word.name) ?? false}) else { return false }
+    //                }
+    //
+    //                return true
+    //            } ?? []
+    //        }
+    //        var filteredTopGainerStocks: [GetMarketWatchByProfileIDUIModel] {
+    //            tempTopGainerData?.filter { item in
+    //
+    //                // 1. Specific share filter
+    //                if specificShareFilter == .islamic {
+    //                    guard item.islM?.lowercased() == "y" else { return false }
+    //                }
+    //
+    //                // 2. Sector type filter
+    //                switch sectorTypeFilter {
+    //                case .active:
+    //                    guard Double(item.executed ?? "") ?? 0 > 0 else { return false }
+    //
+    //                case .up:
+    //                    guard Double(item.netChangePerc ?? "") ?? 0 > 0 else { return false }
+    //
+    //                case .down:
+    //                    guard Double(item.netChangePerc ?? "") ?? 0 < 0 else { return false }
+    //
+    //                case .constant:
+    //                    guard Double(item.netChangePerc ?? "") ?? 0  == 0 else { return false }
+    //
+    //                case .favorites:
+    //                    return true
+    //                case .none:
+    //                    debugPrint("no sector filter selected")
+    //                }
+    //
+    //                // 3. Category filter
+    //                if !categoryFilter.isEmpty && !categoryFilter.contains(where: { $0.name.lowercased() == "all" }) {
+    //                    let sectorName = AppUtility.shared.isRTL ? item.sectorA?.lowercased() : item.sectorE?.lowercased()
+    ////                    guard categoryFilter.contains(where: {$0.name.lowercased() == sectorName}) else { return false }
+    //                    guard categoryFilter.contains(where: { word in item.sectorE?.lowercased().contains(word.name) ?? false}) else { return false }
+    //                }
+    //
+    //                return true
+    //            } ?? []
+    //        }
+    //        var filteredTopLoserStocks: [GetMarketWatchByProfileIDUIModel] {
+    //            tempTopLoserData?.filter { item in
+    //
+    //                // 1. Specific share filter
+    //                if specificShareFilter == .islamic {
+    //                    guard item.islM?.lowercased() == "y" else { return false }
+    //                }
+    //
+    //                // 2. Sector type filter
+    //                switch sectorTypeFilter {
+    //                case .active:
+    //                    guard Double(item.executed ?? "") ?? 0 > 0 else { return false }
+    //
+    //                case .up:
+    //                    guard Double(item.netChangePerc ?? "") ?? 0 > 0 else { return false }
+    //
+    //                case .down:
+    //                    guard Double(item.netChangePerc ?? "") ?? 0 < 0 else { return false }
+    //
+    //                case .constant:
+    //                    guard Double(item.netChangePerc ?? "") ?? 0  == 0 else { return false }
+    //
+    //                case .favorites:
+    //                    return true
+    //                case .none:
+    //                    debugPrint("no sector filter selected")
+    //                }
+    //
+    //                // 3. Category filter
+    //                if !categoryFilter.isEmpty && !categoryFilter.contains(where: { $0.name.lowercased() == "all" }) {
+    //                    let sectorName = AppUtility.shared.isRTL ? item.sectorA?.lowercased() : item.sectorE?.lowercased()
+    ////                    guard categoryFilter.contains(where: {$0.name.lowercased() == sectorName}) else { return false }
+    //                    guard categoryFilter.contains(where: { word in item.sectorE?.lowercased().contains(word.name) ?? false}) else { return false }
+    //                }
+    //
+    //                return true
+    //            } ?? []
+    //        }
+    //        var filteredMostActiveStocks: [GetMarketWatchByProfileIDUIModel] {
+    //            tempMostActiveData?.filter { item in
+    //
+    //                // 1. Specific share filter
+    //                if specificShareFilter == .islamic {
+    //                    guard item.islM?.lowercased() == "y" else { return false }
+    //                }
+    //
+    //                // 2. Sector type filter
+    //                switch sectorTypeFilter {
+    //                case .active:
+    //                    guard Double(item.executed ?? "") ?? 0 > 0 else { return false }
+    //
+    //                case .up:
+    //                    guard Double(item.netChangePerc ?? "") ?? 0 > 0 else { return false }
+    //
+    //                case .down:
+    //                    guard Double(item.netChangePerc ?? "") ?? 0 < 0 else { return false }
+    //
+    //                case .constant:
+    //                    guard Double(item.netChangePerc ?? "") ?? 0  == 0 else { return false }
+    //
+    //                case .favorites:
+    //                    return true
+    //                case .none:
+    //                    debugPrint("no sector filter selected")
+    //                }
+    //
+    //                // 3. Category filter
+    //                if !categoryFilter.isEmpty && !categoryFilter.contains(where: { $0.name.lowercased() == "all" }) {
+    //                    let sectorName = AppUtility.shared.isRTL ? item.sectorA?.lowercased() : item.sectorE?.lowercased()
+    ////                    guard categoryFilter.contains(where: {$0.name.lowercased() == sectorName}) else { return false }
+    //                    guard categoryFilter.contains(where: { word in item.sectorE?.lowercased().contains(word.name) ?? false}) else { return false }
+    //                }
+    //
+    //                return true
+    //            } ?? []
+    //        }
+    //
+    //        marketWatchData = filteredMarketWatchStocks
+    //        topGainerData = filteredTopGainerStocks
+    //        topLoserData = filteredTopLoserStocks
+    //        mostActiveData = filteredMostActiveStocks
+    //
+    //    }
+    
 }
 
 // MARK: SignalRs

@@ -17,29 +17,7 @@ struct HomeScene: BaseSceneType {
     var body: some View {
         BaseScene(contentView: {
             BaseContentView(withScroll:false, paddingValue: 0, content: {
-                HomeContentView(marketsData: $viewModel.marketsData, stocksData: $viewModel.stocksData, onAccountInformationTap: {
-                    viewModel.openAccountInformationScene()
-                }, onMyDocumentsTap: {
-                    viewModel.openMyDocumentsScene()
-                }, onMarketsInsightTap: {
-                    viewModel.openMarketsInsightScene()
-                }, onMyAlertsTap: {
-                    viewModel.openMyAlertsScene()
-                }, onAccountStatements: {
-                    viewModel.openAccountStatementsScene()
-                }, onCashDeposit: {
-                    viewModel.openCashDepositScene()
-                }, onEquityTransferTap: {
-                    viewModel.openEquityTransferScene()
-                }, onTransfersTap: {
-                    viewModel.openTransferScene()
-                }, onClientPortalTap: {
-                    viewModel.openClientPortalScene()
-                }, onIPOTap: {
-                    viewModel.openIpoScene()
-                }, onSettingsTap: {
-                    viewModel.openSettingsScene()
-                })
+                HomeContentView(marketsData: $viewModel.marketsData, stocksData: $viewModel.stocksData)
                 .onAppear {
                     viewModel.getMarketsData()
                     viewModel.getStocksData()

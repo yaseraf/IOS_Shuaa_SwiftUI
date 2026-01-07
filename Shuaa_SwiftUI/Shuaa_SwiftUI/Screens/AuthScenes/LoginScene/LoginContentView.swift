@@ -34,7 +34,7 @@ struct LoginContentView: View {
     var body: some View {
         ZStack {
                 
-            Image("loginBackground")
+            Image(AppUtility.shared.isDarkTheme ? "splashNight" : "splashDay")
                 .resizable()
                 .scaledToFill()
                 .frame(maxWidth: .infinity)
@@ -139,7 +139,7 @@ struct LoginContentView: View {
     
     private var titleView: some View {
         VStack(spacing: 8) {
-            Image(AppUtility.shared.isRTL ? "ic_logAr" : "ic_logoEn")
+            Image(AppUtility.shared.isRTL ? "ic_logoAr" : "ic_logoEn")
                 .resizable()
                 .renderingMode(.template)
                 .scaledToFit()
@@ -183,7 +183,7 @@ struct LoginContentView: View {
                                 RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorNegativeSecondary)
                             } else {
                                 RoundedRectangle(cornerRadius: 8).fill(Color.colorPrimary.opacity(0.04))
-                                RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorBorderPrimary)
+                                RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 0.5).fill(Color.white)
                             }
                         }
                     }
@@ -257,7 +257,7 @@ struct LoginContentView: View {
                                 RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorNegativeSecondary)
                             } else {
                                 RoundedRectangle(cornerRadius: 8).fill(Color.colorPrimary.opacity(0.04))
-                                RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorBorderPrimary)
+                                RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 0.5).fill(Color.white)
                             }
                         }
                     }

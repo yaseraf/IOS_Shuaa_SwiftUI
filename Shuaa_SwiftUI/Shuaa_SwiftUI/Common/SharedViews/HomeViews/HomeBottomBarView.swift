@@ -29,9 +29,18 @@ struct HomeBottomBarView: View {
             Spacer()
             getItemView(item: .portfolio)
         }
-        .padding(.horizontal, 20)
+        .padding(.vertical, 8)
+        .padding(.horizontal, 24)
         .frame(maxWidth: .infinity)
-        .background(Color.colorBGThird)
+        .background(Color.colorBackgroundSecondary)
+        .cornerRadius(12, corners: [.topLeft, .topRight])
+        .overlay {
+            Color.colorBackgroundSecondary
+                .offset(y: 52)
+
+        }
+        .padding(.horizontal, 12)
+
 
     }
 
@@ -41,15 +50,15 @@ struct HomeBottomBarView: View {
                 actionTapBarITem(item: item)
             } label: {
                 VStack(spacing: 6){
-                    Color.colorPrimary
-                        .frame(height: 2)
-                        .opacity(selectedItem == item ? 1 : 0)
+//                    Color.colorPrimary
+//                        .frame(height: 2)
+//                        .opacity(selectedItem == item ? 1 : 0)
 
-                    Image(item.iconName)
+                    Image(selectedItem == item ? item == .home ? "ic_homeFill" : item == .portfolio ? "ic_portfolioFill" : "" : item.iconName)
                         .renderingMode(.template)
                         .resizable()
-                        .frame(width: 24)
-                        .frame(height: 24)
+                        .frame(width: 22)
+                        .frame(height: 22)
                         .foregroundStyle(selectedItem == item ? Color.colorPrimary : Color.colorFGQuaternary)
 
                     Text(item.title)
@@ -65,34 +74,18 @@ struct HomeBottomBarView: View {
         case .home:
             SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getHomeCoordinator().start()
         case .orderList:
-            if UserDefaultController().isPreviewMode == true {
-                SceneDelegate.getAppCoordinator()?.startFlow(startWith: .login)
-            } else {
-                SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getPortfolioCoordinator().start()
-            }
+            SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getPortfolioCoordinator().start()
         case .trade:
-            if UserDefaultController().isPreviewMode == true {
-                SceneDelegate.getAppCoordinator()?.startFlow(startWith: .login)
-            } else {
-                SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getTradeCoordinator().start()
-            }
+            SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getTradeCoordinator().start()
         case .accounts:
-            if UserDefaultController().isPreviewMode == true {
-                SceneDelegate.getAppCoordinator()?.startFlow(startWith: .login)
-            } else {
-                SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getFavoriteCoordinator().start()
-            }
+            SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getFavoriteCoordinator().start()
         case .portfolio:
-            if UserDefaultController().isPreviewMode == true {
-                SceneDelegate.getAppCoordinator()?.startFlow(startWith: .login)
-            } else {
-                SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getManageCoordinator().start()
-            }
+            SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getManageCoordinator().start()
         }
 
     }
 }
 
-//#Preview {
-//    HomeBottomBarView(selectedItem: .pricing)
-//}
+#Preview {
+    HomeBottomBarView(selectedItem: .home)
+}

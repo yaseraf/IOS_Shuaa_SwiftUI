@@ -331,6 +331,12 @@ struct ManageContentView:View {
 
             // MARK: Change Password
             HStack {
+                Image("ic_passwordLock")
+                    .renderingMode(.template)
+                    .resizable()
+                    .frame(width: 20, height: 22)
+                    .foregroundStyle(Color.colorSymbolPrimary)
+
                 Text("change_password".localized)
                     .font(.apply(.regular, size: 16))
                     .foregroundStyle(Color.colorTextPrimary)
@@ -347,7 +353,7 @@ struct ManageContentView:View {
                         .renderingMode(.template)
                         .resizable()
                         .frame(width: 18, height: 18)
-                        .foregroundStyle(Color.colorSymbol)
+                        .foregroundStyle(Color.colorSymbolPrimary)
 
                 }
 

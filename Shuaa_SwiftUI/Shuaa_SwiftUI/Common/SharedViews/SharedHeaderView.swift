@@ -68,7 +68,7 @@ struct SharedHeaderView: View {
                 }
             }
             .padding(.horizontal, 12)
-            .background(RoundedRectangle(cornerRadius: 12).fill(Color.colorTextField))
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color.colorTextField))
 
             Button {
                 withAnimation {

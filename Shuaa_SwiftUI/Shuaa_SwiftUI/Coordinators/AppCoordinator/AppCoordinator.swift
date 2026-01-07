@@ -36,7 +36,16 @@ class AppCoordinator:  ObservableObject {
     func logout(){
         // clear data
         childCoordinator.removeAll()
-        navigationController.viewControllers = []
+//        navigationController.viewControllers = []
+        UIView.transition(
+            with: navigationController.view,
+            duration: 0.3,
+            options: [.transitionCrossDissolve],
+            animations: {
+                self.navigationController.setViewControllers([], animated: false)
+            }
+        )
+
         startFlow(startWith: .login)
 
     }
@@ -60,7 +69,8 @@ class AppCoordinator:  ObservableObject {
 
     func restart() {
         childCoordinator.last?.start()
-        AppUtility.shared.animateScene()
+        AppUtility.shared.screenTransition(navigationController: navigationController, animationOptions: .transitionCrossDissolve, duration: 0.3, animated: false)
+//        AppUtility.shared.animateScene()
     }
     
     func restartForTheme() {
