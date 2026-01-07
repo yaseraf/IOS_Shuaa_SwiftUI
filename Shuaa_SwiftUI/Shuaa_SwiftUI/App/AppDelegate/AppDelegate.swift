@@ -23,6 +23,14 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         userDefaultController?.clearTempData()
         keyChainController?.clearData()
         userDefaultController?.isAutoLogin = true
+        userDefaultController?.standardFontSize = 12
+        
+        if userDefaultController?.fontSizeChangeResult == nil {
+            userDefaultController?.fontSizeChangeResult = userDefaultController?.standardFontSize
+        }
+        
+        userDefaultController?.fontSizeInterval = (userDefaultController?.fontSizeChangeResult ?? 0) - (userDefaultController?.standardFontSize ?? 0)
+        
         application.registerForRemoteNotifications()
         
         UNUserNotificationCenter.current().delegate = self

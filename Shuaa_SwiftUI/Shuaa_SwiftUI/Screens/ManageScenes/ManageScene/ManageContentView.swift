@@ -13,444 +13,364 @@ struct ManageContentView:View {
     @State var symbolSearch = ""
     @State var isMenuOpen = false
     
-    var onSettingTap:()->Void
-    var onContactUsTap: () -> Void
-    var onAppRatingTap: () -> Void
-    var onLogoutTap: () -> Void
-    var onSharesTransferTap: () -> Void
-    var onMarketReportsTap:() -> Void
-    var onMarketSummaryTap:() -> Void
-    var onTradingIndexTap:() -> Void
-    var onSectorsIndexTap:() -> Void
-    var onMarketDealsTap:() -> Void
-    var onMarketNewsTap:() -> Void
-    var onListOfCompaniesTap:() -> Void
-    var onNotificationsTap:() -> Void
-    var onChangePasswordTap: () -> Void
-    var onAccountReportsTap:() -> Void
-    var onBalanceDetailsTap:() -> Void
-    var onPersonalInformationTap:() -> Void
-    var onUploadDocumentTap:() -> Void
+    @State var notificationToggle = false
+    @State var loginWithBiometricToggle = false
+    @State var enableRotationToggle = false
+    @State var appModeToggle = false
+    
+    var fontSize:Binding<Int?>
+    var selectedLanguage:Binding<LanguageType>
+    var selectedTheme:Binding<ThemeType>
+    
+    var onLanguageChange:((LanguageType)->Void)
+    var onAppThemeChange:((ThemeType)->Void)
+    var onFontSizeIncrease:()->Void
+    var onFontSizeDecrease:()->Void
     
     var body: some View {
-        VStack {
-
-            SharedHeaderView(symbolSearch: symbolSearch, isMenuOpen: isMenuOpen, withBackButton: true, onMenuTap: {
-                isMenuOpen.toggle()
-            })
-
-            titleView
+        ZStack {
+            Color.colorBackground
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
             
-            ScrollView(showsIndicators: false) {
+            VStack {
+
+                SharedHeaderView(symbolSearch: symbolSearch, isMenuOpen: isMenuOpen, withBackButton: true, onMenuTap: {
+                    isMenuOpen.toggle()
+                })
+
+                titleView
                 
-                manageAccountView
+                ScrollView(showsIndicators: false) {
+                    tabsView
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 18)
+                .frame(maxWidth: .infinity)
                 
-                transactionsView
-                
-                marketSummaryView
-                
-                accountSummaryView
             }
-            .padding(.horizontal, 20)
-            .padding(.bottom, 12)
-            .frame(maxWidth: .infinity)
-            
-            Spacer()
-            
-//            HomeBottomBarView(selectedItem: .menu)
-//                .frame(maxWidth: .infinity)
         }
     }
     
     private var titleView: some View {
-        VStack {
+        HStack {
+            Text("settings".localized)
+                .font(.apply(.bold, size: 16))
+                .foregroundStyle(Color.colorTextPrimary)
+                .padding(.vertical, 4)
             
+            Spacer()
         }
-    }
-    
-    private var manageAccountView: some View {
-        VStack(spacing: 0){
-            HStack(spacing: 15) {
-                Text("manage_account".localized)
-                    .font(.apply(.semiBold, size: 16))
-                
-                Spacer()
-            }
-            .padding(.top, 15)
-            .padding(.bottom, 15)
-           
-            HStack(spacing: 15) {
-                Image("ic_setting")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("setting".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                 Spacer()
-            }
-            .onTapGesture {
-                onSettingTap()
-            }
-            
-            Divider()
-            .padding(.vertical, 12)
-
-            HStack(spacing: 15) {
-                Image("ic_contactUs")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("contact_us".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                Spacer()
-            }
-            .onTapGesture {
-                onContactUsTap()
-            }
-            
-            Divider()
-            .padding(.vertical, 12)
-
-            HStack(spacing: 15) {
-                Image("ic_appRating")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("app_rating".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                Spacer()
-            }
-            .onTapGesture {
-                onAppRatingTap()
-            }
-            
-            Divider()
-                .padding(.vertical, 12)
-            
-            HStack(spacing: 15) {
-                Image("ic_logOut")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("log_out".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                Spacer()
-            }
-            .onTapGesture {
-                onLogoutTap()
-            }
-        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 4)
+        .padding(.horizontal, 16)
+        .background(RoundedRectangle(cornerRadius: 8).fill(Color.colorBackgroundSecondary))
+        .padding(.vertical, 8)
+        .padding(.horizontal, 16)
 
     }
     
-    private var transactionsView: some View {
-        VStack(spacing: 0){
-            HStack(spacing: 15) {
-                Text("transactions".localized)
-                    .font(.apply(.semiBold, size: 16))
-                
-                Spacer()
-            }
-            .padding(.top, 15)
-            .padding(.bottom, 15)
-
-            HStack(spacing: 15) {
-                Image("ic_sharesTransfer")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("shares_transfer".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                 Spacer()
-            }
-            .onTapGesture {
-                onSharesTransferTap()
-            }
+    private var tabsView: some View {
+        VStack(spacing: 16) {
             
-            Divider()
-            .padding(.vertical, 12)
+            // MARK: App Language
+            HStack {
+                Text("app_language".localized)
+                    .font(.apply(.regular, size: 16))
+                    .foregroundStyle(Color.colorTextPrimary)
+                    .minimumScaleFactor(0.9)
+                    .lineLimit(1)
 
-            HStack(spacing: 15) {
-                Image("ic_moneyTransfer")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("money_transfer".localized)
-                    .font(.apply(.medium, size: 14))
-                
                 Spacer()
-            }
-            .onTapGesture {
-                onSharesTransferTap()
-            }
-        }
+                
+                HStack {
+                    Button {
+                        onLanguageChange(.arabic)
+                    } label: {
+                        Text("arabic".localized)
+                            .font(.apply(.medium, size: 16))
+                            .foregroundStyle(selectedLanguage.wrappedValue == .arabic ? Color.colorBase : Color.colorTextPrimary)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 2)
+                            .background(
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 8).fill(selectedLanguage.wrappedValue == .arabic ? Color.colorTextPrimary : Color.colorBackgroundSecondary)
+                                    RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorTextPrimary)
+                                }
+                            )
+                    }
 
-    }
-    
-    private var marketSummaryView: some View {
-        VStack(spacing: 0){
-            HStack(spacing: 15) {
-                Text("market_summary".localized)
-                    .font(.apply(.semiBold, size: 16))
-                
-                Spacer()
+
+                    Button {
+                        onLanguageChange(.english)
+                    } label: {
+                        Text("english".localized)
+                            .font(.apply(.medium, size: 16))
+                            .foregroundStyle(selectedLanguage.wrappedValue == .english ? Color.colorBase : Color.colorTextPrimary)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 2)
+                            .background(
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 8).fill(selectedLanguage.wrappedValue == .english ? Color.colorTextPrimary : Color.colorBackgroundSecondary)
+                                    RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorTextPrimary)
+                                }
+                            )
+                    }
+
+                }
             }
-            .padding(.top, 15)
-            .padding(.bottom, 15)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color.colorBackgroundSecondary))
             
-            HStack(spacing: 15) {
-                Image("ic_marketReports")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("market_summary".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                 Spacer()
-            }
-            .onTapGesture {
-                onMarketSummaryTap()
-            }
+            // MARK: Preferred Language
+            HStack {
+                Text("preferred_language".localized)
+                    .font(.apply(.regular, size: 16))
+                    .foregroundStyle(Color.colorTextPrimary)
+                    .minimumScaleFactor(0.9)
+                    .lineLimit(1)
 
-            Divider()
-            .padding(.vertical, 12)
+                Spacer()
+                
+                HStack {
+                    Button {
+                        
+                    } label: {
+                        Text("arabic".localized)
+                            .font(.apply(.medium, size: 16))
+                            .foregroundStyle(selectedLanguage.wrappedValue == .arabic ? Color.colorBase : Color.colorTextPrimary)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 2)
+                            .background(
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 8).fill(selectedLanguage.wrappedValue == .arabic ? Color.colorTextPrimary : Color.colorBackgroundSecondary)
+                                    RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorTextPrimary)
+                                }
+                            )
+                    }
 
-            HStack(spacing: 15) {
-                Image("ic_marketReports")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("market_reports".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                 Spacer()
+                    Button {
+                        
+                    } label: {
+                        Text("english".localized)
+                            .font(.apply(.medium, size: 16))
+                            .foregroundStyle(selectedLanguage.wrappedValue == .english ? Color.colorBase : Color.colorTextPrimary)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 2)
+                            .background(
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 8).fill(selectedLanguage.wrappedValue == .english ? Color.colorTextPrimary : Color.colorBackgroundSecondary)
+                                    RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorTextPrimary)
+                                }
+                            )
+                    }
+
+                }
             }
-            .onTapGesture {
-                onMarketReportsTap()
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color.colorBackgroundSecondary))
+
+            // MARK: Notification
+            HStack {
+                Text("notification".localized)
+                    .font(.apply(.regular, size: 16))
+                    .foregroundStyle(Color.colorTextPrimary)
+                    .minimumScaleFactor(0.9)
+                    .lineLimit(1)
+
+                Spacer()
+                
+                Toggle(isOn: $notificationToggle, label: {})
+                    .tint(Color.colorPrimary)
+                    
             }
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color.colorBackgroundSecondary))
+
+            // MARK: Login with Biometric ID
+            HStack {
+                Text("login_with_biometric_id".localized)
+                    .font(.apply(.regular, size: 16))
+                    .foregroundStyle(Color.colorTextPrimary)
+                    .minimumScaleFactor(0.9)
+                    .lineLimit(1)
+                
+                Spacer()
+                
+                Toggle(isOn: $loginWithBiometricToggle, label: {})
+                    .tint(Color.colorPrimary)
+                    
+            }
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color.colorBackgroundSecondary))
+
+            // MARK: Enable Rotation
+            HStack {
+                Text("enable_rotation".localized)
+                    .font(.apply(.regular, size: 16))
+                    .foregroundStyle(Color.colorTextPrimary)
+                    .minimumScaleFactor(0.9)
+                    .lineLimit(1)
+                
+                Spacer()
+                
+                Toggle(isOn: $enableRotationToggle, label: {})
+                    .tint(Color.colorPrimary)
+                    
+            }
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color.colorBackgroundSecondary))
+
+            // MARK: Font Size
+            HStack {
+                Text("font_size".localized)
+                    .font(.apply(.regular, size: 16))
+                    .foregroundStyle(Color.colorTextPrimary)
+                    .minimumScaleFactor(0.9)
+                    .lineLimit(1)
+                
+                Spacer()
+                
+                HStack {
+                    Button {
+                        onFontSizeDecrease()
+                    } label: {
+                        Circle()
+                            .stroke(lineWidth: 2)
+                            .fill(Color.colorTextPrimary)
+                            .frame(width: 24, height: 24)
+                            .overlay {
+                                Color.colorTextPrimary
+                                    .frame(width: 12, height: 2)
+                                    .cornerRadius(24)
+                            }
+                    }
+
+                    Text("\(fontSize.wrappedValue ?? 0)")
+                        .font(.apply(.medium, size: 12))
+                        .foregroundStyle(Color.colorTextPrimary)
+
+                    Button {
+                        onFontSizeIncrease()
+                    } label: {
+                        Circle()
+                            .stroke(lineWidth: 2)
+                            .fill(Color.colorTextPrimary)
+                            .frame(width: 24, height: 24)
+                            .overlay {
+                                Text("+")
+                                    .font(.apply(.medium, size: 24))
+                                    .foregroundStyle(Color.colorTextPrimary)
+                            }
+                    }
+
+                        
+                }
+                    
+            }
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color.colorBackgroundSecondary))
             
-            Divider()
-            .padding(.vertical, 12)
+            // MARK: App Theme Mode
+            HStack(alignment: appModeToggle == false ? .center : .top) {
+                Text("app_theme_mode".localized)
+                    .font(.apply(.regular, size: 16))
+                    .foregroundStyle(Color.colorTextPrimary)
+                    .minimumScaleFactor(0.9)
+                    .lineLimit(1)
 
-            HStack(spacing: 15) {
-                Image("ic_tradingIndex")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("trading_index".localized)
-                    .font(.apply(.medium, size: 14))
-                
                 Spacer()
+                
+                VStack {
+                    Button {
+                        appModeToggle.toggle()
+                    } label: {
+                        Text(selectedTheme.wrappedValue == .dark ? "dark".localized : "light".localized)
+                            .font(.apply(.medium, size: 18))
+                            .foregroundStyle(Color.colorBase)
+                            .padding(.horizontal, 18)
+                            .padding(.vertical, 4)
+                            .background(
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 8).fill(Color.colorTextPrimary)
+                                    RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorTextPrimary)
+                                }
+                            )
+                    }
+                    
+                    if appModeToggle {
+                        Button {
+                            appModeToggle.toggle()
+                            
+                            onAppThemeChange(selectedTheme.wrappedValue == .dark ? .light : .dark)
+                        } label: {
+                            Text(selectedTheme.wrappedValue == .dark ? "light".localized : "dark".localized)
+                                .font(.apply(.medium, size: 18))
+                                .foregroundStyle(Color.colorTextPrimary)
+                                .padding(.horizontal, 18)
+                                .padding(.vertical, 4)
+                                .background(
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 8).fill(Color.colorBackgroundSecondary)
+                                        RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorTextPrimary)
+                                    }
+                                )
+                        }
+                    }
+                }
             }
-            .onTapGesture {
-                onTradingIndexTap()
-            }
-            
-            Divider()
-            .padding(.vertical, 12)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color.colorBackgroundSecondary))
 
-            HStack(spacing: 15) {
-                Image("ic_sectorsIndex")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("sectors_index".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                Spacer()
-            }
-            .onTapGesture {
-                onSectorsIndexTap()
-            }
-            
-            Divider()
-            .padding(.vertical, 12)
-
-            HStack(spacing: 15) {
-                Image("ic_marketReports")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("market_deals".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                Spacer()
-            }
-            .onTapGesture {
-                onMarketDealsTap()
-            }
-            
-            Divider()
-            .padding(.vertical, 12)
-
-            HStack(spacing: 15) {
-                Image("ic_marketNews")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("market_news".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                Spacer()
-            }
-            .onTapGesture {
-                onMarketNewsTap()
-            }
-            
-            Divider()
-            .padding(.vertical, 12)
-
-            HStack(spacing: 15) {
-                Image("ic_listOfCompanies")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("list_of_companies".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                Spacer()
-            }
-            .onTapGesture {
-                onListOfCompaniesTap()
-            }
-            
-            Divider()
-            .padding(.vertical, 12)
-
-            HStack(spacing: 15) {
-                Image("ic_notifications")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("notifications".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                Spacer()
-            }
-            .onTapGesture {
-                onNotificationsTap()
-            }
-        }
-
-    }
-    
-    private var accountSummaryView: some View {
-        VStack(spacing: 0){
-            HStack(spacing: 15) {
-                Text("account_summary".localized)
-                    .font(.apply(.semiBold, size: 16))
-                
-                Spacer()
-            }
-            .padding(.top, 15)
-            .padding(.bottom, 15)
-
-            HStack(spacing: 15) {
-                Image("ic_changePassword")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
+            // MARK: Change Password
+            HStack {
                 Text("change_password".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                 Spacer()
-            }
-            .onTapGesture {
-                onChangePasswordTap()
-            }
-            
-            Divider()
-                .padding(.vertical, 12)
-
-            HStack(spacing: 15) {
-                Image("ic_accountReports")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("account_reports".localized)
-                    .font(.apply(.medium, size: 14))
+                    .font(.apply(.regular, size: 16))
+                    .foregroundStyle(Color.colorTextPrimary)
+                    .minimumScaleFactor(0.9)
+                    .lineLimit(1)
                 
                 Spacer()
-            }
-            .onTapGesture {
-                onAccountReportsTap()
-            }
-            
-            Divider()
-                .padding(.vertical, 12)
+                
 
-            HStack(spacing: 15) {
-                Image("ic_balanceDetails")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("balance_details".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                Spacer()
-            }
-            .onTapGesture {
-                onBalanceDetailsTap()
-            }
-            
-//            Divider()
-//                .padding(.vertical, 12)
-//
-//            HStack(spacing: 15) {
-//                Image("ic_personalInformation")
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(width: 20, height: 20)
-//                
-//                Text("personal_information".localized)
-//                    .font(.apply(.medium, size: 14))
-//                
-//                Spacer()
-//            }
-//            .onTapGesture {
-//                onPersonalInformationTap()
-//            }
-            
-            Divider()
-                .padding(.vertical, 12)
+                Button {
+                    
+                } label: {
+                    Image(AppUtility.shared.isRTL ? "ic_leftArrow" : "ic_rightArrow")
+                        .renderingMode(.template)
+                        .resizable()
+                        .frame(width: 18, height: 18)
+                        .foregroundStyle(Color.colorSymbol)
 
-            HStack(spacing: 15) {
-                Image("ic_uploadDocument")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text("upload_document".localized)
-                    .font(.apply(.medium, size: 14))
-                
-                Spacer()
+                }
+
             }
-            .onTapGesture {
-                onUploadDocumentTap()
-            }
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color.colorBackgroundSecondary))
+
         }
+        .frame(maxWidth: .infinity)
 
     }
+    
+}
+
+#Preview {
+    ManageContentView(fontSize: .constant(0), selectedLanguage: .constant(.english), selectedTheme: .constant(.dark), onLanguageChange: { _ in
+        
+    }, onAppThemeChange: { _ in
+        
+    }, onFontSizeIncrease: {
+        
+    }, onFontSizeDecrease: {
+        
+    })
 }

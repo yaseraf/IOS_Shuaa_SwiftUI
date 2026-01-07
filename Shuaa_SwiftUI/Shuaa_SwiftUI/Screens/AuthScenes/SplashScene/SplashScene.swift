@@ -21,12 +21,8 @@ struct SplashScene: View {
     var body: some View {
         BaseScene(contentView: {
             BaseContentView(withScroll:false, paddingValue: 0, content: {
-                SplashContentView()
-                    .onAppear(perform: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        viewModel.openLoginScene()
-//                        viewModel.callUsrAuthinticationByEmailAndMobileAPI(username: "demo", password: "DEMO", isRememberMe: false, tokenID: "")
-                    }
+                SplashContentView(onVideoEnd: {
+                    viewModel.openLoginScene()
                 })
             })
         }, showLoading: .constant(viewTypeAction.showLoading))

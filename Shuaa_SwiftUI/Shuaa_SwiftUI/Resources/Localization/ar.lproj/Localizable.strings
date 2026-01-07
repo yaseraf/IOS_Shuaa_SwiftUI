@@ -13,6 +13,15 @@
 "accounts" = "الحسابات";
 "portfolio" = "المحفظة";
 
+// MARK: Login Screen
+"username" = "اسم المستخدم";
+"password" = "كلمة المرور";
+"forget_your_password" = "هل نسيت كلمة المرور؟";
+"login" = "تسجيل الدخول";
+"no_account_yet" = "لا تملك حسابًا بعد؟";
+"join_us_now" = "انضم إلينا الآن";
+"video_tutorial" = "شرح بالفيديو";
+
 // MARK: Home Screen
 "symbol_search" = "بحث عن رمز";
 "turnover" = "قيمة التداول";
@@ -37,6 +46,20 @@
 "ipo" = "الاكتتاب العام";
 "settings" = "الإعدادات";
 "logout" = "تسجيل الخروج";
+
+// MARK: Settings
+"app_language" = "لغة التطبيق";
+"preferred_language" = "اللغة المفضلة";
+"notification" = "الإشعارات";
+"login_with_biometric_id" = "تسجيل الدخول باستخدام البصمة";
+"enable_rotation" = "تفعيل تدوير الشاشة";
+"font_size" = "حجم الخط";
+"app_theme_mode" = "وضع مظهر التطبيق";
+"change_password" = "تغيير كلمة المرور";
+"arabic" = "العربية";
+"english" = "English";
+"light" = "فاتح";
+"dark" = "داكن";
 
 // MARK: Countries
 "Afghanistan" = "أفغانستان";

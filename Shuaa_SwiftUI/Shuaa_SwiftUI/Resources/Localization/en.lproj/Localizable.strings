@@ -13,6 +13,15 @@
 "accounts" = "Accounts";
 "portfolio" = "Portfolio";
 
+// MARK: Login Screen
+"username" = "Username";
+"password" = "Password";
+"forget_your_password" = "Forgot your Password?";
+"login" = "Login";
+"no_account_yet" = "No account yet?";
+"join_us_now" = "Join us now.";
+"video_tutorial" = "Video Tutorial";
+
 // MARK: Home Screen
 "symbol_search" = "Symbol Search";
 "turnover" = "Turnover";
@@ -37,6 +46,20 @@
 "ipo" = "IPO";
 "settings" = "Settings";
 "logout" = "Logout";
+
+// MARK: Settings
+"app_language" = "App Language";
+"preferred_language" = "Preferred Language";
+"notification" = "Notification";
+"login_with_biometric_id" = "Login with Biometric ID";
+"enable_rotation" = "Enable Rotation";
+"font_size" = "Font Size";
+"app_theme_mode" = "App Theme Mode";
+"change_password" = "Change Password";
+"arabic" = "العربية";
+"english" = "English";
+"light" = "Light";
+"dark" = "Dark";
 
 // MARK: Countries
 "Afghanistan" = "Afghanistan";

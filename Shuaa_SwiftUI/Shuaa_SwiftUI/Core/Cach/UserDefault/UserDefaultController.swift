@@ -11,6 +11,13 @@ import UIKit
 import Combine
 
 enum CachingKey: String {
+    
+    // MARK: Shuaa
+    
+    // MARK: Int
+    case standardFontSize
+    case fontSizeChangeResult
+    case fontSizeInterval
 
     // MARK: Bools
     
@@ -92,6 +99,14 @@ enum CachingKey: String {
 
 class UserDefaultController: ObservableObject {
     static var instance: UserDefaultController = UserDefaultController()
+    
+    // MARK: Shuaa
+    
+    // MARK: Int
+    @CachingCodable<Int>(.standardFontSize) var standardFontSize
+    @CachingCodable<Int>(.fontSizeChangeResult) var fontSizeChangeResult
+    @CachingCodable<Int>(.fontSizeInterval) var fontSizeInterval
+
     
     // MARK: Bools
     

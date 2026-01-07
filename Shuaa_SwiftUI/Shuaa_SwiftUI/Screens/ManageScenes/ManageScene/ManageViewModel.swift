@@ -13,85 +13,29 @@ class ManageViewModel: ObservableObject {
     private let coordinator: HomeCoordinatorProtocol
     
     @Published var newsData: [GetAllMarketNewsBySymbolUIModel]?
+    @Published var fontSize = UserDefaultController().fontSizeChangeResult
+    @Published var selectedLanguage:LanguageType
+    @Published var selectedTheme:ThemeType
 
     init(coordinator: HomeCoordinatorProtocol) {
         self.coordinator = coordinator
         
-        getNewsData()
+        if AppUtility.shared.isRTL {
+            selectedLanguage = .arabic
+        } else {
+            selectedLanguage = .english
+        }
+        
+        if UserDefaultController().appTheme == .dark {
+            selectedTheme = .dark
+        } else {
+            selectedTheme = .light
+        }
     }
     
     func openSettingScene() {
         coordinator.openSettingScene()
     }
-    
-    func openContactUsScene() {
-//        coordinator.openContactUsScene()
-    }
-    
-    func openAppRatingScene() {
-//        coordinator.openAppRatingScene()
-    }
-    
-    func openLogoutConfirmationScene() {
-//        coordinator.openLogoutConfirmationScene()
-    }
-    
-    func openTransactionsScene() {
-//        coordinator.openTransactionScene()
-    }
-    
-    func openMarketSummaryScene() {
-//        coordinator.openMarketSummaryScene()
-    }
-    
-    func openMarketReportsScene() {
-//        coordinator.openMarketReportsScene()
-    }
-    
-    func openTradingIndexScene() {
-//        coordinator.openTradeIndexScene()
-    }
-    
-    func openSectorsIndexScene() {
-//        coordinator.openIndustrialSectorScene()
-    }
-    
-    func openMarketDealsScene() {
-//        coordinator.openMarketDealsScene()
-    }
-    
-    func openMarketNewsScene() {
-//        coordinator.openNewsScene(newsData: newsData ?? [])
-    }
-    
-    func openListOfCompaniesScene() {
-//        coordinator.openListOfCompaniesScene()
-    }
-    
-    func openNotificationsScene() {
-//        coordinator.openNotificationsScene()
-    }
-    
-    func openChangePasswordScene() {
-//        coordinator.openManageChangePasswordScene()
-    }
-    
-    func openAccountReportsScene() {
-//        coordinator.openAccountReportsScene()
-    }
-    
-    func openBalanceDetailsScene() {
-//        coordinator.openBalanceDetailsScene()
-    }
-    
-    func openPersonalInformationScene() {
-        
-    }
-    
-    func openUploadDocumentTap() {
-//        coordinator.openDocumentsScene()
-    }
-    
     
     func logout() {
         // Stop SignalR connection
@@ -124,13 +68,43 @@ class ManageViewModel: ObservableObject {
         SceneDelegate.getAppCoordinator()?.logout()
     }
 
+}
+
+// MARK: Functions
+extension ManageViewModel {
+    func onLanguageChange(newLanguage:LanguageType){
+        selectedLanguage = newLanguage
+        AppUtility.shared.updateAppLanguage(language: newLanguage)
+        SceneDelegate.getAppCoordinator()?.restartLanguageUpdate()
+        
+        SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getHomeCoordinator().start()
+    }
     
-    func getNewsData() {
-//        var data: [NewsUIModel] = []
-//        data.append(NewsUIModel(dateEn: "29Dec2024", dateAr: "٢٩ ديسمبر ٢٠٢٤", descEn: "QNB Group Board of Directors Meeting to Decide on the Bank’s Financial Results.", descAr: "اجتماع مجلس إدارة مجموعة QNB للبت في النتائج المالية للبنك لعام 2024 ", detailsEn: "Please note that the Board of Directors of QNB Group will hold a meeting on 13 January 2025 to decide on the Bank’s 2024 financial results and proposed dividends. Please note that in accordance with the instructions of the Qatar Financial Markets Authority, QNB will stop buying back its shares during the lock-up period starting from 30 December 2024 and continuing until 13 January 2025 due to the expected publication of QNB Group’s annual financial results. The Bank will resume buying back shares effective 14 January 2025.", detailsAr: "يرجى العلم أن مجلس إدارة مجموعة QNB سيعقد اجتماعاً في 13 يناير 2025 للبت في النتائج المالية للبنك لعام 2024 وتوزيعات الأرباح المقترحة.كما يرجى العلم أنه بموجب تعليمات هيئة قطر للأسواق المالية سيتوقف QNB عن إعادة شراء أسهمه خلال فترة الإغلاق التي تبدأ من 30 ديسمبر 2024 وتستمر حتى 13 يناير 2025 بسبب النشر المرتقب للنتائج المالية السنوية لمجموعة QNB. وسيستأنف البنك عملية إعادة شراء الأسهم اعتباراً من 14 يناير 2025."))
-//        data.append(NewsUIModel(dateEn: "28Dec2024", dateAr: "٢٨ نوفمبر ٢٠٢٤", descEn: "QNB Group Board of Directors Meeting.", descAr: "فتح باب الترشيح لعضوية مجلس إدارة 2025", detailsEn: "Please note that the Board of Directors of QNB Group will hold a meeting on 13 January 2025 to decide on the Bank’s 2024 financial results and proposed dividends. Please note that in accordance with the instructions of the Qatar Financial Markets Authority, QNB will stop buying back its shares during the lock-up period starting from 30 December 2024 and continuing until 13 January 2025 due to the expected publication of QNB Group’s annual financial results. The Bank will resume buying back shares effective 14 January 2025.", detailsAr: "يرجى العلم أن مجلس إدارة مجموعة QNB سيعقد اجتماعاً في 13 يناير 2025 للبت في النتائج المالية للبنك لعام 2024 وتوزيعات الأرباح المقترحة.كما يرجى العلم أنه بموجب تعليمات هيئة قطر للأسواق المالية سيتوقف QNB عن إعادة شراء أسهمه خلال فترة الإغلاق التي تبدأ من 30 ديسمبر 2024 وتستمر حتى 13 يناير 2025 بسبب النشر المرتقب للنتائج المالية السنوية لمجموعة QNB. وسيستأنف البنك عملية إعادة شراء الأسهم اعتباراً من 14 يناير 2025."))
-//       
-//        newsData = data
+    func onAppThemeChange(type:ThemeType){
+        UserDefaultController().appTheme = type
+        selectedTheme = type
+        SceneDelegate.getAppCoordinator()?.updateWindowBackground()
+        
+        SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.getHomeCoordinator().start()
     }
 
+    func onFontSizeIncrease() {
+        if UserDefaultController().fontSizeInterval == 2 { return }
+        
+        UserDefaultController().fontSizeInterval = (UserDefaultController().fontSizeInterval ?? 0) + 1
+        
+        UserDefaultController().fontSizeChangeResult = (UserDefaultController().standardFontSize ?? 0) + (UserDefaultController().fontSizeInterval ?? 0)
+        
+        fontSize = UserDefaultController().fontSizeChangeResult
+    }
+    
+    func onFontSizeDecrease() {
+        if UserDefaultController().fontSizeInterval == -1 { return }
+
+        UserDefaultController().fontSizeInterval = (UserDefaultController().fontSizeInterval ?? 0) - 1
+        
+        UserDefaultController().fontSizeChangeResult = (UserDefaultController().standardFontSize ?? 0) + (UserDefaultController().fontSizeInterval ?? 0)
+        
+        fontSize = UserDefaultController().fontSizeChangeResult
+    }
 }

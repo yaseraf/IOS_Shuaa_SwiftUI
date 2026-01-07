@@ -57,7 +57,7 @@ extension Color {
 // MARK: LIGHT
 //  private static let colorTextPrimaryLight: Color = Color.init(hex: "#24180E")
 //  private static let colorPrimaryLight: Color = Color.init(hex: "#374FA3")
-  private static let colorBorderLight: Color = Color.init(hex: "#F0EEED")
+//  private static let colorBorderLight: Color = Color.init(hex: "#F0EEED")
   private static let colorBorderSecondaryLight: Color = Color.init(hex: "#989898")
   private static let colorBGLight: Color = Color.init(hex: "#FFFFFF")
   private static let colorBGThirdLight: Color = Color.init(hex: "#FAFBFC")
@@ -128,10 +128,12 @@ extension Color {
   private static let colorBlueLight: Color = Color.init(hex: "#63AAD5")
   private static let colorSymbolLight: Color = Color.init(hex: "#FFFFFF")
   private static let colorTextFieldLight: Color = Color.init(hex: "#537387")
-  private static let colorTextPrimaryLight: Color = Color.init(hex: "#23448B")
+  private static let colorTextPrimaryLight: Color = Color.init(hex: "#0A3754")
   private static let colorTextSecondaryLight: Color = Color.init(hex: "#8E8E8E")
   private static let colorBackgroundLight: Color = Color.init(hex: "#0A3754")
   private static let colorBackgroundSecondaryLight: Color = Color.init(hex: "#FFFFFF")
+  private static let colorBorderLight: Color = Color.init(hex: "#FFFFFF")
+  private static let colorBannerLight: Color = Color.init(hex: "#F7F7F7")
 
 //-------------------------------------------------------------------------------
     
@@ -139,7 +141,7 @@ extension Color {
     
 //    private static let colorTextPrimaryDark: Color = Color.init(hex: "#FFFFFF")
 //    private static let colorPrimaryDark: Color = Color.init(hex: "#374FA3")
-    private static let colorBorderDark: Color = Color.init(hex: "#212A36")
+//    private static let colorBorderDark: Color = Color.init(hex: "#212A36")
     private static let colorBGDark: Color = Color.init(hex: "#0B0E13")
     private static let colorBGThirdDark: Color = Color.init(hex: "#1C1C1C")
     private static let colorDocumentBGDark: Color = Color.init(hex: "#1E232F")
@@ -199,10 +201,12 @@ extension Color {
     private static let colorBlueDark: Color = Color.init(hex: "#63AAD5")
     private static let colorSymbolDark: Color = Color.init(hex: "#FFFFFF")
     private static let colorTextFieldDark: Color = Color.init(hex: "#5D5E5F")
-    private static let colorTextPrimaryDark: Color = Color.init(hex: "#D1D3D4")
+    private static let colorTextPrimaryDark: Color = Color.init(hex: "#FFFFFF")
     private static let colorTextSecondaryDark: Color = Color.init(hex: "#8C8E8E")
     private static let colorBackgroundDark: Color = Color.init(hex: "#18191B")
     private static let colorBackgroundSecondaryDark: Color = Color.init(hex: "#242625")
+    private static let colorBorderDark: Color = Color.init(hex: "#242625")
+    private static let colorBannerDark: Color = Color.init(hex: "#2A2D2C")
 
     // Properties with getters
     
@@ -218,7 +222,7 @@ extension Color {
             AppUtility.shared.isDarkTheme ? colorBaseDark : colorBaseLight
         }
     }
-    
+        
     static var colorGreen: Color {
         get {
             AppUtility.shared.isDarkTheme ? colorGreenDark : colorGreenLight
@@ -267,9 +271,22 @@ extension Color {
         }
     }
     
+    static var colorBorderPrimary: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorBorderDark : colorBorderLight
+        }
+    }
+
+    
     static var colorBackgroundSecondary: Color {
         get {
             AppUtility.shared.isDarkTheme ? colorBackgroundSecondaryDark : colorBackgroundSecondaryLight
+        }
+    }
+    
+    static var colorBanner: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorBannerDark : colorBannerLight
         }
     }
     
@@ -595,11 +612,11 @@ extension Color {
     }
 
 
-    static var colorBorderPrimary: Color {
-        get {
-            AppUtility.shared.isDarkTheme ? colorBorderPrimary_333A41 : colorBorderPrimary_D0D6DD // Done
-        }
-    }
+//    static var colorBorderPrimary: Color {
+//        get {
+//            AppUtility.shared.isDarkTheme ? colorBorderPrimary_333A41 : colorBorderPrimary_D0D6DD // Done
+//        }
+//    }
 
     static var colorSuccess: Color {
         get {

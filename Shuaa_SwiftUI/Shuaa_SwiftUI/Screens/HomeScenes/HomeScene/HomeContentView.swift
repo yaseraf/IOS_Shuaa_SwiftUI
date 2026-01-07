@@ -71,15 +71,14 @@ struct HomeContentView: View {
         VStack(spacing: 0) {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 0) {
-                    HStack(alignment: .top) {
+                    HStack(alignment: .center) {
                         Text("\(marketsData.wrappedValue?.first?.marketName ?? "")")
                             .font(.apply(.bold, size: 12))
                             .foregroundStyle(Color.colorTextPrimary)
-                            .offset(y: -4)
                         
                         Color.colorTextPrimary
                             .frame(width: 1)
-                            .frame(maxHeight: 14)
+                            .frame(maxHeight: 12)
 
                         Text("\(marketsData.wrappedValue?.first?.marketStatus ?? "")")
                             .font(.apply(.regular, size: 8))
@@ -90,7 +89,6 @@ struct HomeContentView: View {
                     Text("\(marketsData.wrappedValue?.first?.marketDate ?? "")")
                         .font(.apply(.regular, size: 8))
                         .foregroundStyle(Color.colorTextPrimary)
-                        .offset(y: -8)
 
                 }
                 
@@ -109,7 +107,6 @@ struct HomeContentView: View {
                         Text("\(marketsData.wrappedValue?.first?.netChangePerc ?? "")")
                             .font(.apply(.regular, size: 8))
                             .foregroundStyle(Color.colorGreen)
-                            .offset(y: -4)
 
                     }
                 }
@@ -229,7 +226,6 @@ struct HomeContentView: View {
                     }
 
                 }
-                .offset(y: -8)
 
             }
         }
@@ -263,742 +259,34 @@ struct HomeContentView: View {
     
     private var stocksView: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 28) {
-                Button {
+            HStack(spacing: 32) {
+                actionButton(action: {
                     
-                } label: {
-                    VStack(spacing: 0) {
-                        Image("ic_overview")
-                            .renderingMode(.template)
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundStyle(Color.colorTextPrimary)
-
-                        Text("overview".localized)
-                            .font(.apply(.medium, size: 12))
-                            .foregroundStyle(Color.colorTextPrimary)
-                    }
-                }
-                .buttonStyle(.plain)
+                }, image: "ic_overview", title: "overview".localized)
                 
-                Button {
+                actionButton(action: {
                     
-                } label: {
-                    VStack(spacing: 0) {
-                        Image("ic_tops")
-                            .renderingMode(.template)
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundStyle(Color.colorTextPrimary)
+                }, image: "ic_tops", title: "top_stocks".localized)
 
-                        Text("top_stocks".localized)
-                            .font(.apply(.medium, size: 12))
-                            .foregroundStyle(Color.colorTextPrimary)
-
-                    }
-                }
-                .buttonStyle(.plain)
-                
-                Button {
+                actionButton(action: {
                     
-                } label: {
-                    VStack(spacing: 0) {
-                        Image("ic_marketT&S")
-                            .renderingMode(.template)
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundStyle(Color.colorTextPrimary)
+                }, image: "ic_marketT&S", title: "market_time_sale".localized)
 
-                        Text("market_time_sale".localized)
-                            .font(.apply(.medium, size: 12))
-                            .foregroundStyle(Color.colorTextPrimary)
-
-                    }
-                }
-                .buttonStyle(.plain)
-                
-                Button {
+                actionButton(action: {
                     
-                } label: {
-                    VStack(spacing: 0) {
-                        Image("ic_watchlist")
-                            .renderingMode(.template)
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundStyle(Color.colorTextPrimary)
-
-                        Text("watchlist".localized)
-                            .font(.apply(.medium, size: 12))
-                            .foregroundStyle(Color.colorTextPrimary)
-
-                    }
-                }
-                .buttonStyle(.plain)
-
-
-
-
+                }, image: "ic_watchlist", title: "watchlist".localized)
             }
-            .padding(.top, 16)
+            .padding(.vertical, 12)
             
             Color.colorTextPrimary
-                .frame(height: 1)
+                .frame(height: 0.7)
                 .padding(.horizontal, 24)
-                .padding(.bottom, 12)
             
             VStack(spacing: 12) {
-                HStack(alignment: .center, spacing: 18) {
-                    VStack {
-                        HStack {
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("ETISALAT")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextPrimary)
-
-                                Text("36.68")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextSecondary)
-                                    .offset(y: -4)
-
-                            }
-                            
-                            Color.colorTextPrimary
-                                .frame(width: 1, height: 18)
-
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("0.100")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-
-                                Text("10.00%")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-                                    .offset(y: -4)
-
-                            }
-                        }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 24)
-                        
-                        
-                    }
-                    .overlay {
-                        VStack {
-                            
-                            Spacer()
-                            
-                            Color.colorGreen
-                                .frame(height: 18)
-                                .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
-
-                        }
-                    }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).fill(Color.colorBackground)
-                            RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundStyle(Color.colorTextSecondary)
-                        }
-                    )
-                    
-                    VStack {
-                        HStack {
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("ETISALAT")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextPrimary)
-
-                                Text("36.68")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextSecondary)
-                                    .offset(y: -4)
-
-                            }
-                            
-                            Color.colorTextPrimary
-                                .frame(width: 1, height: 18)
-
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("0.100")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-
-                                Text("10.00%")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-                                    .offset(y: -4)
-
-                            }
-                        }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 24)
-
-                        
-                    }
-                    .overlay {
-                        VStack {
-                            
-                            Spacer()
-                            
-                            Color.colorRed
-                                .frame(height: 18)
-                                .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
-
-                        }
-                    }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).fill(Color.colorBackground)
-                            RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundStyle(Color.colorTextSecondary)
-                        }
-                    )
-                    
-                    VStack {
-                        HStack {
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("ETISALAT")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextPrimary)
-
-                                Text("36.68")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextSecondary)
-                                    .offset(y: -4)
-
-                            }
-                            
-                            Color.colorTextPrimary
-                                .frame(width: 1, height: 18)
-
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("0.100")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-
-                                Text("10.00%")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-                                    .offset(y: -4)
-
-                            }
-                        }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 24)
-
-                        
-                    }
-                    .overlay {
-                        VStack {
-                            
-                            Spacer()
-                            
-                            Color.colorBlue
-                                .frame(height: 18)
-                                .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
-
-                        }
-                    }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).fill(Color.colorBackground)
-                            RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundStyle(Color.colorTextSecondary)
-                        }
-                    )
-                    
-                }
-                
-                HStack(alignment: .center, spacing: 18) {
-                    VStack {
-                        HStack {
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("ETISALAT")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextPrimary)
-
-                                Text("36.68")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextSecondary)
-                                    .offset(y: -4)
-
-                            }
-                            
-                            Color.colorTextPrimary
-                                .frame(width: 1, height: 18)
-
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("0.100")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-
-                                Text("10.00%")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-                                    .offset(y: -4)
-
-                            }
-                        }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 24)
-                        
-                        
-                    }
-                    .overlay {
-                        VStack {
-                            
-                            Spacer()
-                            
-                            Color.colorGreen
-                                .frame(height: 18)
-                                .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
-
-                        }
-                    }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).fill(Color.colorBackground)
-                            RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundStyle(Color.colorTextSecondary)
-                        }
-                    )
-                    
-                    VStack {
-                        HStack {
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("ETISALAT")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextPrimary)
-
-                                Text("36.68")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextSecondary)
-                                    .offset(y: -4)
-
-                            }
-                            
-                            Color.colorTextPrimary
-                                .frame(width: 1, height: 18)
-
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("0.100")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-
-                                Text("10.00%")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-                                    .offset(y: -4)
-
-                            }
-                        }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 24)
-
-                        
-                    }
-                    .overlay {
-                        VStack {
-                            
-                            Spacer()
-                            
-                            Color.colorRed
-                                .frame(height: 18)
-                                .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
-
-                        }
-                    }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).fill(Color.colorBackground)
-                            RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundStyle(Color.colorTextSecondary)
-                        }
-                    )
-                    
-                    VStack {
-                        HStack {
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("ETISALAT")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextPrimary)
-
-                                Text("36.68")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextSecondary)
-                                    .offset(y: -4)
-
-                            }
-                            
-                            Color.colorTextPrimary
-                                .frame(width: 1, height: 18)
-
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("0.100")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-
-                                Text("10.00%")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-                                    .offset(y: -4)
-
-                            }
-                        }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 24)
-
-                        
-                    }
-                    .overlay {
-                        VStack {
-                            
-                            Spacer()
-                            
-                            Color.colorBlue
-                                .frame(height: 18)
-                                .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
-
-                        }
-                    }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).fill(Color.colorBackground)
-                            RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundStyle(Color.colorTextSecondary)
-                        }
-                    )
-                    
-                }
-
-                HStack(alignment: .center, spacing: 18) {
-                    VStack {
-                        HStack {
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("ETISALAT")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextPrimary)
-
-                                Text("36.68")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextSecondary)
-                                    .offset(y: -4)
-
-                            }
-                            
-                            Color.colorTextPrimary
-                                .frame(width: 1, height: 18)
-
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("0.100")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-
-                                Text("10.00%")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-                                    .offset(y: -4)
-
-                            }
-                        }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 24)
-                        
-                        
-                    }
-                    .overlay {
-                        VStack {
-                            
-                            Spacer()
-                            
-                            Color.colorGreen
-                                .frame(height: 18)
-                                .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
-
-                        }
-                    }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).fill(Color.colorBackground)
-                            RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundStyle(Color.colorTextSecondary)
-                        }
-                    )
-                    
-                    VStack {
-                        HStack {
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("ETISALAT")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextPrimary)
-
-                                Text("36.68")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextSecondary)
-                                    .offset(y: -4)
-
-                            }
-                            
-                            Color.colorTextPrimary
-                                .frame(width: 1, height: 18)
-
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("0.100")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-
-                                Text("10.00%")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-                                    .offset(y: -4)
-
-                            }
-                        }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 24)
-
-                        
-                    }
-                    .overlay {
-                        VStack {
-                            
-                            Spacer()
-                            
-                            Color.colorRed
-                                .frame(height: 18)
-                                .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
-
-                        }
-                    }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).fill(Color.colorBackground)
-                            RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundStyle(Color.colorTextSecondary)
-                        }
-                    )
-                    
-                    VStack {
-                        HStack {
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("ETISALAT")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextPrimary)
-
-                                Text("36.68")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextSecondary)
-                                    .offset(y: -4)
-
-                            }
-                            
-                            Color.colorTextPrimary
-                                .frame(width: 1, height: 18)
-
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("0.100")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-
-                                Text("10.00%")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-                                    .offset(y: -4)
-
-                            }
-                        }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 24)
-
-                        
-                    }
-                    .overlay {
-                        VStack {
-                            
-                            Spacer()
-                            
-                            Color.colorBlue
-                                .frame(height: 18)
-                                .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
-
-                        }
-                    }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).fill(Color.colorBackground)
-                            RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundStyle(Color.colorTextSecondary)
-                        }
-                    )
-                    
-                }
-                
-                HStack(alignment: .center, spacing: 18) {
-                    VStack {
-                        HStack {
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("ETISALAT")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextPrimary)
-
-                                Text("36.68")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextSecondary)
-                                    .offset(y: -4)
-
-                            }
-                            
-                            Color.colorTextPrimary
-                                .frame(width: 1, height: 18)
-
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("0.100")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-
-                                Text("10.00%")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-                                    .offset(y: -4)
-
-                            }
-                        }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 24)
-                        
-                        
-                    }
-                    .overlay {
-                        VStack {
-                            
-                            Spacer()
-                            
-                            Color.colorGreen
-                                .frame(height: 18)
-                                .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
-
-                        }
-                    }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).fill(Color.colorBackground)
-                            RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundStyle(Color.colorTextSecondary)
-                        }
-                    )
-                    
-                    VStack {
-                        HStack {
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("ETISALAT")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextPrimary)
-
-                                Text("36.68")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextSecondary)
-                                    .offset(y: -4)
-
-                            }
-                            
-                            Color.colorTextPrimary
-                                .frame(width: 1, height: 18)
-
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("0.100")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-
-                                Text("10.00%")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-                                    .offset(y: -4)
-
-                            }
-                        }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 24)
-
-                        
-                    }
-                    .overlay {
-                        VStack {
-                            
-                            Spacer()
-                            
-                            Color.colorRed
-                                .frame(height: 18)
-                                .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
-
-                        }
-                    }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).fill(Color.colorBackground)
-                            RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundStyle(Color.colorTextSecondary)
-                        }
-                    )
-                    
-                    VStack {
-                        HStack {
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("ETISALAT")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextPrimary)
-
-                                Text("36.68")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorTextSecondary)
-                                    .offset(y: -4)
-
-                            }
-                            
-                            Color.colorTextPrimary
-                                .frame(width: 1, height: 18)
-
-                            VStack(alignment: .center, spacing: 0) {
-                                Text("0.100")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-
-                                Text("10.00%")
-                                    .font(.apply(.medium, size: 8))
-                                    .foregroundStyle(Color.colorGreen)
-                                    .offset(y: -4)
-
-                            }
-                        }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 24)
-
-                        
-                    }
-                    .overlay {
-                        VStack {
-                            
-                            Spacer()
-                            
-                            Color.colorBlue
-                                .frame(height: 18)
-                                .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
-
-                        }
-                    }
-                    .background(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).fill(Color.colorBackground)
-                            RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 1).foregroundStyle(Color.colorTextSecondary)
-                        }
-                    )
-                    
-                }
-
-               
-
+                stocksHorizontalStack
+                    .padding(.horizontal, 24)
             }
-            .padding(.bottom, 12)
+            .padding(.vertical, 12)
         }
         .frame(maxWidth: .infinity)
         .background(RoundedRectangle(cornerRadius: 12).fill(Color.colorBackgroundSecondary))
@@ -1006,12 +294,98 @@ struct HomeContentView: View {
         .padding(.horizontal, 16)
 
     }
+    
+    private func actionButton(action: @escaping ()->Void, image:String, title:String) -> some View {
+        Button {
+            action()
+        } label: {
+            VStack(spacing: 2) {
+                Image(image)
+                    .renderingMode(.template)
+                    .resizable()
+                    .frame(width: 18, height: 18)
+                    .foregroundStyle(Color.colorTextPrimary)
 
+                Text(title)
+                    .font(.apply(.medium, size: 10))
+                    .foregroundStyle(Color.colorTextPrimary)
+            }
+        }
+    }
+    
+    private func stockBanner(stockData: StocksUIModel, overlayColor: Color) -> some View {
+        VStack(spacing: 0) {
+            HStack {
+                VStack(alignment: .center, spacing: 0) {
+                    Text("\(stockData.stockName ?? "")")
+                        .font(.apply(.medium, size: 8))
+                        .foregroundStyle(Color.colorTextPrimary)
+
+                    Text("\(stockData.lastTradePrice ?? "")")
+                        .font(.apply(.medium, size: 8))
+                        .foregroundStyle(Color.colorTextSecondary)
+                }
+                
+                if stockData.stockName?.isEmpty == false {
+                    Color.colorTextPrimary
+                        .frame(width: 1, height: 14)
+                }
+
+                VStack(alignment: .center, spacing: 0) {
+                    Text("\(stockData.netChange ?? "")")
+                        .font(.apply(.medium, size: 8))
+                        .foregroundStyle(stockData.netChange?.contains("-") ?? false ? Color.colorRed : Color.colorGreen)
+
+                    Text("\(stockData.netChangePerc ?? "")")
+                        .font(.apply(.medium, size: 8))
+                        .foregroundStyle(stockData.netChange?.contains("-") ?? false ? Color.colorRed : Color.colorGreen)
+                }
+            }
+            .padding(.vertical, 4)
+            .padding(.bottom, 6)
+            
+            VStack {
+                
+                Spacer()
+                
+                overlayColor
+                    .frame(height: 18)
+                    .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
+                
+            }
+            .opacity(stockData.stockName?.isEmpty == false ? 1 : 0)
+            
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(
+            ZStack {
+                RoundedRectangle(cornerRadius: 12).fill(Color.colorBanner)
+                RoundedRectangle(cornerRadius: 12).stroke(lineWidth: 0.3).foregroundStyle(Color.colorTextSecondary)
+            }
+        )
+    }
+
+    private var stocksHorizontalStack: some View {
+        let columns = Array(repeating: GridItem(.flexible(), spacing: 12), count: 3)
+
+       return LazyVGrid(columns: columns, spacing: 12) {
+            ForEach(Array((stocksData.wrappedValue ?? []).enumerated()), id: \.offset) { index, item in
+                Button {
+                    
+                } label: {
+                    stockBanner(
+                        stockData: item,
+                        overlayColor: item.netChange?.contains("-") ?? false ? Color.colorRed : Color.colorGreen
+                    )
+                }
+            }
+        }
+    }
     
 }
 
 #Preview {
-    HomeContentView(marketsData: .constant([MarketsUIModel(marketName: "ADX", marketStatus: "Pre-Open adjustment", marketDate: Date().toString(dateFormat: .yyMMddWithTime), lastTradePrice: "9,306.77", netChange: "3.36", netChangePerc: "0.04%", symbolsTraded: "2", tradesUp: "1", tradesEqual: "0", tradesDown: "1", turnover: "17,815,738", volume: "514,895", trades: "254")]), stocksData: .constant([StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%")]), symbolSearch: "", onAccountInformationTap: {
+    HomeContentView(marketsData: .constant([MarketsUIModel(marketName: "ADX", marketStatus: "Pre-Open adjustment", marketDate: Date().toString(dateFormat: .yyMMddWithTime), lastTradePrice: "9,306.77", netChange: "3.36", netChangePerc: "0.04%", symbolsTraded: "2", tradesUp: "1", tradesEqual: "0", tradesDown: "1", turnover: "17,815,738", volume: "514,895", trades: "254")]), stocksData: .constant([StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), .initializer(),  .initializer(), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), .initializer(), .initializer(), .initializer(), .initializer(), .initializer(), .initializer()]), symbolSearch: "", onAccountInformationTap: {
         
     }, onMyDocumentsTap: {
         

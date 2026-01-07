@@ -58,7 +58,7 @@ struct HomeScene: BaseSceneType {
             })
         }, showLoading: .constant(viewTypeAction.showLoading))
         .onViewDidLoad {
-            connectionHub()
+//            connectionHub()
         }
     }
     

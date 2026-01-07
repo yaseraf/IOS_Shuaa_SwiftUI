@@ -46,22 +46,28 @@ extension Font {
     
     enum PTSansThemeFont {
         case regular
+        case medium
+        case semiBold
         case bold
         var value: String {
             switch self {
             case .regular:
-                "PTSans-Regular"
+                AppUtility.shared.isRTL ? "DroidArabicKufi-Regular" : "PTSans-Regular"
+            case .medium:
+                AppUtility.shared.isRTL ? "DroidArabicKufi-Regular" : "PTSans-Regular"
+            case .semiBold:
+                AppUtility.shared.isRTL ? "DroidArabicKufi-Regular" : "PTSans-Bold"
             case .bold:
-                "PTSans-Bold"
+                AppUtility.shared.isRTL ? "DroidArabicKufi-Regular" : "PTSans-Bold"
             }
         }
     }
     
-    static func apply(_ type: Font.ThemeFont = .regular, size: CGFloat ) -> Font {
-        return .custom(type.value, size: size)
+    static func apply(_ type: Font.PTSansThemeFont = .regular, size: CGFloat ) -> Font {
+        return .custom(type.value, size: CGFloat((UserDefaultController().fontSizeChangeResult ?? 0) - (UserDefaultController().standardFontSize ?? 0)) + size)
     }
     
-    static func applyPTSans(_ type: Font.PTSansThemeFont = .regular, size: CGFloat ) -> Font {
+    static func applyNoto(_ type: Font.ThemeFont = .regular, size: CGFloat ) -> Font {
         return .custom(type.value, size: size)
     }
 }

@@ -30,6 +30,7 @@ struct SharedHeaderView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 20)
+                        .foregroundStyle(Color.colorSymbol)
                 }
                 .buttonStyle(.plain)
 
@@ -37,27 +38,29 @@ struct SharedHeaderView: View {
             
             Image("ic_connection")
                 .resizable()
-                .frame(width: 28, height: 28)
+                .frame(width: 24, height: 24)
                 .foregroundStyle(Color.colorGreen)
             
             Image("ic_notification")
                 .resizable()
-                .frame(width: 28, height: 28)
+                .frame(width: 24, height: 24)
                 .foregroundStyle(Color.colorSymbol)
 
             HStack(spacing: 0) {
                 Image("ic_search")
                     .renderingMode(.template)
                     .resizable()
-                    .frame(width: 20, height: 20)
-                    .foregroundStyle(Color.colorTextSecondary)
+                    .frame(width: 12, height: 12)
+                    .foregroundStyle(Color.white)
+                    .opacity(0.5)
 
                 ZStack(alignment: .leading) {
                     if symbolSearch.isEmpty {
                         Text("symbol_search".localized)
                             .font(.apply(.medium, size: 14))
-                            .foregroundStyle(Color.colorTextSecondary)
+                            .foregroundStyle(Color.white)
                             .padding(.leading, 5)
+                            .opacity(0.5)
                     }
 
                     TextField("", text: $symbolSearch)
@@ -75,7 +78,7 @@ struct SharedHeaderView: View {
             } label: {
                 Image("ic_menu")
                     .resizable()
-                    .frame(width: 28, height: 28)
+                    .frame(width: 28, height: 22)
                     .foregroundStyle(Color.colorSymbol)
             }
 
@@ -84,4 +87,10 @@ struct SharedHeaderView: View {
         .padding(.horizontal, 16)
     }
 
+}
+
+#Preview {
+    SharedHeaderView(onMenuTap: {
+        
+    })
 }

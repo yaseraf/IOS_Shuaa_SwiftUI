@@ -126,7 +126,7 @@ struct LoginContentView: View {
                 onChangeLanguage()
             } label: {
                 HStack {
-                    Text("language".localized)
+                    Text(AppUtility.shared.isRTL ? "english".localized : "arabic".localized)
                         .font(.apply(size: 16))
                         .foregroundStyle(Color.white)
                 }
@@ -164,7 +164,7 @@ struct LoginContentView: View {
                         .padding(.horizontal, 10)
 
                     TextField("", text: username, prompt: Text("username".localized).foregroundStyle(.white))
-                        .font(.applyPTSans(.bold, size: 16))
+                        .font(.apply(.bold, size: 16))
                         .foregroundStyle(.white)
                         .frame(height: 50)
 //                        .padding(.horizontal, 16)
@@ -176,14 +176,14 @@ struct LoginContentView: View {
                     ZStack {
                         if username.wrappedValue.isEmpty == true {
                             RoundedRectangle(cornerRadius: 8).fill(Color.clear)
-                            RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorBorder)
+                            RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorTextPrimary)
                         } else {
                             if loginData.wrappedValue?.status == "-1" {
                                 RoundedRectangle(cornerRadius: 8).fill(Color.clear)
                                 RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorNegativeSecondary)
                             } else {
                                 RoundedRectangle(cornerRadius: 8).fill(Color.colorPrimary.opacity(0.04))
-                                RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorPrimary)
+                                RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorBorderPrimary)
                             }
                         }
                     }
@@ -221,14 +221,14 @@ struct LoginContentView: View {
 
                     if isPasswordHidden {
                         SecureField("", text: password, prompt: Text("password".localized).foregroundStyle(.white))
-                            .font(.applyPTSans(.bold, size: 16))
+                            .font(.apply(.bold, size: 16))
                             .foregroundStyle(.white)
                             .frame(height: 50)
                             .autocorrectionDisabled(true)
                             .textInputAutocapitalization(.never)
                     } else {
                         TextField("", text: password, prompt: Text("password".localized).foregroundStyle(.white))
-                            .font(.applyPTSans(.bold, size: 16))
+                            .font(.apply(.bold, size: 16))
 //                            .padding(.horizontal, 16)
                             .foregroundStyle(.white)
                             .frame(height: 50)
@@ -250,14 +250,14 @@ struct LoginContentView: View {
                     ZStack {
                         if password.wrappedValue.isEmpty == true {
                             RoundedRectangle(cornerRadius: 8).fill(Color.clear)
-                            RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorBorder)
+                            RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorTextPrimary)
                         } else {
                             if loginData.wrappedValue?.status == "-1" {
                                 RoundedRectangle(cornerRadius: 8).fill(Color.clear)
                                 RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorNegativeSecondary)
                             } else {
                                 RoundedRectangle(cornerRadius: 8).fill(Color.colorPrimary.opacity(0.04))
-                                RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorPrimary)
+                                RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorBorderPrimary)
                             }
                         }
                     }
@@ -283,7 +283,7 @@ struct LoginContentView: View {
                         onForgotPasswordTap()
                     } label: {
                         Text("forget_your_password".localized)
-                            .font(.applyPTSans(size: 18))
+                            .font(.apply(.regular, size: 14))
                             .foregroundStyle(Color.white)
                     }
                     
@@ -302,14 +302,14 @@ struct LoginContentView: View {
             onSignUpTap()
         }, label: {
             Text("login".localized)
-                .font(.applyPTSans(.regular, size: 18))
+                .font(.apply(.regular, size: 18))
                 .foregroundStyle(.white)
                 .frame(height: 48)
                 .frame(maxWidth: .infinity)
                 .foregroundStyle(.white)
                 .background(RoundedRectangle(cornerRadius: 12).fill(Color.gray).opacity(0.5))
         })
-        .padding(.horizontal, 165)
+        .padding(.horizontal, 145)
         .padding(.vertical, 16)
                 
     }
@@ -317,13 +317,13 @@ struct LoginContentView: View {
     private var signUpView: some View {
         HStack {
             Text("no_account_yet".localized)
-                .font(.applyPTSans(.regular, size: 16))
+                .font(.apply(.regular, size: 16))
                 .foregroundStyle(.white)
             Button {
                 onSignUpTap()
             } label: {
                 Text("join_us_now".localized)
-                    .font(.applyPTSans(.regular, size: 16))
+                    .font(.apply(.regular, size: 16))
                     .foregroundStyle(.white)
             }
 
@@ -334,19 +334,40 @@ struct LoginContentView: View {
         Button {
             onVideoTutorialTap()
         } label: {
-            HStack {
+            HStack(spacing: 12) {
                 Image(systemName: "play.rectangle")
                     .resizable()
                     .frame(width: 18, height: 16)
                     .foregroundStyle(.gray)
 
                 Text("video_tutorial".localized)
-                    .font(.applyPTSans(.regular, size: 16))
+                    .font(.apply(.regular, size: 16))
                     .foregroundStyle(.white)
-
             }
-            
         }
-
     }
+}
+
+#Preview {
+    LoginContentView(showMessagePopUp: .constant(false), loginMessage: .constant(""), username: .constant(""), password: .constant(""), isPasswordHidden: false, isRememberMe: .constant(false), showAlert: .constant(false), loginData: .constant(.initializer()), onSignInTap: { _,_,_ in
+        
+    }, onForgotNameTap: {
+        
+    }, onForgotPasswordTap: {
+        
+    }, onChangeLanguage: {
+        
+    }, onIsRememberMeTap: {
+        
+    }, onSetPin: { _,_ in
+        
+    }, onFaceIDTap: { _,_ in
+        
+    }, onReLoginTap: { _,_,_ in
+        
+    }, onSignUpTap: {
+        
+    }, onVideoTutorialTap: {
+        
+    })
 }

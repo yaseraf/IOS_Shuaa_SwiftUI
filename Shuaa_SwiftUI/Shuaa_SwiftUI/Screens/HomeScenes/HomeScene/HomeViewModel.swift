@@ -47,8 +47,16 @@ extension HomeViewModel {
         data.append(StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"))
         data.append(StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"))
         data.append(StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"))
+        data.append(.initializer())
+        data.append(.initializer())
         data.append(StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"))
-
+        data.append(.initializer())
+        data.append(.initializer())
+        data.append(.initializer())
+        data.append(.initializer())
+        data.append(.initializer())
+        data.append(.initializer())
+        
         stocksData = data
     }
     

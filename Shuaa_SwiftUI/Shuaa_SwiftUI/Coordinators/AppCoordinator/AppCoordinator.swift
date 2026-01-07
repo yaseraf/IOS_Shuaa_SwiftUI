@@ -47,7 +47,7 @@ class AppCoordinator:  ObservableObject {
 
 
     func updateWindowBackground() {
-        window.backgroundColor = UIColor(Color.colorBG)
+        window.backgroundColor = UIColor(Color.colorBackground)
     }
 
     func showViewWithAnimation(dvc: UIViewController) {

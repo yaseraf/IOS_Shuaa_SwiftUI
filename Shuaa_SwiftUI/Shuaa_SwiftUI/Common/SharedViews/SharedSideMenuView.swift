@@ -123,7 +123,7 @@ struct SideMenuView: View {
                     .font(.apply(.semiBold, size: 16))
                     .foregroundColor(Color.colorBase)
                     .frame(maxWidth: .infinity)
-//                    .padding(.vertical, 16)
+                    .padding(.vertical, 8)
                     .background(Color.colorPrimary)
                     .cornerRadius(6)
                     .padding(.horizontal, 32)
@@ -151,7 +151,7 @@ struct MenuItemView: View {
                     .foregroundColor(Color.colorPrimary)
                 
                 Text(title)
-                    .font(.apply(.bold, size: 12))
+                    .font(.apply(.bold, size: 16))
                     .foregroundColor(Color.colorPrimary)
                 
                 Spacer()
@@ -166,4 +166,30 @@ struct MenuItemView: View {
             .frame(maxWidth: .infinity)
             .opacity(0.5)
     }
+}
+
+#Preview {
+    SideMenuView(isMenuOpen: .constant(true), onAccountInformationTap: {
+        
+    }, onMyDocumentsTap: {
+        
+    }, onMarketsInsightTap: {
+        
+    }, onMyAlertsTap: {
+        
+    }, onAccountStatements: {
+        
+    }, onCashDeposit: {
+        
+    }, onEquityTransferTap: {
+        
+    }, onTransfersTap: {
+        
+    }, onClientPortalTap: {
+        
+    }, onIPOTap: {
+        
+    }, onSettingsTap: {
+            
+    })
 }
