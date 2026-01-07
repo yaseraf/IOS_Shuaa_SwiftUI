@@ -1,13 +1,11 @@
 //
 //  Coordinator.swift
-//  mahfazati
-//
-//  Created by Mohammmed on 22/07/2024.
-//  Copyright © 2024 Mohammed Mathkour. All rights reserved.
-//
+//  Shuaa
+
 
 import Foundation
 import SwiftUI
+
 protocol Coordinator: AnyObject {
     var navigationController: BaseNavigationController { get set }
     var childCoordinator: [Coordinator] { get set }
@@ -15,8 +13,6 @@ protocol Coordinator: AnyObject {
 }
 
 extension Coordinator {
-   
-
     func goBack(animated: Bool = true) {
         navigationController.popViewController(animated: animated)
     }
@@ -32,7 +28,6 @@ extension Coordinator {
 
     func dismiss(animated: Bool = true) {
         SceneDelegate.getAppCoordinator()?.topViewController()?.dismiss(animated: animated)
-//            navigationController.dismiss(animated: true)
     }
 
     func popViewController(animated: Bool = true) {
@@ -57,18 +52,13 @@ extension Coordinator {
     func dismiss(animated: Bool = true, complete: (() -> Void)?) {
         navigationController.dismiss(animated: animated, completion: complete)
     }
-
-    
 }
 
 extension Coordinator {
-
     func getChildCoordinator(coordinator:Coordinator.Type)->Coordinator?{
-
         return childCoordinator.filter({
             let childName = String(describing: $0).split(separator: ".").last ?? ""
            return childName == String(describing: coordinator)
-
         }).first
     }
 
@@ -77,7 +67,5 @@ extension Coordinator {
             let childName = String(describing: $0).split(separator: ".").last ?? ""
            return childName == String(describing: coordinator)
         })
-
     }
-
 }

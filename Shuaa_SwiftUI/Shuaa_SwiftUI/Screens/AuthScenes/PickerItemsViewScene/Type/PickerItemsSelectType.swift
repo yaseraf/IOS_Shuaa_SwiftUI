@@ -1,10 +1,7 @@
 //
 //  PickerItemsSelectType.swift
-//  mahfazati
-//
-//  Created by Mohammmed on 27/09/2024.
-//  Copyright © 2024 Mohammed Mathkour. All rights reserved.
-//
+//  Shuaa
+
 
 import Foundation
 enum PickerItemsSelectType{

@@ -1,6 +1,6 @@
 //
 //  UIKit + Extension.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 15/08/2024.
 //  Copyright © 2024 FIT. All rights reserved.
@@ -46,39 +46,6 @@ extension UIView{
                                                      width: bounds.width,
                                                      height: layer.shadowRadius)).cgPath
     }
-}
-
-extension UIFont {
-    enum ThemeFont {
-        case regular
-        case medium
-        case semiBold
-        case bold
-        case heavy
-        var value: String {
-            switch self {
-            case .regular:
-                "SFProDisplay-Regular"
-            case .medium:
-                "SFProDisplay-Medium"
-
-            case .semiBold:
-                "SFProDisplay-Semibold"
-
-            case .bold:
-                "SFProDisplay-Bold"
-
-            case .heavy:
-                "SFProDisplay-Heavy"
-
-            }
-        }
-    }
-
-    static func apply(_ type: UIFont.ThemeFont = .regular, size: CGFloat = 15) -> UIFont? {
-        return  UIFont(name: type.value, size: size)
-    }
-
 }
 
 

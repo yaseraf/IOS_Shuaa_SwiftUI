@@ -5,13 +5,13 @@ import SwiftUI
 class SessionManager: ObservableObject {
     static let shared = SessionManager()
     
-    private let usersLogOffUseCase: UsersLogOffUseCaseProtocol = UsersLogOffUseCase()
+//    private let usersLogOffUseCase: UsersLogOffUseCaseProtocol = UsersLogOffUseCase()
     private var inactivityTimer: Timer?
     private var warningTimer: Timer?
     private var countdownTimer: Timer?
     
     @Published var isSessionActive: Bool = true
-    @Published var usersLogOffAPIResult: APIResultType<UsersLogOffUIModel>?
+//    @Published var usersLogOffAPIResult: APIResultType<UsersLogOffUIModel>?
     @Published var isWarningVisible: Bool = false
     @Published var countdown: Int = 10 // Countdown value
     
@@ -67,54 +67,54 @@ class SessionManager: ObservableObject {
     
     private func sessionTimedOut() {
         isSessionActive = false
-        UsersLogOffAPI(success: true)
+//        UsersLogOffAPI(success: true)
         print("Session timed out due to inactivity.")
     }
     
-    func UsersLogOffAPI(success: Bool) {
-        if UserDefaultController().isLoggedIn == false {
-            return
-        }
-        
-        let requestModel = UsersLogOffRequestModel()
-        usersLogOffAPIResult = .onLoading(show: true)
-        
-        Task.init {
-            await usersLogOffUseCase.UsersLogOff(requestModel: requestModel) {[weak self] result in
-                self?.usersLogOffAPIResult = .onLoading(show: false)
-                switch result {
-                case .success(let success):
-                    self?.usersLogOffAPIResult = .onSuccess(response: success)
-                    UserDefaultController().isLoggedIn = false
-                    UserDefaultController().selectedUserAccount = nil
-                    UserDefaultController().isUserInactive = true
-                    UserDefaultController().isAutoLogin = false
-                    debugPrint("Logoff success")
-
-                    Task { @MainActor in
-                        guard let window = SceneDelegate.getAppCoordinator()?.logout() else { return }
-                        self?.isWarningVisible = false
-                        self?.sessionDelegate?.onSessionWarning()
-                    }
-                case .failure(let failure):
-                    self?.usersLogOffAPIResult = .onFailure(error: failure)
-                    debugPrint("Logoff fail")
-                    UserDefaultController().isLoggedIn = false
-                    UserDefaultController().selectedUserAccount = nil
-                    UserDefaultController().isUserInactive = true
-                    UserDefaultController().isAutoLogin = false
-                    Task { @MainActor in
-                        guard let window = SceneDelegate.getAppCoordinator()?.logout() else { return }
-                        self?.isWarningVisible = false
-                        self?.sessionDelegate?.onSessionWarning()
-                    }
-
-                    self?.isWarningVisible = false
-                    self?.sessionDelegate?.onSessionWarning()
-                }
-            }
-        }
-    }
+//    func UsersLogOffAPI(success: Bool) {
+//        if UserDefaultController().isLoggedIn == false {
+//            return
+//        }
+//        
+//        let requestModel = UsersLogOffRequestModel()
+//        usersLogOffAPIResult = .onLoading(show: true)
+//        
+//        Task.init {
+//            await usersLogOffUseCase.UsersLogOff(requestModel: requestModel) {[weak self] result in
+//                self?.usersLogOffAPIResult = .onLoading(show: false)
+//                switch result {
+//                case .success(let success):
+//                    self?.usersLogOffAPIResult = .onSuccess(response: success)
+//                    UserDefaultController().isLoggedIn = false
+//                    UserDefaultController().selectedUserAccount = nil
+//                    UserDefaultController().isUserInactive = true
+//                    UserDefaultController().isAutoLogin = false
+//                    debugPrint("Logoff success")
+//
+//                    Task { @MainActor in
+//                        guard let window = SceneDelegate.getAppCoordinator()?.logout() else { return }
+//                        self?.isWarningVisible = false
+//                        self?.sessionDelegate?.onSessionWarning()
+//                    }
+//                case .failure(let failure):
+//                    self?.usersLogOffAPIResult = .onFailure(error: failure)
+//                    debugPrint("Logoff fail")
+//                    UserDefaultController().isLoggedIn = false
+//                    UserDefaultController().selectedUserAccount = nil
+//                    UserDefaultController().isUserInactive = true
+//                    UserDefaultController().isAutoLogin = false
+//                    Task { @MainActor in
+//                        guard let window = SceneDelegate.getAppCoordinator()?.logout() else { return }
+//                        self?.isWarningVisible = false
+//                        self?.sessionDelegate?.onSessionWarning()
+//                    }
+//
+//                    self?.isWarningVisible = false
+//                    self?.sessionDelegate?.onSessionWarning()
+//                }
+//            }
+//        }
+//    }
     
     func warningViewModifier<Content: View>(_ content: Content) -> some View {
         ZStack {
@@ -148,7 +148,7 @@ class TimerManager: ObservableObject {
         
         timer = Timer.scheduledTimer(withTimeInterval: timeLimit, repeats: false) { [weak self] _ in
             self?.stopTimer()
-            SessionManager.shared.UsersLogOffAPI(success: true)
+//            SessionManager.shared.UsersLogOffAPI(success: true)
 
         }
     }

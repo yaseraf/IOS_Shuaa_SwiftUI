@@ -1,6 +1,6 @@
 //
 //  Font+Extension.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 22/07/2024.
 //  Copyright © 2024 FIT. All rights reserved.
@@ -71,3 +71,14 @@ extension Font {
         return .custom(type.value, size: size)
     }
 }
+
+extension UIFont {
+    static func apply(_ type: Font.PTSansThemeFont = .regular, size: CGFloat ) -> UIFont? {
+        return UIFont(name: type.value, size: size)
+    }
+    
+    static func applyNoto(_ type: Font.ThemeFont = .regular, size: CGFloat ) -> UIFont? {
+        return UIFont(name: type.value, size: size)
+    }
+}
+

@@ -1,6 +1,6 @@
 //
 //  JailBreakDetector.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 15/04/2025.
 //  Copyright © 2025 FIT. All rights reserved.

@@ -1,33 +1,20 @@
 //
 //  LoginView.swift
-//  QSC_SwiftUI
+//  Shuaa_SwiftUI
 //
-//  Created by FIT on 16/07/2025.
+//  Created by Tawfeeq Irshaidat on 16/07/2025.
 //
 
 import SwiftUI
 
 struct LoginContentView: View {
     
-    var showMessagePopUp:Binding<Bool>
-    var loginMessage:Binding<String>
+    @State var isPasswordHidden:Bool = true
+    
     var username:Binding<String>
     var password:Binding<String>
-    @State var isPasswordHidden:Bool = true
-
-    var isRememberMe:Binding<Bool>
-    var showAlert:Binding<Bool>
-    var loginData:Binding<LoginUIModel?>
     
-    var onSignInTap:((_ username: String, _ password: String, _ isRememberMe: Bool) -> Void)
-    var onForgotNameTap:()->Void
-    var onForgotPasswordTap:()->Void
     var onChangeLanguage:()->Void
-    var onIsRememberMeTap:()->Void
-    var onSetPin:(String, String)->Void
-    var onFaceIDTap:(String, String)->Void
-    var onReLoginTap:((_ username: String, _ password: String, _ isRememberMe: Bool) -> Void)
-    
     var onSignUpTap:()->Void
     var onVideoTutorialTap:()->Void
 
@@ -63,57 +50,6 @@ struct LoginContentView: View {
                 
                 Spacer()
 
-            }
-            
-            if showMessagePopUp.wrappedValue == true {
-                ZStack {
-                    
-                }
-                .alert("",
-                       isPresented: showMessagePopUp) {
-                    Button("yes".localized) {
-                        onReLoginTap(
-                            username.wrappedValue,
-                            password.wrappedValue,
-                            isRememberMe.wrappedValue
-                        )
-                    }
-                    Button("cancel".localized) {
-                        showMessagePopUp.wrappedValue = false
-                    }
-                } message: {
-                    Text(loginMessage.wrappedValue)   // or any message you want
-                }
-
-                
-//                .alert(loginMessage.wrappedValue, isPresented: showMessagePopUp) {
-//                    Button("yes".localized) {
-////                        if let url = URL(string: UserDefaultController().appstoreUrl ?? ""),
-////                            UIApplication.shared.canOpenURL(url) {
-////                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-////                        }
-//                    }
-//                    Button("cancel".localized) {
-//                        showMessagePopUp.wrappedValue = false
-//                    }
-//                }
-
-            }
-        }
-//        .ignoresSafeArea(.keyboard)
-        .alert("please_choose_your_second_security_validation".localized, isPresented: showAlert) {
-            Button {
-                onFaceIDTap(username.wrappedValue, password.wrappedValue)
-            } label: {
-                Text("face_id".localized)
-                    .font(.apply(.medium, size: 16))
-            }
-            
-            Button {
-                onSetPin(username.wrappedValue, password.wrappedValue)
-            } label: {
-                Text("pin".localized)
-                    .font(.apply(.medium, size: 16))
             }
         }
     }
@@ -167,7 +103,6 @@ struct LoginContentView: View {
                         .font(.apply(.bold, size: 16))
                         .foregroundStyle(.white)
                         .frame(height: 50)
-//                        .padding(.horizontal, 16)
                         .autocorrectionDisabled(true)
                         .textInputAutocapitalization(.never)
                 }
@@ -178,32 +113,13 @@ struct LoginContentView: View {
                             RoundedRectangle(cornerRadius: 8).fill(Color.clear)
                             RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorTextPrimary)
                         } else {
-                            if loginData.wrappedValue?.status == "-1" {
-                                RoundedRectangle(cornerRadius: 8).fill(Color.clear)
-                                RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorNegativeSecondary)
-                            } else {
-                                RoundedRectangle(cornerRadius: 8).fill(Color.colorPrimary.opacity(0.04))
-                                RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 0.5).fill(Color.white)
-                            }
+                            RoundedRectangle(cornerRadius: 8).fill(Color.colorPrimary.opacity(0.04))
+                            RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 0.5).fill(Color.white)
                         }
                     }
                 )
                 .frame(height: 50)
                 .padding(.bottom, 16)
-
-
-//                if loginData.wrappedValue?.status == "-1" {
-//                    HStack {
-//                        Image("ic_alert")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 15, height: 15)
-//                        
-//                        Text("wrong_user_name".localized)
-//                            .font(.apply(size: 12))
-//                            .foregroundStyle(Color.colorNegativeSecondary)
-//                    }
-//                }
                 
             }
             
@@ -229,21 +145,12 @@ struct LoginContentView: View {
                     } else {
                         TextField("", text: password, prompt: Text("password".localized).foregroundStyle(.white))
                             .font(.apply(.bold, size: 16))
-//                            .padding(.horizontal, 16)
                             .foregroundStyle(.white)
                             .frame(height: 50)
                             .autocorrectionDisabled(true)
                             .textInputAutocapitalization(.never)
                     }
-                    
-//                    Image(isPasswordHidden ? "ic_eyeInvisible" : "ic_eyeVisible")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 20, height: 20)
-//                        .onTapGesture {
-//                            isPasswordHidden.toggle()
-//                        }
-                        
+                                            
                 }
                 .padding(.horizontal, 24)
                 .background(
@@ -252,35 +159,17 @@ struct LoginContentView: View {
                             RoundedRectangle(cornerRadius: 8).fill(Color.clear)
                             RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorTextPrimary)
                         } else {
-                            if loginData.wrappedValue?.status == "-1" {
-                                RoundedRectangle(cornerRadius: 8).fill(Color.clear)
-                                RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorNegativeSecondary)
-                            } else {
-                                RoundedRectangle(cornerRadius: 8).fill(Color.colorPrimary.opacity(0.04))
-                                RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 0.5).fill(Color.white)
-                            }
+                            RoundedRectangle(cornerRadius: 8).fill(Color.colorPrimary.opacity(0.04))
+                            RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 0.5).fill(Color.white)
                         }
                     }
                 )
                 .frame(height: 50)
                 .padding(.bottom, 8)
 
-//                if loginData.wrappedValue?.status == "-1" {
-//                    HStack {
-//                        Image("ic_alert")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 15, height: 15)
-//                        
-//                        Text("incorrect_password".localized)
-//                            .font(.apply(size: 12))
-//                            .foregroundStyle(Color.colorNegativeSecondary)
-//                    }
-//                }
-
                 HStack {
                     Button {
-                        onForgotPasswordTap()
+                        
                     } label: {
                         Text("forget_your_password".localized)
                             .font(.apply(.regular, size: 14))
@@ -296,9 +185,7 @@ struct LoginContentView: View {
     
     private var signInView: some View {
         Button(action: {
-//            if !username.wrappedValue.isEmpty && !password.wrappedValue.isEmpty {
-//                onSignInTap(username.wrappedValue, password.wrappedValue, isRememberMe.wrappedValue)
-//            }
+
             onSignUpTap()
         }, label: {
             Text("login".localized)
@@ -349,21 +236,7 @@ struct LoginContentView: View {
 }
 
 #Preview {
-    LoginContentView(showMessagePopUp: .constant(false), loginMessage: .constant(""), username: .constant(""), password: .constant(""), isPasswordHidden: false, isRememberMe: .constant(false), showAlert: .constant(false), loginData: .constant(.initializer()), onSignInTap: { _,_,_ in
-        
-    }, onForgotNameTap: {
-        
-    }, onForgotPasswordTap: {
-        
-    }, onChangeLanguage: {
-        
-    }, onIsRememberMeTap: {
-        
-    }, onSetPin: { _,_ in
-        
-    }, onFaceIDTap: { _,_ in
-        
-    }, onReLoginTap: { _,_,_ in
+    LoginContentView(isPasswordHidden: false, username: .constant(""), password: .constant(""), onChangeLanguage: {
         
     }, onSignUpTap: {
         

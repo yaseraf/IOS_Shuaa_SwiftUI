@@ -1,6 +1,6 @@
 //
 //  AppUtility.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 22/07/2024.
 //  Copyright © 2024 FIT. All rights reserved.
@@ -24,21 +24,6 @@ class AppUtility {
         )
     }
     
-    static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
-        AppDelegate.shared.orientationLock = orientation
-    }
-
-    static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation) {
-        self.lockOrientation(orientation)
-
-        UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
-        UINavigationController.attemptRotationToDeviceOrientation()
-    }
-    
-    var isUserSignIn: Bool{
-        let isUserSignIn = !( KeyChainController.shared().signInToken?.isEmpty ?? true)
-        return isUserSignIn
-    }
 
    var isRTL: Bool {
         return userDefaultController?.isArabicLanguage ?? false
@@ -52,8 +37,7 @@ class AppUtility {
                 case .dark:
                     true
                 case .system:
-//                true
-                UserDefaultController().isDarkMode ?? true
+                    UserDefaultController().isDarkMode ?? true
             }
         }
     }
@@ -62,30 +46,34 @@ class AppUtility {
         return userDefaultController?.appTheme ?? .system
     }
 
-    var languageLocal: Locale{
-        return Locale(identifier: isRTL ? "ar_SA" : "en_US")
+    var englishLocaleIdentifier: String{
+        return "en_US"
     }
 
-    var englishLocal: Locale{
-        return Locale(identifier: "en_US")
+    var arabicLocaleIdentifier: String{
+        return "ar_SA"
     }
 
-    var arabicLocal: Locale{
-        return Locale(identifier: "ar_SA")
+    var languageLocale: Locale{
+        return Locale(identifier: isRTL ? arabicLocaleIdentifier : englishLocaleIdentifier)
+    }
+
+    var englishLocale: Locale{
+        return Locale(identifier: englishLocaleIdentifier)
     }
     
-    var dividerHorizontalExtension: CGFloat {
-        return -4
+    
+    var arabicLocale: Locale{
+        return Locale(identifier: arabicLocaleIdentifier)
     }
     
+        
     func updateAppLanguage(language: LanguageType) {
-        //        OS
         let defaults = UserDefaults.standard
         defaults.set([language.rawValue], forKey: AppConstants.appleLanguages)
-        userDefaultController?.appLanguage = language.rawValue //!!
+        userDefaultController?.appLanguage = language.rawValue
         userDefaultController?.currentDeviceLanguage = language.rawValue
-        //        appLanguage
-        debugPrint ("language arabic ? \(AppUtility.shared.isRTL)")
+        
         let semantic: UISemanticContentAttribute = AppUtility.shared.isRTL  ?  .forceRightToLeft : .forceLeftToRight
        
         UIView.appearance().semanticContentAttribute = semantic
@@ -101,16 +89,9 @@ class AppUtility {
         UINavigationController().navigationBar.semanticContentAttribute = semantic
         UITabBarController().view.semanticContentAttribute  = semantic
         UISwitch.appearance().semanticContentAttribute = semantic
-        //            UITextField.appearance().setLabelTextAlignment(Alignment: .right)
-        //            UITextView.appearance().setLabelTextAlignment(Alignment: .right)
         UISegmentedControl.appearance().semanticContentAttribute = semantic
         UIButton.appearance().semanticContentAttribute = semantic
         UIStackView.appearance().semanticContentAttribute = semantic
-        
-        
-
-        
-        
     }
 
     func applyDeviceLanguageIfNeeded() {
@@ -119,11 +100,10 @@ class AppUtility {
             if userDefaultController?.currentDeviceLanguage !=  appLanguage{
                 if appLanguage.contains(LanguageType.arabic.rawValue) {
                     userDefaultController?.currentDeviceLanguage = LanguageType.arabic.rawValue
-                }else{
+                } else {
                     userDefaultController?.currentDeviceLanguage = LanguageType.english.rawValue
                 }
             }
-
         }
 
         let currentDeviceLanguage = userDefaultController?.currentDeviceLanguage ?? LanguageType.english.rawValue
@@ -133,11 +113,11 @@ class AppUtility {
         
     }
     
-    func formatThousandSeparator(number: Double) -> String {
+    func formatThousandSeparator3Decimal(number: Double) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 3 // Remove decimal places
-        formatter.locale = Locale(identifier: "en_US") // or "en_US_POSIX" for strict formatting
+        formatter.locale = Locale(identifier: englishLocaleIdentifier)
 
         // Format the double and add a thousand separator
         if let formattedString = formatter.string(from: NSNumber(value: number)) {
@@ -151,7 +131,7 @@ class AppUtility {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2 // Remove decimal places
-        formatter.locale = Locale(identifier: "en_US") // or "en_US_POSIX" for strict formatting
+        formatter.locale = Locale(identifier: englishLocaleIdentifier)
 
         // Format the double and add a thousand separator
         if let formattedString = formatter.string(from: NSNumber(value: number)) {
@@ -161,28 +141,14 @@ class AppUtility {
         }
     }
     
-    func formatNumber(number: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 3 // Remove decimal places
-        formatter.locale = Locale(identifier: "en_US") // or "en_US_POSIX" for strict formatting
-
-        // Format the double and add a thousand separator
-        if let formattedString = formatter.string(from: NSNumber(value: number)) {
-            return formattedString // Output: 3.500"
-        } else {
-            return "-"
-        }
-    }
-    
-    func convertDateString(_ dateString: String, inputFormat: String, outputFormat: String) -> String {
+    func convertDateToString(_ dateString: String, inputFormat: String, outputFormat: String) -> String {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = inputFormat
-        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        inputFormatter.locale = Locale(identifier: englishLocaleIdentifier)
 
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = outputFormat
-        outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        outputFormatter.locale = Locale(identifier: englishLocaleIdentifier)
 
         if let date = inputFormatter.date(from: dateString) {
             return outputFormatter.string(from: date)
@@ -194,49 +160,15 @@ class AppUtility {
     func convertStringToDate(_ input: String, with format: String) -> Date? {
         let formatter = DateFormatter()
             formatter.dateFormat = format
-            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.locale = Locale(identifier: englishLocaleIdentifier)
             return formatter.date(from: input)
-    }
-
-    func animateScene() {
-     //   israa
-        let option: UIView.AnimationOptions =  AppUtility.shared.isRTL ? .transitionFlipFromRight : .transitionFlipFromLeft
-        //        guard let window = Route.getWindow() else { return  }
-        guard let window = SceneDelegate.getAppCoordinator()?.getWindow() else{return}
-        UIView.transition(with: window, duration: 0.5, options: option, animations: {
-
-            let oldState: Bool = UIView.areAnimationsEnabled
-            UIView.setAnimationsEnabled(false)
-            window.makeKeyAndVisible()
-            UIView.setAnimationsEnabled(oldState)
-        }, completion: { (_: Bool) in
-        })
-
-    }
-
-     func generateQRCode(from string: String) async -> UIImage? {
-        let data = string.data(using: String.Encoding.ascii)
-
-        if let filter = CIFilter(name: "CIQRCodeGenerator") {
-            filter.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
-
-            if let output = filter.outputImage?.transformed(by: transform) {
-                return UIImage(ciImage: output)
-            }
-        }
-
-        return nil
     }
 }
 
 extension AppUtility {
-    func loadCompanies() -> [GetCompaniesLookupsUIModel] {
-        return UserData.shared.savedCompaniesEntity.map { GetCompaniesLookupsUIModel(entity: $0) }
-    }
     public static var  bundleIdentifier: String {
         get{
-            return Bundle.main.bundleIdentifier ?? "com.QSC.QSC"
+            return Bundle.main.bundleIdentifier ?? "com.shuaa.shuaa"
         }
     }
 
@@ -257,16 +189,7 @@ extension AppUtility {
             return [UIDevice.current.model, UIDevice.current.systemVersion].compactMap({$0}).joined(separator: ",")
         }
     }
-
-    public static var tabBarHeight: CGFloat {
-        get {
-            var height: CGFloat = 0
-            if hasTopNotch {
-                height = 34
-            }
-            return 59 + height
-        }
-    }
+    
     public static var  hasTopNotch: Bool {
         get{
             return SceneDelegate.getAppCoordinator()?.getWindow().safeAreaInsets.top ?? 0 > 20
@@ -278,70 +201,6 @@ extension AppUtility {
             return SceneDelegate.getAppCoordinator()?.getWindow().safeAreaInsets.bottom ?? 0
         }
     }
-    
-    func getAddress(for network: Network) -> String? {
- 
-        var address: String?
-        
-        // Get list of all interfaces on the local machine:
-        var ifaddr: UnsafeMutablePointer<ifaddrs>?
-        guard getifaddrs(&ifaddr) == 0 else { return nil }
-        guard let firstAddr = ifaddr else { return nil }
-        
-        // For each interface ...
-        for ifptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
-            let interface = ifptr.pointee
-            
-            // Check for IPv4 or IPv6 interface:
-            let addrFamily = interface.ifa_addr.pointee.sa_family
-            if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
-                
-                // Check interface name:
-                let name = String(cString: interface.ifa_name)
-                if name == network.rawValue {
-                    // Convert interface address to a human readable string:
-                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-                    getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
-                                &hostname, socklen_t(hostname.count),
-                                nil, socklen_t(0), NI_NUMERICHOST)
-                    address = String(cString: hostname)
-                }
-            }
-        }
-        freeifaddrs(ifaddr)
-        
-        return address
-    }
-    
-    func getHourOfTimeStamp(from dateString: String) -> String {
-        // Define the date format
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "ddMMyyyyHHmmss"
-        dateFormatter.timeZone = TimeZone.current
 
-        let outputFormatter = DateFormatter()
-        outputFormatter.dateFormat = "dd/MM/yyyy" // Desired output format
-
-        if let date = dateFormatter.date(from: dateString) {
-            return outputFormatter.string(from: date)
-        } else {
-            return "Invalid Date"
-        }
-    }
-    
-    func getNewsContent(description: String, symbol: String) -> String{
-                
-        if let rangeStart = description.range(of: "<a"),
-               let rangeEnd = description.range(of: "</a>", range: rangeStart.upperBound..<description.endIndex) {
-            let content = description[rangeStart.upperBound..<rangeEnd.lowerBound]
-            let filter1 = description.replacingOccurrences(of: "<br />", with: "")
-            let filter2 = filter1.replacingOccurrences(of: content, with: "")
-            let filter3 = filter2.replacingOccurrences(of: "<a</a>", with: "")
-            let filter4 = filter3.replacingOccurrences(of: "<br>", with: "")
-//            let filter4 = filter3.replacingOccurrences(of: "Company:", with: "")
-                return String(filter4)
-            }
-        return "Symbol Name: \(symbol)"
-    }
 }
 

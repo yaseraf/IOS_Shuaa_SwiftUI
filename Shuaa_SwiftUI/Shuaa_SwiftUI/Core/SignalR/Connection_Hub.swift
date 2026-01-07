@@ -2,7 +2,6 @@
 //  Constants.swift
 
 //  Copyright (c) IDS 2017  All rights reserved.
-//
 
 import UIKit
 import WebKit
@@ -14,30 +13,7 @@ class Connection_Hub {
     var chatHub: Hub?
     var connection: SignalR?
     var connectionDelegate: ConnectionDelegate?
-    var marketWatchDelegate: MarketWatchDelegate?
-    var topActivitiesDelegate: TopActivitiesDelegate?
-    var orderListDelegate: OrderListDelegate?
-    var shareDetailsDelegate: ShareDetailsDelegate?
-    var portfolioDelegate: PortfolioDelegate?
-    var marketTimeSaleDelegate: MarketTimeSaleDelegate?
-    var sendMarketIndexObjectDelegate: SendMarketIndexObjectDelegate?
-    
     var userDefaultController = UserDefaultController.instance
-    
-    
-    @Published var getLookupsAPIResult:APIResultType<[GetLookupsUIModel]>?
-    
-    @Published var getLookupsList: [GetLookupsUIModel]? {
-        didSet {
-            tryUpdateMarketStatus()
-        }
-    }
-    
-    @Published var exchangeMarketSummaryData: [GetExchangeSummaryUIModel]? {
-        didSet {
-            tryUpdateMarketStatus()
-        }
-    }
 
    private func restartConnection(){
         if Connection_Hub.shared.connection != nil {
@@ -57,23 +33,6 @@ class Connection_Hub {
         
         bindingReceiverFunction(chatHub: chatHub)
         
-       
-        
-//        chatHub.onReceive(.getPortfolio) { args in
-////            printToLog("chatHub.onReceive GetPortfolioInitial args: \(args as Any)")
-//            debugPrint("test") ;
-//            debugPrint("get portfolio initial args: \(args)")
-//
-//            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: [GetPortfolioSignalRResponseModel].self)
-//            
-//            let uiModel = responseModel?.compactMap({
-//                GetPortfolioSignalRUIModel.mapToUIModel($0)
-//            })
-//            
-//            self.portfolioDelegate?.onPortfolioReceive(data: uiModel ?? [])
-//
-//        }
-
         // Client
         let  connection = SignalR(AppEnvironmentController.currentNetworkConfiguration.signalRBasePath, connectionType: .hub)
         connection.useWKWebView = true
@@ -81,11 +40,9 @@ class Connection_Hub {
         connection.transport = .auto // webSockets //.webSockets //.serverSentEvents // longPolling
         connection.addHub(chatHub)
 
-
         self.connection = connection
         self.chatHub = chatHub
 
-//      debugPrint("SignalR sent username: \(UserDefaultController().username ?? "")")
 
         connection.queryString = [
             "ischat": true
@@ -100,121 +57,87 @@ class Connection_Hub {
         
         //MARK: SignalR events
         connection.starting = {
-            printToLog("Connection starting...")
+            debugPrint("Connection starting...")
             HubUtility.shared.hubConnectionStatus = HubConnectionStatus.starting
-            printToLog("Connection starting success")
+            debugPrint("Connection starting success")
         }
         
         connection.reconnecting = {
-            printToLog("Connection reconnecting...")
+            debugPrint("Connection reconnecting...")
             HubUtility.shared.hubConnectionStatus = HubConnectionStatus.reconnecting
-            printToLog("Connection reconnecting success")
+            debugPrint("Connection reconnecting success")
         }
         
         connection.reconnected = {
-            printToLog("Connection reconnected")
+            debugPrint("Connection reconnected")
             HubUtility.shared.hubConnectionStatus = HubConnectionStatus.reconnected
-            printToLog("Connection reconnected success")
+            debugPrint("Connection reconnected success")
         }
         
         connection.disconnected = {
-            printToLog("Connection disconnected...")
+            debugPrint("Connection disconnected...")
             HubUtility.shared.hubConnectionStatus = HubConnectionStatus.disconnected
-            printToLog("Connection disconnected success")
+            debugPrint("Connection disconnected success")
             self.userDefaultController.signalRConnected = false
             self.connectionDelegate?.onDisconnect()
         }
         
         connection.connectionSlow = {
-            printToLog("Connection slow...")
+            debugPrint("Connection slow...")
             HubUtility.shared.hubConnectionStatus = HubConnectionStatus.connectionSlow
-            printToLog("Connection slow success")
+            debugPrint("Connection slow success")
         }
         
         connection.error = { error in
             HubUtility.shared.hubConnectionStatus = HubConnectionStatus.error
-            printToLog("Connection error Error: \(error ?? ["":""])")
+            debugPrint("Connection error Error: \(error ?? ["":""])")
             let errorModel = HubUtility.shared.decodeToModel(from: error, type: SignalRErrorResponseModel.self)
-            printToLog("errorModel:\(errorModel ?? SignalRErrorResponseModel())")
+            debugPrint("errorModel:\(errorModel ?? SignalRErrorResponseModel())")
 
             guard  let errorModel = errorModel else {
                 if SceneDelegate.getAppCoordinator()?.isUserLoggedIn ?? false {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2){
 
-                        printToLog("connectionHub chatHub is alive ? \(Connection_Hub.shared.chatHub != nil)")
-                        printToLog("connectionHub connection is alive ? \(Connection_Hub.shared.connection != nil)")
+                        debugPrint("connectionHub chatHub is alive ? \(Connection_Hub.shared.chatHub != nil)")
+                        debugPrint("connectionHub connection is alive ? \(Connection_Hub.shared.connection != nil)")
 
                         self.restartConnection()
 
-                        printToLog("connectionHub chatHub is alive ? \(Connection_Hub.shared.chatHub != nil)")
-                        printToLog("connectionHub connection is alive ? \(Connection_Hub.shared.connection != nil)")
+                        debugPrint("connectionHub chatHub is alive ? \(Connection_Hub.shared.chatHub != nil)")
+                        debugPrint("connectionHub connection is alive ? \(Connection_Hub.shared.connection != nil)")
                     }
                 }
                 return
             }
                 if errorModel.source == .timeoutException {
-                    printToLog("Connection timed out. Restarting...")
+                    debugPrint("Connection timed out. Restarting...")
 
                     self.restartConnection()
-                }else{
+                } else {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-                        printToLog("connectionHub error chatHub is alive ? \(Connection_Hub.shared.chatHub != nil)")
-                        printToLog("connectionHub error connection is alive ? \(Connection_Hub.shared.connection != nil)")
+                        debugPrint("connectionHub error chatHub is alive ? \(Connection_Hub.shared.chatHub != nil)")
+                        debugPrint("connectionHub error connection is alive ? \(Connection_Hub.shared.connection != nil)")
                         self.restartConnection()
 
-                        printToLog("connectionHub error chatHub is alive ? \(Connection_Hub.shared.chatHub != nil)")
-                        printToLog("connectionHub error connection is alive ? \(Connection_Hub.shared.connection != nil)")
+                        debugPrint("connectionHub error chatHub is alive ? \(Connection_Hub.shared.chatHub != nil)")
+                        debugPrint("connectionHub error connection is alive ? \(Connection_Hub.shared.connection != nil)")
 
                     }
                 }
-
-
-
-
-
         }
         
         connection.connected = {
             HubUtility.shared.hubConnectionStatus = HubConnectionStatus.connected
             if self.connection != nil {
-//                printToLog("Connection connected ID: \(self.connection?.connectionID ?? "- -")")
                 self.userDefaultController.signalRConnected = true
-                self.callGetLookupsAPI()
                 self.connectionDelegate?.onConnect()
                 self.onConnected?()
                 self.onConnected = nil   // prevent multiple calls
             } else {
-//                printToLog("Connection connected ID: xxx ! ! self.connection is nil :) ! !")
                 debugPrint("SignalR Failed to connect")
             }
-            
-//            if Connection_Hub.shared.chatHub != nil {
-//                do {
-//                    try Connection_Hub.shared.chatHub?.invoke("GetPortfolio", arguments: ["-1", "-1", "97", "-1", "1010", "F"]) { (result, error) in
-//
-//                        if let e = error {
-//                            printToLog("SignalR GetPortfolio invoke Error: \(e)")
-////                            self.getPortfolioAPIResult = .onLoading(show:  false)
-//
-//                        } else {
-//                            debugPrint("SignalR GetPortfolio invoke Success! - result: \(result)")
-////                            self.getPortfolioAPIResult = .onLoading(show:  false)
-//                        }
-//                    }
-//                } catch let error {
-//                    printToLog("SignalR GetPortfolio chatHub error: \(error.localizedDescription)")
-////                    self.getPortfolioAPIResult = .onLoading(show:  false)
-//
-//                }
-//            } else {
-//                debugPrint("Chathub is nil")
-//            }
-
         }
-        
-        
         connection.start()
-        // // }
     }
     
     
@@ -229,11 +152,9 @@ class Connection_Hub {
             Connection_Hub.shared.connection?.start()
         }
         
-        chatHub.onReceive(method) { args in // get ktir data kl shwy
+        chatHub.onReceive(method) { args in
             debugPrint("method with args: \(method) Args: \(args ?? [])")
             let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: type)
-//            printToLog("chatHub.onReceive \(method) getting responseModel : \(responseModel)")
-
             result?(responseModel)
         }
     }
@@ -241,349 +162,176 @@ class Connection_Hub {
     func bindingReceiverFunction(chatHub: Hub){
         
         //MARK: Tops
-        chatHub.onReceive(.sendTopGainerObject) { args in  //HubInvokes.SendTopGainerObject
-            printToLog("chatHub.onReceive SendTopGainerObject ") //args: ", args)
-
-
-            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: [TopActivitiesResponseModel].self)
-            
-            let uiModel =    responseModel?.compactMap({
-                TopActivitiesUIModel.mapToUIModel($0)
-
-            })
-            
-            self.topActivitiesDelegate?.onTopGainerReceived(data: uiModel ?? [])
+        chatHub.onReceive(.sendTopGainerObject) { args in
+            debugPrint("chatHub.onReceive SendTopGainerObject ")
 
         }
         
         chatHub.onReceive(.sendTopLoserObject) { args in
-            printToLog("chatHub.onReceive SendTopLoserObject ") //args: ", args)
+            debugPrint("chatHub.onReceive SendTopLoserObject ")
             
-            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: [TopActivitiesResponseModel].self)
-            
-            let uiModel =    responseModel?.compactMap({
-                TopActivitiesUIModel.mapToUIModel($0)
-
-            })
-            
-            self.topActivitiesDelegate?.onTopLoserReceived(data: uiModel ?? [])
-            
-
         }
         
         chatHub.onReceive(.sendTopVolumeObject) { args in
-            printToLog("chatHub.onReceive SendTopVolumeObject ") //args: ", args)
+            debugPrint("chatHub.onReceive SendTopVolumeObject ")
             
-
         }
         
         chatHub.onReceive(.sendTopValueObject) { args in
-            printToLog("chatHub.onReceive sendTopValueObject ") //args: ", args)
+            debugPrint("chatHub.onReceive sendTopValueObject ")
 
         }
         
         chatHub.onReceive(.sendMostActiveObject) { args in
-            printToLog("chatHub.onReceive sendMostActiveObject ") //args: ", args)
-
-            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: [TopActivitiesResponseModel].self)
-            
-            let uiModel =    responseModel?.compactMap({
-                TopActivitiesUIModel.mapToUIModel($0)
-
-            })
-            
-            self.topActivitiesDelegate?.onMostActiveReceived(data: uiModel ?? [])
+            debugPrint("chatHub.onReceive sendMostActiveObject ")
             
         }
         
+        //========================================================
+        //========================================================
+        //========================================================
 
         //MARK: Market Exchange Status
         chatHub.onReceive(.sendExchangeMarketObject) { args in
-            
-            debugPrint("market args: \(args)")
-            
-            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: [GetExchangeSummaryResponseModel].self)
-            
-            let uiModel = responseModel?.compactMap({
-                GetExchangeSummaryUIModel.mapToUIModel($0)
-            })
-
-            self.exchangeMarketSummaryData = uiModel
-            
-            self.connectionDelegate?.onSendExchangeMarketObject(data: uiModel ?? [])
+            debugPrint("market args: \(args ?? [])")
             
         }
         
         chatHub.onReceive(.sendServerDateTimeVer2) { args in // it is stop called
-//            printToLog("chatHub.onReceive sendServerDateTimeVer2 getting data : \(args)")
         }
         
-        
+        //========================================================
+        //========================================================
+        //========================================================
+
         //MARK: Market T&S
         chatHub.onReceive(.getMarketTradesFullObject) { args in
-//            printToLog("chatHub.onReceive getMarketTradesFullObject: \(args)")
-            // printToLog("chatHub.onReceive getMarketTradesFullObject args: \(args)")
+            debugPrint("Get market trades full object args: \(args ?? [])")
             
-            debugPrint("Get market trades full object args: \(args)")
-            
-            let responseModel = HubUtility.shared.decodeToModel(from: args?.first, type: [GetMarketTimeSaleResponseModel].self)
-            
-            let uiModel = responseModel?.compactMap({
-                GetMarketTimeSaleUIModel.mapToUIModel($0)
-            })
-            
-            self.marketTimeSaleDelegate?.onMarketTimeSaleReceive(data: uiModel ?? [])
-
         }
         
-        
+        //========================================================
+        //========================================================
+        //========================================================
+
         //MARK: Symbol Details
-        chatHub.onReceive(.sendSymbolTradesFullObject) { args in // we stop use this function after add getSymbolTradesFullObject
-//            printToLog("chatHub.onReceive sendSymbolTradesFullObject") // args: ", args)
-            debugPrint("Get symbol trades full object args: \(args)")
+        chatHub.onReceive(.sendSymbolTradesFullObject) { args in // we stop use this
+            debugPrint("Get symbol trades full object args: \(args ?? [])")
 
         }
         
         chatHub.onReceive(.getSymbolTradesFullObject) { args in
+            debugPrint("Get symbol trades full object args: \(args ?? [])")
             
-//            printToLog("chatHub.onReceive getSymbolTradesFullObject: \(args)") //, args)
-            
-            debugPrint("Get symbol trades full object args: \(args)")
-            
-            let responseModel = HubUtility.shared.decodeToModel(from: args?.first, type: [GetSymbolTradesFullObjectResponseModel].self)
-            
-            let uiModel = responseModel?.compactMap({
-                GetSymbolTradesFullObjectUIModel.mapToUIModel($0)
-            })
-            
-            self.shareDetailsDelegate?.onGetSymbolTradesFullObject(data: uiModel ?? [])
         }
         
         chatHub.onReceive(.getMarketTradesFullObject) { args in
+            debugPrint("Get market trades full object args: \(args ?? [])")
             
-//            printToLog("chatHub.onReceive getSymbolTradesFullObject: \(args)") //, args)
-            
-            debugPrint("Get market trades full object args: \(args)")
-            
-            let responseModel = HubUtility.shared.decodeToModel(from: args?.first, type: [GetSymbolTradesFullObjectResponseModel].self)
-            
-            let uiModel = responseModel?.compactMap({
-                GetSymbolTradesFullObjectUIModel.mapToUIModel($0)
-            })
-            
-            self.shareDetailsDelegate?.onGetSymbolTradesFullObject(data: uiModel ?? [])
         }
         
         chatHub.onReceive(.getSymbolTradesFullObjects) { args in
-//            printToLog("chatHub.onReceive getSymbolTradesFullObject: \(args)") //, args)
+            debugPrint("Get symbol trades full object args: \(args ?? [])")
             
-            debugPrint("Get symbol trades full object args: \(args)")
-            
-            let responseModel = HubUtility.shared.decodeToModel(from: args?.first, type: [GetSymbolTradesFullObjectResponseModel].self)
-            
-            let uiModel = responseModel?.compactMap({
-                GetSymbolTradesFullObjectUIModel.mapToUIModel($0)
-            })
-            
-            self.shareDetailsDelegate?.onGetSymbolTradesFullObject(data: uiModel ?? [])
         }
         
         chatHub.onReceive(.sendSymbolTradesSummaryObject) { args in
-//            printToLog("chatHub.onReceive getSymbolTradesSummaryObject args: \(args)")
+            debugPrint("args send symbol: \(args ?? [])")
             
-            //            let responseModelList =  HubUtility.shared.decodeToModel(from: jsonString, type: [symbolTradesSummaryObject].self)
-            
-            debugPrint("args send symbol: \(args)")
-            
-            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: [SendSymbolTradesSummaryObjectResponseModel].self)
-            
-            let uiModel = responseModel?.compactMap({
-                SendSymbolTradesSummaryObjectUIModel.mapToUIModel($0)
-            })
-            
-            self.shareDetailsDelegate?.onSendSymbolTradesSummaryObject(data: uiModel ?? [])
-
         }
         
         chatHub.onReceive(.sendMarketTradesFullObject) { args in
-            printToLog("chatHub.onReceive sendMarketTradesFullObject args ") //, args == nil ? "-" : JSON(arg!).stringValue.comp)
-        }
-        
-        chatHub.onReceive(.sendSymbolDetails) { args in
-            printToLog("chatHub.onReceive sendSymbolDetails args ") //, args == nil ? "-" : JSON(arg!).stringValue.comp)
-
+            debugPrint("chatHub.onReceive sendMarketTradesFullObject args ")
             
         }
         
+        chatHub.onReceive(.sendSymbolDetails) { args in
+            debugPrint("chatHub.onReceive sendSymbolDetails args ")
+
+        }
+        
         chatHub.onReceive(.SubscribeFullMDSymbol) { args in
-//            printToLog("chatHub.onReceive SubscribeFullMDSymbol args: \( args as Any)")
-        //    //HubUtility.shared.topStockTrades = dataParser.parseTopItem(data: args).checkIfChange(withList: HubUtility.shared.topStockTrades).setSymbolChart(fromList: HubUtility.shared.topStockTrades)
-        //    //printToLog("chatHub.onReceive HubUtility.shared.SubscribeFullMDSymbol: ", HubUtility.shared.topStockTrades.count)
+            
         }
         
         chatHub.onReceive(.getFullMDSymbol) { args in
-//            printToLog("chatHub.onReceive getFullMDSymbol args: \( args as Any)")
-
-        //    printToLog("chatHub.onReceive getFullMDSymbol args: \( args as Any)")
-        //    //HubUtility.shared.topStockTrades = dataParser.parseTopItem(data: args).checkIfChange(withList: HubUtility.shared.topStockTrades).setSymbolChart(fromList: HubUtility.shared.topStockTrades)
-        //    //printToLog("chatHub.onReceive HubUtility.shared.getFullMDSymbol: ", HubUtility.shared.topStockTrades.count)
+            
         }
         
         chatHub.onReceive(.getRelatedStocks) { args in
-//            printToLog("chatHub.onReceive getRelatedStocks args: \( args as Any)")
-            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: [RelatedStocksResponseModel].self)
-
-            let uiModel = responseModel?.map({
-                RelatedStocksUIModel.mapToUIModel($0)
-            })
             
         }
         
         chatHub.onReceive(.getMostWatchStocks) { args in
-//            printToLog("chatHub.onReceive getMostWatchStocks args: \( args as Any)")
-            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: [RelatedStocksResponseModel].self)
-
-            let uiModel = responseModel?.map({
-                RelatedStocksUIModel.mapToUIModel($0)
-            })
             
         }
         
-        
+        //========================================================
+        //========================================================
+        //========================================================
+
         //MARK: Watch List
-        chatHub.onReceive(.sendMarketWatchObject) { args in // get ktir data kl shwy
+        chatHub.onReceive(.sendMarketWatchObject) { args in
             
-            
-            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: GetMarketWatchByProfileIDResponseModel.self)
-            let responseModelMDSymbol =  HubUtility.shared.decodeToModel(from: args?.first, type: SubscribeMarketWatchSymbolsResponseModel.self)
-
-            
-            let uiModel = GetMarketWatchByProfileIDUIModel.mapToUIModel(responseModel ?? .empty)
-            let uiModelMDSymbol = responseModelMDSymbol.map({
-                SubscribeMarketWatchSymbolsUIModel.mapToUIModel($0)
-            })
-            
-            debugPrint("Sender of data, symbol: \(uiModel.symbol ?? "")")
-
-            self.marketWatchDelegate?.onWatchlistDataReceive(data: uiModel)
-            self.marketWatchDelegate?.onSubscribeMDSymbol(data: uiModelMDSymbol ?? .testUIModel())
-
         }
         
         chatHub.onReceive(.sendMarketIndexObject) { args in
             debugPrint("send market index object success")
             
-            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: SendMarketIndexObjectResponseModel.self)
-            
-            let uiModel = SendMarketIndexObjectUIModel.mapToUIModel(responseModel ?? SendMarketIndexObjectResponseModel(exchangeID: "", nameE: "", nameA: "", currentValue: "", previousValue: "", netChange: "", netChangePerc: "", high: "", low: "", sector: "", turnOver: "", volume: "", totalTrades: "", isinCode: "", nameShort: "", isDelayed: "", lastUpdateTime: nil, lastTradeTime: nil))
-
-            
-            self.sendMarketIndexObjectDelegate?.MarketIndexObjectReceived(data: uiModel)
         }
         
-        chatHub.onReceive(.unSubscribeMarketWatchSymbols) { args in // get ktir data kl shwy
-            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: SubscribeMarketWatchSymbolsResponseModel.self)
-            
-//            printToLog("chatHub.onReceive subscribe getting responseModel unsubc : \(responseModel)")
+        chatHub.onReceive(.unSubscribeMarketWatchSymbols) { args in
 
         }
         
+        //========================================================
+        //========================================================
+        //========================================================
+
         //MARK: Orders
         chatHub.onReceive(.sendOrders) { args in
-            
-//            debugPrint("Send orders args: \(args) ENDEND")
-            debugPrint("Send orders args")
-
-            let responseModel = HubUtility.shared.decodeToModel(from: args?.first, type: [OrderListResponseModel].self)
-            
-            
-            let uiModel = responseModel?.compactMap({
-                OrderListUIModel.mapToUIModel($0)
-            })
-            
-            self.orderListDelegate?.onOrderReceived(order: uiModel ?? [])
             
         }
         
         chatHub.onReceive(.sendOrderDetails) { args in
-//            printToLog("chatHub.onReceive sendOrderDetails args: \(args as Any)")
 
         }
         
         chatHub.onReceive(.sendNotifyOrderObject) { args in
-//            printToLog("chatHub.onReceive sendNotifyOrderObject args")
-//            printToLog("chatHub.onReceive sendNotifyOrderObject args: \(args as Any)")
             
-            
-            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: SendOrdersResponseModel.self)
-            
-//            printToLog("chatHub.onReceive sendNotifyOrderObject getting responseModel : \(responseModel)")
-
-//            let uiModel = SendOrdersUIModel.mapToUIModel(responseModel ?? .init())
-            
-            
-
-//            if uiModel?.StatusCode?.lowercased() == "c" {
-//                showLocalNotification(title: "cancel_order".localized, body: "cancel_order_desc".localized)
-//            } else {
-//                if UserDefaultController().isModifyOrderNotification == true {
-//                    showLocalNotification(title: "modify_order".localized, body: "modify_order_desc".localized)
-//                } else {
-//                    showLocalNotification(title: "place_order".localized, body: "place_order_desc".localized)
-//                }
-//            }
         }
         
         chatHub.onReceive(.sendAddOrderRequest) { args in
-//            printToLog("chatHub.onReceive sendAddOrderRequest args \(args as Any)")
-            //let orders = dataParser.parseOrderList(data: args)
-            //printToLog("chatHub.onReceive HubUtility.shared.sendOrders success orders count : \( orders.count )")
-            //NotificationCenter.default.post(name: Notification.Name(HubNotification.ReloadOrderDetails), object: orders)
+            
         }
         
-        
+        //========================================================
+        //========================================================
+        //========================================================
+
         //MARK: Notifications
         chatHub.onReceive(.sendUserAlertsObject) { args in
-//            printToLog("chatHub.onReceive sendUserAlertsObject args: \(args as Any)") //: \( args as Any)")
             
-//            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: GetAllPushNotificationsByUserResponseModel.self)
-            
-//            let uiModel = NotificationUIModel.mapToUIModel(responseModel ?? GetAllPushNotificationsByUserResponseModel.init(date: "", descA: "", descE: "", id: "", isdelete: "", isorder: "", isPush: "", isRead: "", mobileType: "", registrationsID: "", symbol: "", titleA: "", titleE: "", totalValue: "", type: "", url: "", user: "", webcode: ""))
         }
         
         chatHub.onReceive(.sendUserPushAlertsObject) { args in
-//            printToLog("chatHub.onReceive sendUserPushAlertsObject args: \(args as Any)") //: \( args as Any)")
-            
-//            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: GetAllPushNotificationsByUserResponseModel.self)
-            
-//            let uiModel = NotificationUIModel.mapToUIModel(responseModel ?? GetAllPushNotificationsByUserResponseModel.init(date: "", descA: "", descE: "", id: "", isdelete: "", isorder: "", isPush: "", isRead: "", mobileType: "", registrationsID: "", symbol: "", titleA: "", titleE: "", totalValue: "", type: "", url: "", user: "", webcode: ""))
+
         }
 
         
         chatHub.onReceive(.sendNotifyMarketNewsObject) { args in
-//            printToLog("chatHub.onReceive sendNotifyMarketNewsObject args: \( args as Any)")
+
         }
         
-        
+        //========================================================
+        //========================================================
+        //========================================================
+
         //MARK: Portfolio
         chatHub.onReceive(.getPortfolioInitial) { args in
-//            printToLog("chatHub.onReceive GetPortfolioInitial args: \(args as Any)")
-            debugPrint("test") ;
-            debugPrint("get portfolio initial args: \(args)")
-
-            let responseModel =  HubUtility.shared.decodeToModel(from: args?.first, type: [GetPortfolioSignalRResponseModel].self)
-            
-            let uiModel = responseModel?.compactMap({
-                GetPortfolioSignalRUIModel.mapToUIModel($0)
-            })
-            
-            self.portfolioDelegate?.onPortfolioReceive(data: uiModel ?? [])
 
         }
-        
     }
-    
-    
     
     func logout(withReload: Bool) {
         self.chatHub?.connection.stop()
@@ -593,74 +341,17 @@ class Connection_Hub {
         self.chatHub = nil
         
         HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
-//        print("[WebCacheCleaner] All cookies deleted")
         
         WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
             records.forEach { record in
                 WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {
-//                    print("[WebCacheCleaner] cookies: Record \(record) deleted")
                 })
             }
             WKWebsiteDataStore.default().removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),for: records, completionHandler: {
-//                print("[WebCacheCleaner] delete allWebsiteDataTypes cookies success")
             })
         }
-        
-
-    }
-    
-}
-
-// Im going to call the lookup once in the home
-// Then save each sector in a container, for example i want only MRS so i save single container MRS in CoreData
-
-
-
-extension Connection_Hub {
-    func callGetLookupsAPI() {
-        let requestModel = GetLookupsRequestModel()
-        let useCase = LookupsUseCase()
-        
-        getLookupsAPIResult = .onLoading(show: true)
-        
-        Task.init {
-            await useCase.GetLookups(requestModel: requestModel) {[weak self] result in
-                switch result {
-                case .success(let success):
-                    self?.getLookupsAPIResult = .onSuccess(response: success)
-
-                    debugPrint("Lookup success")
-                    self?.getLookupsList = success.filter({$0.type == "MRS"})
-       
-                case .failure(let failure):
-                        self?.getLookupsAPIResult = .onFailure(error: failure)
-                }
-            }
-        }
-    }
-    
-    private func tryUpdateMarketStatus() {
-        // Only update when BOTH are ready
-        guard let lookups = getLookupsList,
-              let marketData = exchangeMarketSummaryData else {
-            return
-        }
-        updateMarketStatus(using: marketData, lookups: lookups)
-    }
-
-    
-    func updateMarketStatus(using marketData: [GetExchangeSummaryUIModel], lookups: [GetLookupsUIModel]) {
-        guard let firstStatusCode = marketData.first?.statusCode else { return }
-
-        if let lookupItem = getLookupsList?.first(where: { $0.type == "MRS" && $0.id == firstStatusCode }) {
-            let userDefaultController = UserDefaultController.instance
-            userDefaultController.marketStatusTitle = AppUtility.shared.isRTL ? lookupItem.descA : lookupItem.descE
-            userDefaultController.marketStatusCode = lookupItem.id
-        }
     }
 }
-
-
 
 public enum MessageType: Int, Codable {
     case Invocation = 1

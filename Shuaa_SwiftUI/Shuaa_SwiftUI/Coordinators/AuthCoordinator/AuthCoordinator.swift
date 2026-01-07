@@ -1,16 +1,10 @@
 //
 //  AuthCoordinator.swift
-//  mahfazati
-//
-//  Created by Mohammmed on 22/07/2024.
-//  Copyright © 2024 Mohammed Mathkour. All rights reserved.
-//
+//  Shuaa
 
 import Foundation
 import SwiftUI
 import FlagAndCountryCode
-
-
 
 class AuthCoordinator:  ObservableObject {
     enum AuthStartSceneType{
@@ -31,16 +25,14 @@ class AuthCoordinator:  ObservableObject {
         self.startViewType = type
     }
 
-    func start() {
-//        self.navigationController.viewControllers = []
-        
+    func start() {        
         AppUtility.shared.screenTransition(navigationController: navigationController, animationOptions: .transitionCrossDissolve, duration: 0.3, animated: false)
         
         switch startViewType {
         case .login:
             openLoginScene()
         case .boarding:
-            openLandingScene()
+            openLoginScene()
         case .register:
             openLoginScene()
         }
@@ -53,99 +45,11 @@ class AuthCoordinator:  ObservableObject {
 }
 
 extension AuthCoordinator: AuthCoordinatorProtocol {
-    
     func openLoginScene() {
-        let useCase = LoginUseCase()
-        let viewModel = LoginViewModel(coordinator: self, useCase: useCase)
+        let viewModel = LoginViewModel(coordinator: self)
         let view = LoginScene(viewModel: viewModel)
         let viewWithCoordinator = view.withThemeEnvironment
         let viewController = UIHostingController(rootView: viewWithCoordinator)
         self.navigationController.pushViewController(viewController, animated: true)
     }
-    
-    func openLandingScene() {
-        let viewModel = LandingViewModel(coordinator: self)
-        let view = LandingScene(viewModel: viewModel)
-        let viewWithCoordinator = view.withThemeEnvironment
-        let viewController = UIHostingController(rootView: viewWithCoordinator)
-        self.navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    func openVerifyPinScene(username: String, password: String) {
-        let useCase = LoginUseCase()
-        let viewModel = VerifyPinPopupViewModel(coordinator: self, useCase: useCase, username: username, password: password)
-        let view = VerifyPinPopupScene(viewModel: viewModel)
-        let viewWithCoordinator = view.withThemeEnvironment
-        let viewController = UIHostingController(rootView: viewWithCoordinator)
-        viewController.view.backgroundColor = .clear
-        viewController.modalPresentationStyle = .pageSheet
-        viewController.sheetPresentationController?.detents = [.medium()]
-        self.navigationController.topViewController?.present(viewController, animated: true)
-    }
-    
-    func openForgotPasswordScene(forgotType: ForgotDataEnum) {
-        let useCase = LoginUseCase()
-        let viewModel = ForgotPasswordViewModel(coordinator: self, forgotType: forgotType, useCase: useCase)
-        let view = ForgotPasswordScene(viewModel: viewModel)
-        let viewWithCoordinator = view.withThemeEnvironment
-        let viewController = UIHostingController(rootView: viewWithCoordinator)
-        self.navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    func openConfirmOtpScene(forgotType: ForgotDataEnum, nin: String, qID: String, username: String) {
-        let useCase = LoginUseCase()
-        let viewModel = ConfirmOtpPopupViewModel(coordinator: self, forgotType: forgotType, useCase: useCase, nin: nin, qID: qID, username: username)
-        let view = ConfirmOtpPopupScene(viewModel: viewModel)
-        let viewWithCoordinator = view.withThemeEnvironment
-        let viewController = UIHostingController(rootView: viewWithCoordinator)
-        viewController.view.backgroundColor = .clear
-        viewController.modalPresentationStyle = .pageSheet
-        viewController.sheetPresentationController?.detents = [.medium()]
-        self.navigationController.topViewController?.present(viewController, animated: true)
-    }
-    
-    func openChangePasswordScene(nin: String, qID: String, username: String) {
-        let useCase = LoginUseCase()
-        let viewModel = ChangePasswordViewModel(coordinator: self, useCase: useCase, nin: nin, qID: qID, username: username)
-        let view = ChangePasswordScene(viewModel: viewModel)
-        let viewWithCoordinator = view.withThemeEnvironment
-        let viewController = UIHostingController(rootView: viewWithCoordinator)
-        self.navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    func openChangePinScene() {
-        let viewModel = ChangePinViewModel(coordinator: self)
-        let view = ChangePinScene(viewModel: viewModel)
-        let viewWithCoordinator = view.withThemeEnvironment
-        let viewController = UIHostingController(rootView: viewWithCoordinator)
-        self.navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    func openSetNewPinScene(username: String, password: String) {
-        let useCase = LoginUseCase()
-        let viewModel = SetNewPinViewModel(coordinator: self, useCase: useCase, username: username, password: password)
-        let view = SetNewPinScene(viewModel: viewModel)
-        let viewWithCoordinator = view.withThemeEnvironment
-        let viewController = UIHostingController(rootView: viewWithCoordinator)
-        self.navigationController.pushViewController(viewController, animated: true)
-    }
-    
-//    func openBoardingScene() {
-//        let viewModel = BoardingViewModel(coordinator: self)
-//        let view =   BoardingScene(viewModel: viewModel)
-//        let viewWithCoordinator = view.withThemeEnvironment
-//        let viewController = UIHostingController(rootView: viewWithCoordinator)
-//        self.navigationController.pushViewController(viewController, animated: true)
-//    }
-    
-//    func openCountiesScene(delegate: CountriesListDelegate,selectCountry:CountryFlagInfo?) {
-//        let viewModel = CountriesListViewModel(coordinator:self,delegate: delegate, selectCountry: selectCountry)
-//        let view =  CountriesListScene(viewModel: viewModel)
-//        let viewWithCoordinator = view.withThemeEnvironment
-//        let viewController = UIHostingController(rootView: viewWithCoordinator)
-//        viewController.view.backgroundColor = .clear
-//        viewController.modalPresentationStyle = .pageSheet
-//        SceneDelegate.getAppCoordinator()?.topViewController()?.present(viewController, animated: true)
-//    }
-
 }

@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 22/07/2024.
 //  Copyright © 2024 FIT. All rights reserved.

@@ -1,10 +1,6 @@
 //
 //  AppCoordinator.swift
-//  mahfazati
-//
-//  Created by Mohammmed on 22/07/2024.
-//  Copyright © 2024 Mohammed Mathkour. All rights reserved.
-//
+//  Shuaa
 
 import Foundation
 import SwiftUI
@@ -20,7 +16,12 @@ class AppCoordinator:  ObservableObject {
            SceneDelegate.getAppCoordinator()?.getChildCoordinator(coordinator: HomeCoordinator.self) as? HomeCoordinator
         }
     }
-
+    
+    var currentAuthCoordinator:AuthCoordinator? {
+        get{
+           SceneDelegate.getAppCoordinator()?.getChildCoordinator(coordinator: AuthCoordinator.self) as? AuthCoordinator
+        }
+    }
 
     init(window: UIWindow) {
         self.window = window
@@ -36,15 +37,7 @@ class AppCoordinator:  ObservableObject {
     func logout(){
         // clear data
         childCoordinator.removeAll()
-//        navigationController.viewControllers = []
-        UIView.transition(
-            with: navigationController.view,
-            duration: 0.3,
-            options: [.transitionCrossDissolve],
-            animations: {
-                self.navigationController.setViewControllers([], animated: false)
-            }
-        )
+        AppUtility.shared.screenTransition(navigationController: navigationController, animationOptions: .transitionCrossDissolve, duration: 0.3, animated: false)
 
         startFlow(startWith: .login)
 
@@ -70,19 +63,12 @@ class AppCoordinator:  ObservableObject {
     func restart() {
         childCoordinator.last?.start()
         AppUtility.shared.screenTransition(navigationController: navigationController, animationOptions: .transitionCrossDissolve, duration: 0.3, animated: false)
-//        AppUtility.shared.animateScene()
     }
     
     func restartForTheme() {
         SceneDelegate.getAppCoordinator()?.topViewController()?.dismiss(animated: false, completion: nil)
         childCoordinator.last?.start()
-        debugPrint("Restarting scene")
-        AppUtility.shared.animateScene()
-    }
-
-
-    func restartLanguageUpdate() {
-//        currentHomeCoordinator?.getManageCoordinator().restart()
+        AppUtility.shared.screenTransition(navigationController: navigationController, animationOptions: .transitionCrossDissolve, duration: 0.3, animated: false)
     }
 
     var isUserLoggedIn:Bool {
@@ -159,8 +145,7 @@ extension AppCoordinator: AppCoordinatorProtocol {
     }
     
     func openSplashScene() {
-        let useCase = LoginUseCase()
-        let viewModel = SplashViewModel(coordinator: self, useCase: useCase)
+        let viewModel = SplashViewModel(coordinator: self)
         let view =  SplashScene(viewModel: viewModel)
         let viewWithCoordinator = view.withThemeEnvironment
         let viewController = UIHostingController(rootView: viewWithCoordinator)

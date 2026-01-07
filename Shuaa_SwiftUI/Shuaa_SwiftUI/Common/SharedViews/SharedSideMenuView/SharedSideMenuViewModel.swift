@@ -50,7 +50,7 @@ class SharedSideMenuViewModel: ObservableObject {
     }
     
     func openSettingsScene() {
-        SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.openManageScene()
+        SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.openSettingsScene()
     }
     
     func onLogout() {

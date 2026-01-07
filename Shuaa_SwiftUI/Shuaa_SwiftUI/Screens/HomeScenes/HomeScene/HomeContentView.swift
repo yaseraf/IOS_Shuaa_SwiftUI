@@ -1,8 +1,8 @@
 //
 //  HomeContentView.swift
-//  QSC_SwiftUI
+//  Shuaa_SwiftUI
 //
-//  Created by FIT on 23/07/2025.
+//  Created by Tawfeeq Irshaidat on 23/07/2025.
 //
 
 import SwiftUI

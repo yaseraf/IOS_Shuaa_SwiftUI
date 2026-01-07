@@ -1,6 +1,6 @@
 //
 //  View+Extension.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 22/07/2024.
 //  Copyright © 2024 FIT. All rights reserved.
@@ -15,11 +15,11 @@ extension View {
             if UserDefaultController().appTheme == .system {
                 self
                     .modifier(ColorSchemeModifier())
-                    .environment(\.locale, AppUtility.shared.languageLocal)
+                    .environment(\.locale, AppUtility.shared.languageLocale)
                     .environment(\.layoutDirection, AppUtility.shared.isRTL ? .rightToLeft : .leftToRight)
             } else {
                 self
-                    .environment(\.locale, AppUtility.shared.languageLocal)
+                    .environment(\.locale, AppUtility.shared.languageLocale)
                     .environment(\.layoutDirection, AppUtility.shared.isRTL ? .rightToLeft : .leftToRight)
                     .environment(\.colorScheme, AppUtility.shared.isDarkTheme ? .dark : .light)
             }
@@ -44,17 +44,11 @@ struct ColorSchemeModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-//            .environment(\.colorScheme, colorScheme)
             .onAppear {
-            
-//                print("App will enter foreground")
-//                debugPrint("new Color scheme:A \(colorScheme)")
                 lastColorScheme = colorScheme
                 UserDefaultController().isDarkMode = colorScheme == .dark ? true : false
                 UserDefaultController().lastColorScheme = colorScheme == .light ? "light" : "dark"
                 SceneDelegate.getAppCoordinator()?.updateWindowBackground()
-//                if colorSchemeCountDetection >= 3 {
-//                }
                 
                 NotificationCenter.default.addObserver(
                     forName: UIApplication.willEnterForegroundNotification,
@@ -73,19 +67,6 @@ struct ColorSchemeModifier: ViewModifier {
                 }
             }
             .onChange(of: colorScheme) { newScheme in
-                
-//                guard lastColorScheme != newScheme else {return}
-                
-//                colorSchemeCountDetection += 1
-//                debugPrint("new Color scheme:B \(newScheme)")
-                
-//                if colorSchemeCountDetection >= 20 {
-//                    colorSchemeCountDetection = 0
-//                    UserDefaultController().isDarkMode = newScheme == .dark ? true : false
-//                    SceneDelegate.getAppCoordinator()?.updateWindowBackground()
-//                    SceneDelegate.getAppCoordinator()?.restartForTheme()
-//                }
-                
                 if UserDefaultController().canRestartScreen == true {
                     UserDefaultController().canRestartScreen = false
 

@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 22/07/2024.
 //  Copyright © 2024 FIT. All rights reserved.
@@ -22,7 +22,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         registerForNotifications()
         userDefaultController?.clearTempData()
         keyChainController?.clearData()
-        userDefaultController?.isAutoLogin = true
         userDefaultController?.standardFontSize = 12
         
         if userDefaultController?.fontSizeChangeResult == nil {
@@ -75,7 +74,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     }
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-//        print("Current orientation lock:", orientationLock)
         return self.orientationLock
     }
     

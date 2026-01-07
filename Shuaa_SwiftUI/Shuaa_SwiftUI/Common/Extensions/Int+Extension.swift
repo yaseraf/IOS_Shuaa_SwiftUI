@@ -1,6 +1,6 @@
 //
 //  Int+Extension.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 07/08/2024.
 //  Copyright © 2024 FIT. All rights reserved.

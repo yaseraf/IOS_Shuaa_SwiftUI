@@ -1,6 +1,6 @@
 //
 //  EnvironmentConfiguration.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 27/07/2024.
 //  Copyright © 2024 FIT. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NetworkConfiguration{
+class NetworkConfiguration {
     private(set) var basePath:String
     private var signalRDomain:String
     static let api:String = "api/"
@@ -24,13 +24,6 @@ class NetworkConfiguration{
    var signalRBasePath:String {
         get{
              signalRDomain + sr +  signalr + hubs
-//             signalRDomain + sr +  signalr
-        }
-    }
-
-    static var langaugeCode:String {
-        get {
-            AppUtility.shared.isRTL ? "ar_sa/" : "en_uk/"
         }
     }
 
@@ -40,19 +33,15 @@ class NetworkConfiguration{
     }
 
     static let development:NetworkConfiguration = .init(
-//      basePath: "http://develop.fitoman.com:8090/MobileServices/", signalRDomain: "http://develop.fitoman.com:8090/MobileServices/" // FIT
       basePath: "https://test.qatar-securities.com/EtradeService/", signalRDomain: "https://test.qatar-securities.com/EtradeService/" // QSC UAT
-//        basePath: "https://mobile.qatar-securities.com/MobileServiceNew/", signalRDomain: "https://mobile.qatar-securities.com/MobileServiceNew/"  //QSC LIVE
 
     )
 
     static let preProduction:NetworkConfiguration = .init(
-//        basePath: "http://develop.fitoman.com:8090/MobileServices/", signalRDomain: "http://develop.fitoman.com:8090/"
         basePath: "https://test.qatar-securities.com/EtradeService/", signalRDomain: "https://test.qatar-securities.com/EtradeService/" // QSC UAT
     )
 
     static let production:NetworkConfiguration = .init(
-//        basePath: "http://develop.fitoman.com:8090/MobileServices/", signalRDomain: "http://develop.fitoman.com:8090/"
         basePath: "https://test.qatar-securities.com/EtradeService/", signalRDomain: "https://test.qatar-securities.com/EtradeService/" // QSC UAT
     )
 }

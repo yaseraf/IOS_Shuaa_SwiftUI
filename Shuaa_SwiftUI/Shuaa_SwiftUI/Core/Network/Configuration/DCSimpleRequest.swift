@@ -1,13 +1,14 @@
 //
 //  RequestApi.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 27/07/2024.
 //  Copyright © 2024 FIT. All rights reserved.
 //
 
 import Foundation
-public class DCSimpleRequest{
+
+public class DCSimpleRequest {
     public  init(){
 
     }
@@ -41,5 +42,4 @@ public class DCSimpleRequest{
             }
         }
     }
-
 }

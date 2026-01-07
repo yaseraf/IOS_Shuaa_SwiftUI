@@ -1,6 +1,6 @@
 //
 //  Bundle+Extension.swift
-//  QSC_SwiftUI
+//  Shuaa_SwiftUI
 //
 //  Created by FIT on 21/08/2025.
 //

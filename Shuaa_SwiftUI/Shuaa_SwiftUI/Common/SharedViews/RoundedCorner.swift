@@ -1,6 +1,6 @@
 //
 //  RoundedCorner.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 02/08/2024.
 //  Copyright © 2024 FIT. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  BaseContentView.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 22/07/2024.
 //  Copyright © 2024 FIT. All rights reserved.
@@ -119,7 +119,7 @@ struct BaseContentView <Content: View>: View  {
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(Color.colorPrimary,lineWidth: 1)
                         .background(RoundedRectangle(cornerRadius: 20)
-                            .fill(Color.colorBG))
+                            .fill(Color.colorBGPrimary))
 
                 )
             }
@@ -221,7 +221,7 @@ struct BaseContentView <Content: View>: View  {
         let timeLimit = Double(UserDefaultController().sessiontimeoutPerSec ?? "") ?? 300 // minimum 5 minutes inactivity
         if inactivityDuration > timeLimit {
             print("User was inactive for more than \(UserDefaultController().sessiontimeoutPerSec ?? "") minutes")
-            SessionManager.shared.UsersLogOffAPI(success: true)
+//            SessionManager.shared.UsersLogOffAPI(success: true)
         }
     }
 

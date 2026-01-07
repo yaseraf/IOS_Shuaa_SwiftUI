@@ -1,6 +1,6 @@
 //
 //  AESKeyManager.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 29/05/2025.
 //  Copyright © 2025 FIT. All rights reserved.
@@ -11,7 +11,7 @@ import CryptoKit
 
 class AESKeyManager {
     static let shared = AESKeyManager()
-    private let keychainKey = "com.cibc.mahfazty.aeskey"
+    private let keychainKey = "com.shuaa.aeskey"
 
     var symmetricKey: SymmetricKey {
         if let savedKeyData = loadKeyFromKeychain() {

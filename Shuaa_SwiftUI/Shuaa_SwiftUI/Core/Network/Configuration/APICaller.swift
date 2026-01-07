@@ -1,6 +1,6 @@
 //
 //  APICaller.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 27/07/2024.
 //  Copyright © 2024 FIT. All rights reserved.
@@ -12,7 +12,7 @@ import Combine
 public class APICaller{
     private  var cancellable: AnyCancellable?
     
-    private static let networkDelegateDispatchQueue = DispatchQueue(label: "com.cibc.mahfazty.networkDelegateQueue")
+    private static let networkDelegateDispatchQueue = DispatchQueue(label: "com.shuaa.networkDelegateQueue")
 
     public  init(){
 
@@ -34,8 +34,6 @@ public class APICaller{
         let delegateQueue = OperationQueue()
         delegateQueue.maxConcurrentOperationCount = 1 // Serial queue
         delegateQueue.underlyingQueue = APICaller.networkDelegateDispatchQueue
-
-//        let urlSession = URLSession(configuration: configuration, delegate: NetworkManagerSessionDelegate(), delegateQueue: delegateQueue)
         
         let urlSession = URLSession(configuration: configuration)
         
@@ -168,7 +166,7 @@ public class APICaller{
             true
 
         case 401:
-            SessionManager.shared.UsersLogOffAPI(success: true)
+//            SessionManager.shared.UsersLogOffAPI(success: true)
             throw NetworkError.unAuthenticated
             
         case 403:
@@ -179,7 +177,7 @@ public class APICaller{
 //            throw NetworkError.unAuthenticated
             
         case 408:
-            SessionManager.shared.UsersLogOffAPI(success: true)
+//            SessionManager.shared.UsersLogOffAPI(success: true)
             throw NetworkError.unAuthenticated
             
         default:
@@ -231,27 +229,6 @@ public class APICaller{
         }catch{
             throw NetworkError.jsonParser(reason:  "\(error)")
 
-        }
-    }
-}
-
-
-class NetworkManagerSessionDelegate:NSObject, URLSessionDelegate, URLSessionTaskDelegate {
-
-    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        
-        let publicKeys: [String]? =
-        [
-            "i7wTqTvh00ioIruIfFR4kMPnBqrS2rdivp1/s2uC/CY=",
-            "WI&MFY+9zijGG8QgEHCAK5fhA+ydPZxaLQOFdiEPz3U=",
-            "EfFQLjZWxamoR5XMuj@qhWvz/B0wnP1P691eGWtbse0="
-        ]
-        
-        if let publicKeys = publicKeys {
-            let pinningManager = PinningManager(pinnedKeyHashes: publicKeys)
-            pinningManager.validate(challenge: challenge, completionHandler: completionHandler)
-        }else{
-            completionHandler(.performDefaultHandling, nil)
         }
     }
 }

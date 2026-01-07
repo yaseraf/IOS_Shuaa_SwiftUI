@@ -1,6 +1,6 @@
 //
 //  BaseUIViewController.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 06/09/2024.
 //  Copyright © 2024 FIT. All rights reserved.

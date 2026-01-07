@@ -1,6 +1,6 @@
 //
 //  NetworkUtility.swift
-//  QSC
+//  Shuaa
 //
 //  Created by FIT on 27/07/2024.
 //  Copyright © 2024 FIT. All rights reserved.
@@ -21,9 +21,9 @@ struct NetworkUtility{
         headerDic["Accepts"] = "*/*"
         headerDic["Content-Type"] = "application/json"
 
-        var appLanguage = "en_UK"
+        var appLanguage = AppUtility.shared.englishLocaleIdentifier
         if UserDefaultController.instance.isArabicLanguage{
-            appLanguage = "ar_SA"
+            appLanguage = AppUtility.shared.arabicLocaleIdentifier
         }
 
         var local = "en"
