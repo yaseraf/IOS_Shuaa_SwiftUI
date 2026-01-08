@@ -47,7 +47,9 @@ extension Color {
     static let userGradientsColor:[Color] = [Color.init(hex: "E0D8FB"), Color.init(hex: "B39CFF")]
 }
 
-
+//=======================================
+//=======================================
+//=======================================
 // MARK: Light Color Codes
 
 extension Color {
@@ -63,10 +65,14 @@ extension Color {
     private static let colorTextSecondaryLight: Color = Color.init(hex: "#8E8E8E")
     private static let colorBackgroundLight: Color = Color.init(hex: "#0A3754")
     private static let colorBackgroundSecondaryLight: Color = Color.init(hex: "#FFFFFF")
+    private static let colorBackgroundTertiaryLight: Color = Color.init(hex: "#3B5F76")
     private static let colorBorderLight: Color = Color.init(hex: "#FFFFFF")
     private static let colorBannerLight: Color = Color.init(hex: "#F7F7F7")
 }
 
+//=======================================
+//=======================================
+//=======================================
 // MARK: Dark Color Codes
 
 extension Color {
@@ -82,10 +88,14 @@ extension Color {
     private static let colorTextSecondaryDark: Color = Color.init(hex: "#8C8E8E")
     private static let colorBackgroundDark: Color = Color.init(hex: "#18191B")
     private static let colorBackgroundSecondaryDark: Color = Color.init(hex: "#242625")
+    private static let colorBackgroundTertiaryDark: Color = Color.init(hex: "#454749")
     private static let colorBorderDark: Color = Color.init(hex: "#242625")
     private static let colorBannerDark: Color = Color.init(hex: "#2A2D2C")
 }
 
+//=======================================
+//=======================================
+//=======================================
 // MARK: Multi-Color Codes
 
 extension Color {
@@ -119,6 +129,9 @@ extension Color {
     private static let colorTextDisable_667585: Color = Color.init(hex: "#667585")
 }
 
+//=======================================
+//=======================================
+//=======================================
 //  MARK: Properties with getters
 extension Color {
     static var colorPrimary: Color {
@@ -200,11 +213,22 @@ extension Color {
         }
     }
     
+    static var colorBackgroundTertiary: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorBackgroundTertiaryDark : colorBackgroundTertiaryLight
+        }
+    }
+    
     static var colorBanner: Color {
         get {
             AppUtility.shared.isDarkTheme ? colorBannerDark : colorBannerLight
         }
     }
+    
+    //=======================================
+    //=======================================
+    //=======================================
+    // MARK: Multi-Color Codes
         
     static var colorBorder: Color {
         get {

@@ -2,17 +2,14 @@
 //  ManageContentView.swift
 //  Shuaa_SwiftUI
 //
-//  Created by Tawfeeq Irshaidat on 27/07/2025.
+//  Created by FIT on 27/07/2025.
 //
 
 import Foundation
 import SwiftUI
 
 struct SettingsContentView:View {
-    
-    @State var symbolSearch = ""
-    @State var isMenuOpen = false
-    
+        
     @State var notificationToggle = false
     @State var loginWithBiometricToggle = false
     @State var enableRotationToggle = false
@@ -28,27 +25,19 @@ struct SettingsContentView:View {
     var onFontSizeDecrease:()->Void
     
     var body: some View {
-        ZStack {
-            Color.colorBackground
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .ignoresSafeArea()
+        VStack {
+
+            SharedHeaderView(withBackButton: true)
+
+            titleView
             
-            VStack {
-
-                SharedHeaderView(symbolSearch: symbolSearch, isMenuOpen: isMenuOpen, withBackButton: true, onMenuTap: {
-                    isMenuOpen.toggle()
-                })
-
-                titleView
-                
-                ScrollView(showsIndicators: false) {
-                    tabsView
-                }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 18)
-                .frame(maxWidth: .infinity)
-                
+            ScrollView(showsIndicators: false) {
+                tabsView
             }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 18)
+            .frame(maxWidth: .infinity)
+            
         }
     }
     

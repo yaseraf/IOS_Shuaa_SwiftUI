@@ -12,6 +12,7 @@ import Combine
 struct BaseContentView <Content: View>: View  {
 
     var withScroll:Bool = true
+    var hasSideMenu:Bool = true
     var paddingValue:CGFloat = 0
     var paddingVerticalValue:CGFloat = 0
     var backgroundType: BackgroundType
@@ -27,7 +28,17 @@ struct BaseContentView <Content: View>: View  {
 
     @ObservedObject var networkMonitor = NetworkMonitor.shared
     
-    init(withScroll: Bool  = true,paddingValue:CGFloat = 20,paddingVerticalValue:CGFloat = 16, backgroundType: BackgroundType =  .white, isLandscape:Bool = false, onBack: ( () -> Void)? = nil, onDissmiss: ( () -> Void)? = nil, @ViewBuilder  content:  ()-> Content) {
+    init(
+        withScroll:Bool = true,
+        hasSideMenu:Bool = true,
+        paddingValue:CGFloat = 20,
+        paddingVerticalValue:CGFloat = 16,
+        backgroundType: BackgroundType = .white,
+        isLandscape:Bool = false,
+        onBack:(() -> Void)? = nil,
+        onDissmiss:(() -> Void)? = nil,
+        @ViewBuilder content:()-> Content
+    ) {
         self.withScroll = withScroll
         self.backgroundType = backgroundType
         self.paddingValue = paddingValue
@@ -122,6 +133,11 @@ struct BaseContentView <Content: View>: View  {
                             .fill(Color.colorBGPrimary))
 
                 )
+            }
+            
+            if hasSideMenu {
+                // Side Menu
+                SharedSideMenuView()
             }
             
        }

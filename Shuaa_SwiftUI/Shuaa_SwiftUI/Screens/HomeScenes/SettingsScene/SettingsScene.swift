@@ -2,7 +2,7 @@
 //  ManageScene.swift
 //  Shuaa_SwiftUI
 //
-//  Created by Tawfeeq Irshaidat on 27/07/2025.
+//  Created by FIT on 27/07/2025.
 //
 
 import Foundation
@@ -35,9 +35,19 @@ struct SettingsScene: BaseSceneType {
                                 viewModel.onFontSizeDecrease()
                             }
                         )
+                        .onAppear {
+                            
+                        }
                     }
                 )
-            }
+            },
+            showLoading: .constant(viewTypeAction.showLoading)
         )
+        .onViewDidLoad {
+            
+        }
     }
+    
+    // MARK: Binding
+
 }

@@ -122,3 +122,14 @@ enum Network: String {
     case ipv4 = "ipv4"
     case ipv6 = "ipv6"
 }
+
+// ===================================
+// MARK: TopStocksType
+
+enum TopStocksType {
+    case topGainers
+    case topLosers
+    case topTurnover
+    case topVolume
+    case topTrades
+}

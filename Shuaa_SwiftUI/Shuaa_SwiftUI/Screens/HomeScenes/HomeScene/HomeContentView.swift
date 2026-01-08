@@ -2,7 +2,7 @@
 //  HomeContentView.swift
 //  Shuaa_SwiftUI
 //
-//  Created by Tawfeeq Irshaidat on 23/07/2025.
+//  Created by FIT on 23/07/2025.
 //
 
 import SwiftUI
@@ -13,208 +13,28 @@ struct HomeContentView: View {
     var marketsData:Binding<[MarketsUIModel]?>
     var stocksData:Binding<[StocksUIModel]?>
     
-    @State var symbolSearch = ""
-    @State var isMenuOpen = false
-    @State var showMarketDetails = true
-            
+    var onOverviewTap:()->Void
+    var onTopStocksTap:()->Void
+                    
     var body: some View {
-        ZStack {
-            VStack {
+        VStack {
+            
+            SharedHeaderView()
+            
+            SharedMarketsView(marketsData: marketsData)
+            
+            ScrollView {
+                chartView
                 
-                SharedHeaderView(symbolSearch: symbolSearch, isMenuOpen: isMenuOpen, withBackButton: false, onMenuTap: {
-                    isMenuOpen.toggle()
-                })
-                
-                marketsView
-                
-                ScrollView {
-                    chartView
-                    
-                    stocksView
-                }
-                
-                Spacer()
-                
-                HomeBottomBarView(selectedItem: .home)
-
-            }
-                        
-            // Side Menu
-            SharedSideMenuView(isMenuOpen: $isMenuOpen)
-        }
-    }
-        
-    private var marketsView: some View {
-        VStack(spacing: 0) {
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 0) {
-                    HStack(alignment: .center) {
-                        Text("\(marketsData.wrappedValue?.first?.marketName ?? "")")
-                            .font(.apply(.bold, size: 12))
-                            .foregroundStyle(Color.colorTextPrimary)
-                        
-                        Color.colorTextPrimary
-                            .frame(width: 1)
-                            .frame(maxHeight: 12)
-
-                        Text("\(marketsData.wrappedValue?.first?.marketStatus ?? "")")
-                            .font(.apply(.regular, size: 8))
-                            .foregroundStyle(Color.colorGreen)
-
-                    }
-                    
-                    Text("\(marketsData.wrappedValue?.first?.marketDate ?? "")")
-                        .font(.apply(.regular, size: 8))
-                        .foregroundStyle(Color.colorTextPrimary)
-
-                }
-                
-                Spacer()
-                
-                HStack(alignment: .center) {
-                    Text("\(marketsData.wrappedValue?.first?.lastTradePrice ?? "")")
-                        .font(.apply(.bold, size: 16))
-                        .foregroundStyle(Color.colorTextPrimary)
-
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text("\(marketsData.wrappedValue?.first?.netChange ?? "")")
-                            .font(.apply(.regular, size: 8))
-                            .foregroundStyle(Color.colorGreen)
-
-                        Text("\(marketsData.wrappedValue?.first?.netChangePerc ?? "")")
-                            .font(.apply(.regular, size: 8))
-                            .foregroundStyle(Color.colorGreen)
-
-                    }
-                }
-                
-                Button {
-                    withAnimation {
-                        showMarketDetails.toggle()
-                    }
-                } label: {
-                    Image("ic_upArrow")
-                        .renderingMode(.template)
-                        .resizable()
-                        .frame(width: 18, height: 18)
-                        .rotationEffect(Angle(degrees: showMarketDetails ? 0 : 180))
-                        .foregroundStyle(Color.colorTextPrimary)
-
-                }
-
+                stocksView
             }
             
-            if showMarketDetails {
-                HStack(alignment: .center) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack {
-                            Text("turnover".localized)
-                                .font(.apply(.regular, size: 12))
-                                .foregroundStyle(Color.colorTextSecondary)
-
-                            Text("\(marketsData.wrappedValue?.first?.turnover ?? "")")
-                                .font(.apply(.semiBold, size: 14))
-                                .foregroundStyle(Color.colorTextPrimary)
-
-                        }
-                        
-                        HStack {
-                            Text("volume".localized)
-                                .font(.apply(.regular, size: 12))
-                                .foregroundStyle(Color.colorTextSecondary)
-
-                            Text("\(marketsData.wrappedValue?.first?.volume ?? "")")
-                                .font(.apply(.semiBold, size: 14))
-                                .foregroundStyle(Color.colorTextPrimary)
-
-                        }
-
-                        HStack {
-                            Text("trades".localized)
-                                .font(.apply(.regular, size: 12))
-                                .foregroundStyle(Color.colorTextSecondary)
-
-                            Text("\(marketsData.wrappedValue?.first?.trades ?? "")")
-                                .font(.apply(.semiBold, size: 14))
-                                .foregroundStyle(Color.colorTextPrimary)
-
-                        }
-                    }
-                    
-                    Color.colorTextPrimary
-                        .frame(width: 1)
-                        .frame(maxHeight: 92)
-                        .padding(.horizontal, 24)
-
-                    VStack(alignment: .leading, spacing: -4) {
-                        HStack(alignment: .center) {
-                            Text("symbols_traded".localized)
-                                .font(.apply(.regular, size: 10))
-                                .foregroundStyle(Color.colorTextPrimary)
-
-                            Text("\(marketsData.wrappedValue?.first?.symbolsTraded ?? "")")
-                                .font(.apply(.semiBold, size: 14))
-                                .foregroundStyle(Color.colorTextPrimary)
-
-                        }
-                        
-                        HStack {
-                            Text("\(marketsData.wrappedValue?.first?.tradesUp ?? "")")
-                                .font(.apply(.medium, size: 14))
-                                .foregroundStyle(Color.colorTextPrimary)
-
-                            Image("ic_imgUp")
-                                .renderingMode(.template)
-                                .resizable()
-                                .frame(width: 18, height: 18)
-                                .foregroundStyle(Color.colorTextPrimary)
-                            
-                            RoundedRectangle(cornerRadius: 2)
-                                .frame(height: 8)
-                                .frame(maxWidth: 65)
-                                .foregroundStyle(Color.colorGreen)
-                        }
-
-                        HStack {
-                            Text("\(marketsData.wrappedValue?.first?.tradesEqual ?? "")")
-                                .font(.apply(.medium, size: 14))
-                                .foregroundStyle(Color.colorTextPrimary)
-
-                            Text("=")
-                                .foregroundStyle(Color.colorTextPrimary)
-                        }
-                        
-                        HStack {
-                            Text("\(marketsData.wrappedValue?.first?.tradesDown ?? "")")
-                                .font(.apply(.medium, size: 14))
-                                .foregroundStyle(Color.colorTextPrimary)
-
-                            Image("ic_imgDown")
-                                .renderingMode(.template)
-                                .resizable()
-                                .frame(width: 18, height: 18)
-                                .foregroundStyle(Color.colorTextPrimary)
-
-                            RoundedRectangle(cornerRadius: 2)
-                                .frame(height: 8)
-                                .frame(maxWidth: 65)
-                                .foregroundStyle(Color.colorRed)
-                        }
-                    }
-
-                }
-
-            }
+            Spacer()
+            
+            HomeBottomBarView(selectedItem: .home)
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 8)
-        .padding(.horizontal, 16)
-
-        .background(RoundedRectangle(cornerRadius: 12).fill(Color.colorBackgroundSecondary))
-        .padding(.vertical, 8)
-        .padding(.horizontal, 12)
     }
-    
+            
     private var chartView: some View {
         VStack {
             VStack {
@@ -237,27 +57,43 @@ struct HomeContentView: View {
     private var stocksView: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                actionButton(action: {
-                    
-                }, image: "ic_overview", title: "overview".localized)
+                actionButton(
+                    action: {
+                        onOverviewTap()
+                    },
+                    image: "ic_overview",
+                    title: "overview".localized
+                )
                 
                 Spacer()
                 
-                actionButton(action: {
-                    
-                }, image: "ic_tops", title: "top_stocks".localized)
+                actionButton(
+                    action: {
+                        onTopStocksTap()
+                    },
+                    image: "ic_tops",
+                    title: "top_stocks".localized
+                )
 
                 Spacer()
                 
-                actionButton(action: {
+                actionButton(
+                    action: {
                     
-                }, image: "ic_marketT&S", title: "market_time_sale".localized)
+                    },
+                    image: "ic_marketT&S",
+                    title: "market_time_sale".localized
+                )
 
                 Spacer()
                 
-                actionButton(action: {
+                actionButton(
+                    action: {
                     
-                }, image: "ic_watchlist", title: "watchlist".localized)
+                    },
+                    image: "ic_watchlist",
+                    title: "watchlist".localized
+                )
             }
             .padding(.vertical, 12)
             .padding(.horizontal, 24)
@@ -287,11 +123,11 @@ struct HomeContentView: View {
                 Image(image)
                     .renderingMode(.template)
                     .resizable()
-                    .frame(width: 18, height: 18)
+                    .frame(width: 20, height: 20)
                     .foregroundStyle(Color.colorTextPrimary)
 
                 Text(title)
-                    .font(.apply(.medium, size: 10))
+                    .font(.apply(.medium, size: 14))
                     .foregroundStyle(Color.colorTextPrimary)
             }
         }
@@ -369,5 +205,9 @@ struct HomeContentView: View {
 }
 
 #Preview {
-    HomeContentView(marketsData: .constant([MarketsUIModel(marketName: "ADX", marketStatus: "Pre-Open adjustment", marketDate: Date().toString(dateFormat: .yyMMddWithTime), lastTradePrice: "9,306.77", netChange: "3.36", netChangePerc: "0.04%", symbolsTraded: "2", tradesUp: "1", tradesEqual: "0", tradesDown: "1", turnover: "17,815,738", volume: "514,895", trades: "254")]), stocksData: .constant([StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), .initializer(),  .initializer(), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), .initializer(), .initializer(), .initializer(), .initializer(), .initializer(), .initializer()]), symbolSearch: "")
+    HomeContentView(marketsData: .constant([MarketsUIModel(marketName: "ADX", marketStatus: "Pre-Open adjustment", marketDate: Date().toString(dateFormat: .yyMMddWithTime), lastTradePrice: "9,306.77", netChange: "3.36", netChangePerc: "0.04%", symbolsTraded: "2", tradesUp: "1", tradesEqual: "0", tradesDown: "1", turnover: "17,815,738", volume: "514,895", trades: "254")]), stocksData: .constant([StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), .initializer(),  .initializer(), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), .initializer(), .initializer(), .initializer(), .initializer(), .initializer(), .initializer()]), onOverviewTap: {
+        
+    }, onTopStocksTap: {
+        
+    })
 }

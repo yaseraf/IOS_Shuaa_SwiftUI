@@ -9,20 +9,18 @@ import Foundation
 import SwiftUI
 
 struct SharedSideMenuView: View {
-    
-    @Binding var isMenuOpen:Bool
-    
+        
     @ObservedObject var viewModel: SharedSideMenuViewModel = SharedSideMenuViewModel()
 
     var body: some View {
         ZStack {
             // Overlay dimming effect
-            if isMenuOpen {
+            if viewModel.isMenuOpen {
                 Color.black.opacity(0.3)
                     .ignoresSafeArea()
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 0.3)) {
-                            isMenuOpen = false
+                            viewModel.isMenuOpen = false
                         }
                     }
             }
@@ -31,7 +29,7 @@ struct SharedSideMenuView: View {
                 Spacer()
                 
                 SideMenuView(
-                    isMenuOpen: $isMenuOpen,
+                    isMenuOpen: $viewModel.isMenuOpen,
                     onAccountInformationTap: viewModel.openAccountInformationScene,
                     onMyDocumentsTap: viewModel.openMyDocumentsScene,
                     onMarketsInsightTap: viewModel.openMarketsInsightScene,
@@ -47,7 +45,7 @@ struct SharedSideMenuView: View {
                 )
                     .frame(width: UIScreen.main.bounds.width * 0.5)
                     .background(Color.white)
-                    .offset(x: isMenuOpen ? 0 : UIScreen.main.bounds.width * 0.5)
+                    .offset(x: viewModel.isMenuOpen ? 0 : UIScreen.main.bounds.width * 0.5)
             }
             .ignoresSafeArea()
         }

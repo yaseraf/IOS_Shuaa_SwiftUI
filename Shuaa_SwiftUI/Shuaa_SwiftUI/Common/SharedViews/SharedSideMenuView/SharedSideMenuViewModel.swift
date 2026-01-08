@@ -8,7 +8,18 @@
 import Foundation
 
 class SharedSideMenuViewModel: ObservableObject {
- 
+    
+    static let shared = SharedSideMenuViewModel()
+    
+    @Published var isMenuOpen:Bool = false
+    
+    init() {
+        SharedHeaderViewViewModel.shared.sideMenuDelegate = self
+    }
+}
+
+// MARK: Routing
+extension SharedSideMenuViewModel {
     func openAccountInformationScene() {
         
     }
@@ -52,9 +63,22 @@ class SharedSideMenuViewModel: ObservableObject {
     func openSettingsScene() {
         SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.openSettingsScene()
     }
-    
+}
+
+// MARK: Functions
+extension SharedSideMenuViewModel {
     func onLogout() {
         SceneDelegate.getAppCoordinator()?.logout()
     }
+}
 
+// MARK: Delegates
+extension SharedSideMenuViewModel: SideMenuDelegate {
+    func openMenu() {
+        isMenuOpen = true
+    }
+    
+    func closeMenu() {
+        isMenuOpen = false
+    }
 }

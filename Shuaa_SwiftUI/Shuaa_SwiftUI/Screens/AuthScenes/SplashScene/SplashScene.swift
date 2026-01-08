@@ -2,7 +2,7 @@
 //  SplashScene.swift
 //  QSC_SwiftUI
 //
-//  Created by Tawfeeq Irshaidat on 21/07/2025.
+//  Created by FIT on 21/07/2025.
 //
 
 import SwiftUI

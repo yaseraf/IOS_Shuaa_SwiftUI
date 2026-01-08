@@ -33,6 +33,24 @@
 "market_time_sale" = "Market T&S";
 "watchlist" = "Watchlist";
 
+// MARK: Market Overview Scene
+"market_overview" = "Market Overview";
+"indices" = "Indices";
+"value" = "Value";
+"change" = "Chg";
+"change_percent" = "Chg %";
+
+// MARK: Top Stocks Scene
+"top_gainers" = "Top Gainers";
+"top_losers" = "Top Losers";
+"top_turnover" = "Top Turnover";
+"top_volume" = "Top Volume";
+"top_trades" = "Top Trades";
+"symbol" = "Symbol";
+"price" = "Price";
+"top_stocks_change" = "Change";
+"top_stocks_change_perc" = "Change %";
+
 // MARK: Side Panel
 "account_information" = " Account Information";
 "my_documents" = "My Documents";

@@ -1,16 +1,16 @@
 //
-//  HomeScene.swift
+//  MarketOverviewScene.swift
 //  Shuaa_SwiftUI
 //
-//  Created by FIT on 23/07/2025.
+//  Created by FIT on 08/01/2026.
 //
 
 import Foundation
 import SwiftUI
 import Combine
 
-struct HomeScene: BaseSceneType {
-    @ObservedObject var viewModel: HomeViewModel
+struct MarketOverviewScene: BaseSceneType {
+    @ObservedObject var viewModel: MarketOverviewViewModel
     @State var anyCancellable = Set<AnyCancellable>()
     @State var viewTypeAction:BaseSceneViewType = DefaultBaseSceneViewType()
     
@@ -21,15 +21,13 @@ struct HomeScene: BaseSceneType {
                     withScroll:false,
                     paddingValue: 0,
                     content: {
-                        HomeContentView(
+                        MarketOverviewContentView(
                             marketsData: $viewModel.marketsData,
-                            stocksData: $viewModel.stocksData,
-                            onOverviewTap: viewModel.openMarketOverviewScene,
-                            onTopStocksTap: viewModel.openTopStocksScene,
+                            indicesData: $viewModel.indicesData
                         )
                         .onAppear {
                             viewModel.getMarketsData()
-                            viewModel.getStocksData()
+                            viewModel.getMarketOverviewData()
                         }
                     }
                 )

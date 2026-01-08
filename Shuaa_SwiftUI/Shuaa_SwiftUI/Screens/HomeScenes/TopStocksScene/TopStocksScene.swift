@@ -1,16 +1,16 @@
 //
-//  HomeScene.swift
+//  TopStocksScene.swift
 //  Shuaa_SwiftUI
 //
-//  Created by FIT on 23/07/2025.
+//  Created by FIT on 08/01/2026.
 //
 
 import Foundation
 import SwiftUI
 import Combine
 
-struct HomeScene: BaseSceneType {
-    @ObservedObject var viewModel: HomeViewModel
+struct TopStocksScene: BaseSceneType {
+    @ObservedObject var viewModel: TopStocksViewModel
     @State var anyCancellable = Set<AnyCancellable>()
     @State var viewTypeAction:BaseSceneViewType = DefaultBaseSceneViewType()
     
@@ -21,15 +21,17 @@ struct HomeScene: BaseSceneType {
                     withScroll:false,
                     paddingValue: 0,
                     content: {
-                        HomeContentView(
+                        TopStocksContentView(
                             marketsData: $viewModel.marketsData,
-                            stocksData: $viewModel.stocksData,
-                            onOverviewTap: viewModel.openMarketOverviewScene,
-                            onTopStocksTap: viewModel.openTopStocksScene,
+                            topGainersData: $viewModel.topGainersData,
+                            topLosersData: $viewModel.topLosersData,
+                            topTurnoverData: $viewModel.topTurnoverData,
+                            topVolumeData: $viewModel.topVolumeData,
+                            topTradesData: $viewModel.topTradesData
                         )
                         .onAppear {
                             viewModel.getMarketsData()
-                            viewModel.getStocksData()
+                            viewModel.getTopStocksData()
                         }
                     }
                 )
@@ -44,3 +46,4 @@ struct HomeScene: BaseSceneType {
     // MARK: Binding
 
 }
+

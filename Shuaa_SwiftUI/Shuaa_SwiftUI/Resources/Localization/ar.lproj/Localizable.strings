@@ -33,6 +33,24 @@
 "market_time_sale" = "وقت وسجل التداول";
 "watchlist" = "قائمة المتابعة";
 
+// MARK: Market Overview Scene
+"market_overview" = "نظرة عامة على السوق";
+"indices" = "المؤشرات";
+"value" = "القيمة";
+"change" = "التغير";
+"change_percent" = "نسبة التغير";
+
+// MARK: Top Stocks Scene
+"top_gainers" = "أعلى الرابحين";
+"top_losers" = "أعلى الخاسرين";
+"top_turnover" = "أعلى قيمة تداول";
+"top_volume" = "أعلى حجم تداول";
+"top_trades" = "أعلى عدد صفقات";
+"symbol" = "الرمز";
+"price" = "السعر";
+"top_stocks_change" = "التغير";
+"top_stocks_change_perc" = "نسبة التغير";
+
 // MARK: Side Panel
 "account_information" = "معلومات الحساب";
 "my_documents" = "مستنداتي";
