@@ -37,10 +37,8 @@ struct HomeBottomBarView: View {
         .overlay {
             Color.colorBackgroundSecondary
                 .offset(y: 52)
-
         }
         .padding(.horizontal, 12)
-
 
     }
 
@@ -50,12 +48,12 @@ struct HomeBottomBarView: View {
                 actionTapBarITem(item: item)
             } label: {
                 VStack(spacing: 6){
-                    Image(selectedItem == item ? item == .home ? "ic_homeFill" : item == .portfolio ? "ic_portfolioFill" : "" : item.iconName)
+                    Image(selectedItem == item ? item == .home ? "ic_homeFill" : item == .portfolio ? "ic_portfolioFill" : item.iconName : item.iconName)
                         .renderingMode(.template)
                         .resizable()
                         .frame(width: 22)
                         .frame(height: 22)
-                        .foregroundStyle(selectedItem == item ? Color.colorPrimary : Color.colorFGQuaternary)
+                        .foregroundStyle(selectedItem == item ? Color.colorPrimary : Color.colorTextDisable)
 
                     Text(item.title)
                         .foregroundStyle(selectedItem == item ? Color.colorPrimary : Color.colorTextDisable)
@@ -68,9 +66,9 @@ struct HomeBottomBarView: View {
     func actionTapBarITem(item:HomeTabBarItem){
         switch item {
         case .home:
-            SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.start()
+            SceneDelegate.getAppCoordinator()?.showHomeFlow()
         case .orderList:
-            SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.start()
+            SceneDelegate.getAppCoordinator()?.showOrderListFlow()
         case .trade:
             SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.start()
         case .accounts:

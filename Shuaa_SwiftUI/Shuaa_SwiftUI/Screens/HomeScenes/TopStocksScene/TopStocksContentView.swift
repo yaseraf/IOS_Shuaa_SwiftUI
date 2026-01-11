@@ -31,7 +31,6 @@ struct TopStocksContentView: View {
             
             HomeBottomBarView(selectedItem: .home)
         }
-        .background(Color.colorBackground) // DEBUG
     }
     
     private var contentView: some View {

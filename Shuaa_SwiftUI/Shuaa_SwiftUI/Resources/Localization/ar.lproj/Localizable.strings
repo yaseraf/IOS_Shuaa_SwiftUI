@@ -79,6 +79,28 @@
 "light" = "فاتح";
 "dark" = "داكن";
 
+// MARK: Order List
+"order_search" = "البحث عن الأوامر";
+"trades_list" = "قائمة الصفقات";
+"date" = "التاريخ";
+"action" = "الإجراء";
+"status" = "الحالة";
+"order_qty" = "كمية الأمر";
+"order_number" = "رقم الأمر";
+"time" = "الوقت";
+"avg_price" = "متوسط السعر";
+"exchange" = "السوق";
+"filled_qty" = "الكمية المنفذة";
+"no_orders_yet" = "لا توجد أوامر حتى الآن";
+"no_trades_yet" = "لا توجد صفقات حتى الآن";
+"side" = "الجانب";
+"from_date" = "من تاريخ";
+"to_date" = "إلى تاريخ";
+"order_status" = "حالة الأمر";
+"cancel" = "إلغاء";
+"search_order" = "البحث عن أمر";
+"select_symbol" = "اختر الرمز";
+
 // MARK: Countries
 "Afghanistan" = "أفغانستان";
 "Aland Islands" = "جزر آلاند";

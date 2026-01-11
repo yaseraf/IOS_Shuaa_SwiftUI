@@ -79,6 +79,28 @@
 "light" = "Light";
 "dark" = "Dark";
 
+// MARK: Order List
+"order_search" = "Order Search";
+"trades_list" = "Trades List";
+"date" = "Date";
+"action" = "Action";
+"status" = "Status";
+"order_qty" = "Order Qty";
+"order_number" = "Order No.";
+"time" = "Time";
+"avg_price" = "Avg. Price";
+"exchange" = "Exchange";
+"filled_qty" = "Filled Qty";
+"no_orders_yet" = "No Orders Yet";
+"no_trades_yet" = "No Trades Yet";
+"side" = "Side";
+"from_date" = "From date";
+"to_date" = "To date";
+"order_status" = "Order Status";
+"cancel" = "Cancel";
+"search_order" = "Search Order";
+"select_symbol" = "Select Symbol";
+
 // MARK: Countries
 "Afghanistan" = "Afghanistan";
 "Åland Islands" = "Åland Islands";

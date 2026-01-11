@@ -11,15 +11,21 @@ class AppCoordinator:  ObservableObject {
     var childCoordinator: [Coordinator] = []
     private let window: UIWindow
 
+    var currentAuthCoordinator:AuthCoordinator? {
+        get {
+           SceneDelegate.getAppCoordinator()?.getChildCoordinator(coordinator: AuthCoordinator.self) as? AuthCoordinator
+        }
+    }
+    
     var currentHomeCoordinator:HomeCoordinator? {
-        get{
+        get {
            SceneDelegate.getAppCoordinator()?.getChildCoordinator(coordinator: HomeCoordinator.self) as? HomeCoordinator
         }
     }
     
-    var currentAuthCoordinator:AuthCoordinator? {
-        get{
-           SceneDelegate.getAppCoordinator()?.getChildCoordinator(coordinator: AuthCoordinator.self) as? AuthCoordinator
+    var currentOrderListCoordinator:OrderListCoordinator? {
+        get {
+           SceneDelegate.getAppCoordinator()?.getChildCoordinator(coordinator: OrderListCoordinator.self) as? OrderListCoordinator
         }
     }
 
@@ -111,7 +117,7 @@ extension AppCoordinator: AppCoordinatorProtocol {
         if let childCoordinator = self.getChildCoordinator(coordinator: AuthCoordinator.self) as? AuthCoordinator {
             authCoordinator = childCoordinator
             authCoordinator.updateStartViewType(startWith)
-        }else{
+        } else {
             childCoordinator.removeAll()
             authCoordinator =  .init(navigationController: navigationController, startViewType: startWith)
             childCoordinator.append(authCoordinator)
@@ -123,10 +129,24 @@ extension AppCoordinator: AppCoordinatorProtocol {
     func showHomeFlow() {
         removeAllChildCoordinator()
 
-        let  homeCoordinator:HomeCoordinator
-        if let  childCoordinator = self.getChildCoordinator(coordinator: HomeCoordinator.self) as? HomeCoordinator {
+        let homeCoordinator:HomeCoordinator
+        if let childCoordinator = self.getChildCoordinator(coordinator: HomeCoordinator.self) as? HomeCoordinator {
             homeCoordinator = childCoordinator
-        }else{
+        } else {
+            childCoordinator.removeAll()
+            homeCoordinator =  .init(navigationController: navigationController)
+            childCoordinator.append(homeCoordinator)
+        }
+        homeCoordinator.start()
+    }
+    
+    func showOrderListFlow() {
+        removeAllChildCoordinator()
+
+        let homeCoordinator:OrderListCoordinator
+        if let childCoordinator = self.getChildCoordinator(coordinator: OrderListCoordinator.self) as? OrderListCoordinator {
+            homeCoordinator = childCoordinator
+        } else {
             childCoordinator.removeAll()
             homeCoordinator =  .init(navigationController: navigationController)
             childCoordinator.append(homeCoordinator)
