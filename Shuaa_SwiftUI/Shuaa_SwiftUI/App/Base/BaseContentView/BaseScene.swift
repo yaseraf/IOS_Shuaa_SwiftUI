@@ -81,9 +81,12 @@ struct BaseScene <Content:View> :View{
 
 
 #Preview {
-    BaseScene(contentView: {
-        Text("AA")
-    }, showLoading: .constant(false))
+    BaseScene(
+        contentView: {
+            Text("AA")
+        },
+        showLoading: .constant(false)
+    )
 }
 
 

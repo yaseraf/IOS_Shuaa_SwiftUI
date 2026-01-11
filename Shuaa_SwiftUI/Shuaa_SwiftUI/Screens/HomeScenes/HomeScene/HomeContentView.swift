@@ -138,27 +138,27 @@ struct HomeContentView: View {
             HStack {
                 VStack(alignment: .center, spacing: 0) {
                     Text("\(stockData.stockName ?? "")")
-                        .font(.apply(.medium, size: 8))
+                        .font(.apply(.medium, size: 10))
                         .foregroundStyle(Color.colorTextPrimary)
 
-                    Text("\(stockData.lastTradePrice ?? "")")
-                        .font(.apply(.medium, size: 8))
+                    Text("\(AppUtility.shared.formatThousandSeparator(number: stockData.lastTradePrice ?? 0))")
+                        .font(.apply(.medium, size: 10))
                         .foregroundStyle(Color.colorTextSecondary)
                 }
                 
                 if stockData.stockName?.isEmpty == false {
                     Color.colorTextPrimary
-                        .frame(width: 1, height: 14)
+                        .frame(width: 1, height: 18)
                 }
 
                 VStack(alignment: .center, spacing: 0) {
-                    Text("\(stockData.netChange ?? "")")
-                        .font(.apply(.medium, size: 8))
-                        .foregroundStyle(stockData.netChange?.contains("-") ?? false ? Color.colorRed : Color.colorGreen)
+                    Text("\(AppUtility.shared.formatThousandSeparator(number: stockData.netChange ?? 0))")
+                        .font(.apply(.medium, size: 10))
+                        .foregroundStyle(stockData.netChange ?? 0 < 0 ? Color.colorRed : Color.colorGreen)
 
-                    Text("\(stockData.netChangePerc ?? "")")
-                        .font(.apply(.medium, size: 8))
-                        .foregroundStyle(stockData.netChange?.contains("-") ?? false ? Color.colorRed : Color.colorGreen)
+                    Text("\(AppUtility.shared.formatThousandSeparator(number: stockData.netChangePerc ?? 0))%")
+                        .font(.apply(.medium, size: 10))
+                        .foregroundStyle(stockData.netChange ?? 0 < 0 ? Color.colorRed : Color.colorGreen)
                 }
             }
             .padding(.vertical, 4)
@@ -173,10 +173,10 @@ struct HomeContentView: View {
                     .cornerRadius(12, corners: [.bottomLeft, .bottomRight])
                 
             }
-            .opacity(stockData.stockName?.isEmpty == false ? 1 : 0)
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .opacity(stockData.stockName?.isEmpty == false ? 1 : 0)
         .background(
             ZStack {
                 RoundedRectangle(cornerRadius: 12).fill(Color.colorBanner)
@@ -195,19 +195,38 @@ struct HomeContentView: View {
                 } label: {
                     stockBanner(
                         stockData: item,
-                        overlayColor: item.netChange?.contains("-") ?? false ? Color.colorRed : Color.colorGreen
+                        overlayColor: item.netChange ?? 0 < 0 ? Color.colorRed : Color.colorGreen
                     )
                 }
             }
         }
     }
-    
 }
 
 #Preview {
-    HomeContentView(marketsData: .constant([MarketsUIModel(marketName: "ADX", marketStatus: "Pre-Open adjustment", marketDate: Date().toString(dateFormat: .yyMMddWithTime), lastTradePrice: "9,306.77", netChange: "3.36", netChangePerc: "0.04%", symbolsTraded: "2", tradesUp: "1", tradesEqual: "0", tradesDown: "1", turnover: "17,815,738", volume: "514,895", trades: "254")]), stocksData: .constant([StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), StocksUIModel(stockName: "ETISALAT", lastTradePrice: "36.68", netChange: "0.100", netChangePerc: "10.00%"), .initializer(),  .initializer(), StocksUIModel(stockName: "WATANIA", lastTradePrice: "0.650", netChange: "-0.004", netChangePerc: "-0.615%"), .initializer(), .initializer(), .initializer(), .initializer(), .initializer(), .initializer()]), onOverviewTap: {
+    HomeContentView(
+        marketsData: .constant([
+            MarketsUIModel.initMockData()
+        ]),
+        stocksData: .constant([
+            StocksUIModel(stockName: "ETISALAT", lastTradePrice: 36.68, netChange: 0.100, netChangePerc: 10.00),
+            StocksUIModel(stockName: "WATANIA", lastTradePrice: 0.650, netChange: -0.004, netChangePerc: -0.615),
+            StocksUIModel(stockName: "ETISALAT", lastTradePrice: 36.68, netChange: 0.100, netChangePerc: 10.00),
+            .initializer(),
+            .initializer(),
+            StocksUIModel(stockName: "WATANIA", lastTradePrice: 0.650, netChange: -0.004, netChangePerc: -0.615),
+            .initializer(),
+            .initializer(),
+            .initializer(),
+            .initializer(),
+            .initializer(),
+            .initializer()
+        ]),
+        onOverviewTap: {
         
-    }, onTopStocksTap: {
+        },
+        onTopStocksTap: {
         
-    })
+        }
+    )
 }

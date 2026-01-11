@@ -98,19 +98,19 @@ struct MarketOverviewContentView: View {
                     Spacer()
 
                     HStack(spacing: 0) {
-                        Text("\(AppUtility.shared.formatThousandSeparator3Decimal(number: item.indexValue ?? 0))")
+                        Text("\(AppUtility.shared.formatThousandSeparator(number: item.indexValue ?? 0))")
                             .font(.apply(.regular, size: 14))
                             .foregroundStyle(Color.colorTextPrimary)
                         
                         Spacer()
 
-                        Text("\(AppUtility.shared.formatThousandSeparator3Decimal(number: item.change ?? 0))")
+                        Text("\(AppUtility.shared.formatThousandSeparator(number: item.change ?? 0))")
                             .font(.apply(.regular, size: 14))
                             .foregroundStyle(item.change ?? 0 > 0 ? Color.colorGreen : Color.colorRed)
                         
                         Spacer()
 
-                        Text("\(AppUtility.shared.formatThousandSeparator3Decimal(number: item.changePerc ?? 0))%")
+                        Text("\(AppUtility.shared.formatThousandSeparator(number: item.changePerc ?? 0))%")
                             .font(.apply(.regular, size: 14))
                             .foregroundStyle(item.change ?? 0 > 0 ? Color.colorGreen : Color.colorRed)
 
@@ -131,5 +131,12 @@ struct MarketOverviewContentView: View {
 }
 
 #Preview {
-    MarketOverviewContentView(marketsData: .constant([MarketsUIModel(marketName: "ADX", marketStatus: "Pre-Open adjustment", marketDate: Date().toString(dateFormat: .yyMMddWithTime), lastTradePrice: "9,306.77", netChange: "3.36", netChangePerc: "0.04%", symbolsTraded: "2", tradesUp: "1", tradesEqual: "0", tradesDown: "1", turnover: "17,815,738", volume: "514,895", trades: "254")]), indicesData: .constant([MarketOverviewUIModel(indexName: "General Index", indexValue: 9306.77, change: 3.36, changePerc: 0.036), MarketOverviewUIModel(indexName: "FTSE ADX Real Estate Index", indexValue: 10417.31, change: 104.60, changePerc: 1.014), MarketOverviewUIModel(indexName: "FTSE ADX Energy Index", indexValue: 2045.61, change: 4.43, changePerc: 0.217), MarketOverviewUIModel(indexName: "FTSE ADX Consumer Staples Index", indexValue: 14519.92, change: -351.41, changePerc: -2.363), MarketOverviewUIModel(indexName: "General Index", indexValue: 9306.77, change: 3.36, changePerc: 0.036), MarketOverviewUIModel(indexName: "FTSE ADX Real Estate Index", indexValue: 10417.31, change: 104.60, changePerc: 1.014), MarketOverviewUIModel(indexName: "FTSE ADX Energy Index", indexValue: 2045.61, change: 4.43, changePerc: 0.217), MarketOverviewUIModel(indexName: "FTSE ADX Consumer Staples Index", indexValue: 14519.92, change: -351.41, changePerc: -2.363), MarketOverviewUIModel(indexName: "General Index", indexValue: 9306.77, change: 3.36, changePerc: 0.036), MarketOverviewUIModel(indexName: "FTSE ADX Real Estate Index", indexValue: 10417.31, change: 104.60, changePerc: 1.014), MarketOverviewUIModel(indexName: "FTSE ADX Energy Index", indexValue: 2045.61, change: 4.43, changePerc: 0.217), MarketOverviewUIModel(indexName: "FTSE ADX Consumer Staples Index", indexValue: 14519.92, change: -351.41, changePerc: -2.363)]))
+    MarketOverviewContentView(
+        marketsData: .constant([
+            .initMockData()
+        ]),
+        indicesData: .constant(
+            MarketOverviewUIModel.initMockDataArray()
+        )
+    )
 }

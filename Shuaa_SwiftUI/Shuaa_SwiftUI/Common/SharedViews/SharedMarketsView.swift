@@ -42,16 +42,16 @@ struct SharedMarketsView: View {
                 Spacer()
                 
                 HStack(alignment: .center) {
-                    Text("\(marketsData.wrappedValue?.first?.lastTradePrice ?? "")")
-                        .font(.apply(.bold, size: 16))
+                    Text("\(AppUtility.shared.formatThousandSeparator(number: marketsData.wrappedValue?.first?.lastTradePrice ?? 0))")
+                        .font(.apply(.bold, size: 22))
                         .foregroundStyle(Color.colorTextPrimary)
 
                     VStack(alignment: .leading, spacing: 0) {
-                        Text("\(marketsData.wrappedValue?.first?.netChange ?? "")")
+                        Text("\(AppUtility.shared.formatThousandSeparator(number: marketsData.wrappedValue?.first?.netChange ?? 0))")
                             .font(.apply(.regular, size: 8))
                             .foregroundStyle(Color.colorGreen)
 
-                        Text("\(marketsData.wrappedValue?.first?.netChangePerc ?? "")")
+                        Text("\(AppUtility.shared.formatThousandSeparator(number: marketsData.wrappedValue?.first?.netChangePerc ?? 0))%")
                             .font(.apply(.regular, size: 8))
                             .foregroundStyle(Color.colorGreen)
 
@@ -75,14 +75,14 @@ struct SharedMarketsView: View {
             }
             
             if showMarketDetails {
-                HStack(alignment: .center) {
-                    VStack(alignment: .leading, spacing: 4) {
+                HStack(alignment: .center, spacing: 24) {
+                    VStack(alignment: .leading, spacing: 12) {
                         HStack {
                             Text("turnover".localized)
                                 .font(.apply(.regular, size: 12))
                                 .foregroundStyle(Color.colorTextSecondary)
 
-                            Text("\(marketsData.wrappedValue?.first?.turnover ?? "")")
+                            Text("\(AppUtility.shared.formatThousandSeparatorNoDecimal(number: marketsData.wrappedValue?.first?.turnover ?? 0))")
                                 .font(.apply(.semiBold, size: 14))
                                 .foregroundStyle(Color.colorTextPrimary)
 
@@ -93,7 +93,7 @@ struct SharedMarketsView: View {
                                 .font(.apply(.regular, size: 12))
                                 .foregroundStyle(Color.colorTextSecondary)
 
-                            Text("\(marketsData.wrappedValue?.first?.volume ?? "")")
+                            Text("\(AppUtility.shared.formatThousandSeparatorNoDecimal(number: marketsData.wrappedValue?.first?.volume ?? 0))")
                                 .font(.apply(.semiBold, size: 14))
                                 .foregroundStyle(Color.colorTextPrimary)
 
@@ -104,7 +104,7 @@ struct SharedMarketsView: View {
                                 .font(.apply(.regular, size: 12))
                                 .foregroundStyle(Color.colorTextSecondary)
 
-                            Text("\(marketsData.wrappedValue?.first?.trades ?? "")")
+                            Text("\(AppUtility.shared.formatThousandSeparatorNoDecimal(number: marketsData.wrappedValue?.first?.trades ?? 0))")
                                 .font(.apply(.semiBold, size: 14))
                                 .foregroundStyle(Color.colorTextPrimary)
 
@@ -116,21 +116,21 @@ struct SharedMarketsView: View {
                         .frame(maxHeight: 92)
                         .padding(.horizontal, 24)
 
-                    VStack(alignment: .leading, spacing: -4) {
+                    VStack(alignment: .leading, spacing: 4) {
                         HStack(alignment: .center) {
                             Text("symbols_traded".localized)
                                 .font(.apply(.regular, size: 10))
                                 .foregroundStyle(Color.colorTextPrimary)
 
-                            Text("\(marketsData.wrappedValue?.first?.symbolsTraded ?? "")")
+                            Text("\(AppUtility.shared.formatThousandSeparatorNoDecimal(number: marketsData.wrappedValue?.first?.symbolsTraded ?? 0))")
                                 .font(.apply(.semiBold, size: 14))
                                 .foregroundStyle(Color.colorTextPrimary)
 
                         }
                         
                         HStack {
-                            Text("\(marketsData.wrappedValue?.first?.tradesUp ?? "")")
-                                .font(.apply(.medium, size: 14))
+                            Text("\(AppUtility.shared.formatThousandSeparatorNoDecimal(number: marketsData.wrappedValue?.first?.tradesUp ?? 0))")
+                                .font(.apply(.semiBold, size: 14))
                                 .foregroundStyle(Color.colorTextPrimary)
 
                             Image("ic_imgUp")
@@ -146,8 +146,8 @@ struct SharedMarketsView: View {
                         }
 
                         HStack {
-                            Text("\(marketsData.wrappedValue?.first?.tradesEqual ?? "")")
-                                .font(.apply(.medium, size: 14))
+                            Text("\(AppUtility.shared.formatThousandSeparatorNoDecimal(number: marketsData.wrappedValue?.first?.tradesEqual ?? 0))")
+                                .font(.apply(.semiBold, size: 14))
                                 .foregroundStyle(Color.colorTextPrimary)
 
                             Text("=")
@@ -155,8 +155,8 @@ struct SharedMarketsView: View {
                         }
                         
                         HStack {
-                            Text("\(marketsData.wrappedValue?.first?.tradesDown ?? "")")
-                                .font(.apply(.medium, size: 14))
+                            Text("\(AppUtility.shared.formatThousandSeparatorNoDecimal(number: marketsData.wrappedValue?.first?.tradesDown ?? 0))")
+                                .font(.apply(.semiBold, size: 14))
                                 .foregroundStyle(Color.colorTextPrimary)
 
                             Image("ic_imgDown")
@@ -185,4 +185,12 @@ struct SharedMarketsView: View {
         .padding(.horizontal, 12)
 
     }
+}
+
+#Preview {
+    SharedMarketsView(
+        marketsData: .constant([
+            .initMockData()
+        ])
+    )
 }

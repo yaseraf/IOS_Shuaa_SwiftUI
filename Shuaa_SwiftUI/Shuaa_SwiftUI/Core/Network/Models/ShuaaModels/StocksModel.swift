@@ -9,9 +9,9 @@ import Foundation
 
 struct StocksUIModel {
     var stockName: String?
-    var lastTradePrice: String?
-    var netChange: String?
-    var netChangePerc: String?
+    var lastTradePrice: Double?
+    var netChange: Double?
+    var netChangePerc: Double?
     
     static func initializer() -> Self {
         return StocksUIModel()

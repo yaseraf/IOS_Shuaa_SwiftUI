@@ -359,13 +359,18 @@ struct SettingsContentView:View {
 }
 
 #Preview {
-    SettingsContentView(fontSize: .constant(0), selectedLanguage: .constant(.english), selectedTheme: .constant(.dark), onLanguageChange: { _ in
+    SettingsContentView(
+        fontSize: .constant(0),
+        selectedLanguage: .constant(.english),
+        selectedTheme: .constant(.dark),
+        onLanguageChange: { _ in
         
-    }, onAppThemeChange: { _ in
-        
-    }, onFontSizeIncrease: {
-        
-    }, onFontSizeDecrease: {
-        
-    })
+        }, onAppThemeChange: { _ in
+            
+        }, onFontSizeIncrease: {
+            
+        }, onFontSizeDecrease: {
+            
+        }
+    )
 }

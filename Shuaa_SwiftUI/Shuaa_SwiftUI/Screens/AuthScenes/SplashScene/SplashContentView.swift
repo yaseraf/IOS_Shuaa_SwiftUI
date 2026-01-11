@@ -43,7 +43,9 @@ struct SplashContentView: View {
 }
 
 #Preview {
-    SplashContentView(onVideoEnd: {
+    SplashContentView(
+        onVideoEnd: {
         
-    })
+        }
+    )
 }

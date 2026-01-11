@@ -83,5 +83,7 @@ struct HomeBottomBarView: View {
 }
 
 #Preview {
-    HomeBottomBarView(selectedItem: .home)
+    HomeBottomBarView(
+        selectedItem: .home
+    )
 }

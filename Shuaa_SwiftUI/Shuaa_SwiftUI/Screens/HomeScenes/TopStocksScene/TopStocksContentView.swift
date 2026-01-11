@@ -83,7 +83,8 @@ struct TopStocksContentView: View {
                         change: item.change ?? 0,
                         changePerc: item.changePercent ?? 0,
                         valueWithChart: item.changePercent ?? 0,
-                        isPerc: true
+                        isPerc: true,
+                        type: .topGainers
                     )
                 }
             }
@@ -105,7 +106,8 @@ struct TopStocksContentView: View {
                         change: item.change ?? 0,
                         changePerc: item.changePercent ?? 0,
                         valueWithChart: item.changePercent ?? 0,
-                        isPerc: true
+                        isPerc: true,
+                        type: .topLosers
                     )
                 }
             }
@@ -126,7 +128,8 @@ struct TopStocksContentView: View {
                         volume: item.turnover ?? 0,
                         change: item.trades ?? 0,
                         changePerc: item.changePercent ?? 0,
-                        valueWithChart: item.turnover ?? 0
+                        valueWithChart: item.turnover ?? 0,
+                        type: .topTurnover
                     )
                 }
             }
@@ -147,7 +150,8 @@ struct TopStocksContentView: View {
                         volume: item.turnover ?? 0,
                         change: item.volume ?? 0,
                         changePerc: item.changePercent ?? 0,
-                        valueWithChart: item.volume ?? 0
+                        valueWithChart: item.volume ?? 0,
+                        type: .topVolume
                     )
                 }
             }
@@ -168,7 +172,8 @@ struct TopStocksContentView: View {
                         volume: item.turnover ?? 0,
                         change: item.trades ?? 0,
                         changePerc: item.changePercent ?? 0,
-                        valueWithChart: item.trades ?? 0
+                        valueWithChart: item.trades ?? 0,
+                        type: .topTrades
                     )
                 }
             }
@@ -212,28 +217,37 @@ struct TopStocksContentView: View {
                 .minimumScaleFactor(0.5)
                 .frame(maxWidth: 85, alignment: .leading)
 
-            HStack(spacing: 0) {
-                Text("price".localized)
-                    .font(.apply(.regular, size: 12))
-                    .foregroundStyle(Color.colorTextPrimary)
-                    .frame(maxWidth: .infinity)
+            if !isChartView {
+                HStack(spacing: 0) {
+                    Text("price".localized)
+                        .font(.apply(.regular, size: 12))
+                        .foregroundStyle(Color.colorTextPrimary)
+                        .frame(maxWidth: .infinity)
 
-                Text(type == .topGainers || type == .topLosers ? "volume".localized : "turnover".localized)
-                    .font(.apply(.regular, size: 12))
-                    .foregroundStyle(Color.colorTextPrimary)
-                    .frame(maxWidth: .infinity)
+                    Text(type == .topGainers || type == .topLosers ? "volume".localized : "turnover".localized)
+                        .font(.apply(.regular, size: 12))
+                        .foregroundStyle(Color.colorTextPrimary)
+                        .frame(maxWidth: .infinity)
+                    
+                    Text(type == .topGainers || type == .topLosers ? "top_stocks_change".localized : type == .topTurnover || type == .topTrades ? "trades".localized : "volume".localized)
+                        .font(.apply(.regular, size: 12))
+                        .foregroundStyle(Color.colorTextPrimary)
+                        .frame(maxWidth: .infinity)
+
+                    Text("top_stocks_change_perc".localized)
+                        .font(.apply(.regular, size: 12))
+                        .foregroundStyle(Color.colorTextPrimary)
+                        .frame(maxWidth: .infinity)
+                }
+                .frame(maxWidth: .infinity)
+            } else {
+                Spacer()
                 
-                Text(type == .topGainers || type == .topLosers ? "top_stocks_change".localized : type == .topTurnover || type == .topTrades ? "trades".localized : "volume".localized)
+                Text(type == .topGainers || type == .topLosers ? "top_stocks_change_perc".localized : type == .topTurnover ? "value".localized : type == .topVolume ? "volume".localized : type == .topTrades ? "trades".localized : "")
                     .font(.apply(.regular, size: 12))
                     .foregroundStyle(Color.colorTextPrimary)
-                    .frame(maxWidth: .infinity)
-
-                Text("top_stocks_change_perc".localized)
-                    .font(.apply(.regular, size: 12))
-                    .foregroundStyle(Color.colorTextPrimary)
-                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 6)
             }
-            .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 8)
@@ -243,7 +257,7 @@ struct TopStocksContentView: View {
         .padding(.horizontal, 16)
     }
     
-    private func rowView(symbol: String, price: Double, volume: Double, change: Double, changePerc: Double, valueWithChart: Double, isPerc:Bool = false) -> some View {
+    private func rowView(symbol: String, price: Double, volume: Double, change: Double, changePerc: Double, valueWithChart: Double, isPerc:Bool = false, type: TopStocksType) -> some View {
         Button {
             
         } label: {
@@ -256,22 +270,22 @@ struct TopStocksContentView: View {
                 
                 if !isChartView {
                     HStack(spacing: 0) {
-                            Text("\(AppUtility.shared.formatThousandSeparator3Decimal(number: price))")
+                            Text("\(AppUtility.shared.formatThousandSeparator(number: price))")
                                 .font(.apply(.bold, size: 12))
                                 .foregroundStyle(Color.colorTextPrimary)
                                 .frame(maxWidth: .infinity)
 
-                            Text("\(AppUtility.shared.formatThousandSeparator3Decimal(number: volume))")
+                            Text("\(AppUtility.shared.formatThousandSeparator(number: volume))")
                                 .font(.apply(.bold, size: 12))
                                 .foregroundStyle(Color.colorTextPrimary)
                                 .frame(maxWidth: .infinity)
 
-                            Text("\(AppUtility.shared.formatThousandSeparator3Decimal(number: change))")
+                        Text("\(type == .topTurnover || type == .topTrades ? AppUtility.shared.formatThousandSeparatorNoDecimal(number: change) : AppUtility.shared.formatThousandSeparator(number: change))")
                                 .font(.apply(.bold, size: 12))
                                 .foregroundStyle(Color.colorTextPrimary)
                                 .frame(maxWidth: .infinity)
 
-                            Text("\(AppUtility.shared.formatThousandSeparator3Decimal(number: changePerc))%")
+                            Text("\(AppUtility.shared.formatThousandSeparator(number: changePerc))%")
                                 .font(.apply(.bold, size: 12))
                                 .foregroundStyle(changePerc > 0 ? Color.colorGreen : Color.colorRed)
                                 .frame(maxWidth: .infinity)
@@ -281,7 +295,7 @@ struct TopStocksContentView: View {
                 } else {
                     Spacer()
                     
-                    Text("\(AppUtility.shared.formatThousandSeparator3Decimal(number: valueWithChart))\(isPerc ? "%" : "")")
+                    Text("\(AppUtility.shared.formatThousandSeparator(number: valueWithChart))\(isPerc ? "%" : "")")
                         .font(.apply(.bold, size: 12))
                         .foregroundStyle(Color.colorTextPrimary)
                         .padding(.horizontal, 6)
@@ -299,5 +313,18 @@ struct TopStocksContentView: View {
 }
 
 #Preview {
-    TopStocksContentView(marketsData: .constant([MarketsUIModel(marketName: "ADX", marketStatus: "Pre-Open adjustment", marketDate: Date().toString(dateFormat: .yyMMddWithTime), lastTradePrice: "9,306.77", netChange: "3.36", netChangePerc: "0.04%", symbolsTraded: "2", tradesUp: "1", tradesEqual: "0", tradesDown: "1", turnover: "17,815,738", volume: "514,895", trades: "254")]), topGainersData: .constant([TopGainersUIModel(symbol: "ETISALAT", price: 36.68, volume: 485395, change: 0.1, changePercent: 10)]), topLosersData: .constant([TopLosersUIModel(symbol: "WATANIA", price: 0.65, volume: 29500, change: -0.004, changePercent: -0.62)]), topTurnoverData: .constant([TopTurnoverUIModel(symbol: "ETISALAT", price: 36.68, turnover: 17796572.12, trades: 250, changePercent: 10), TopTurnoverUIModel(symbol: "WATANIA", price: 0.65, turnover: 19166, trades: 4, changePercent: -0.62)]), topVolumeData: .constant([TopVolumeUIModel(symbol: "ETISALAT", price: 36.68, turnover: 17796572.12, volume: 485395, changePercent: 10), TopVolumeUIModel(symbol: "WATANIA", price: 0.65, turnover: 19166, volume: 29500, changePercent: -0.62)]), topTradesData: .constant([TopTradesUIModel(symbol: "ETISALAT", price: 36.68, turnover: 17796572.12, trades: 250, changePercent: 10), TopTradesUIModel(symbol: "WATANIA", price: 0.65, turnover: 19166, trades: 4, changePercent: -0.62)]))
+    TopStocksContentView(
+        marketsData: .constant([
+            .initMockData()
+        ]),
+        topGainersData: .constant([
+            .initMockData()
+        ]),
+        topLosersData: .constant([
+            .initMockData()
+        ]),
+        topTurnoverData: .constant(TopTurnoverUIModel.initMockDataArray()),
+        topVolumeData: .constant(TopVolumeUIModel.initMockDataArray()),
+        topTradesData: .constant(TopTradesUIModel.initMockDataArray())
+    )
 }

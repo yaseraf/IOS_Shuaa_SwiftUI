@@ -116,7 +116,8 @@ class AppUtility {
     func formatThousandSeparator3Decimal(number: Double) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 3 // Remove decimal places
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 3 // Keep 3 decimal places max
         formatter.locale = Locale(identifier: englishLocaleIdentifier)
 
         // Format the double and add a thousand separator
@@ -130,9 +131,67 @@ class AppUtility {
     func formatThousandSeparator2Decimal(number: Double) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 2 // Remove decimal places
+        formatter.maximumFractionDigits = 2 // Keep 2 decimal places max
         formatter.locale = Locale(identifier: englishLocaleIdentifier)
 
+        // Format the double and add a thousand separator
+        if let formattedString = formatter.string(from: NSNumber(value: number)) {
+            return formattedString // Output: "1,234,568"
+        } else {
+            return "-"
+        }
+    }
+    
+    func formatThousandSeparatorNoDecimal(number: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 0
+        formatter.locale = Locale(identifier: englishLocaleIdentifier)
+
+        // Format the double and add a thousand separator
+        if let formattedString = formatter.string(from: NSNumber(value: number)) {
+            return formattedString // Output: "1,234,568"
+        } else {
+            return "-"
+        }
+    }
+    
+    func formatThousandSeparator(number: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale(identifier: englishLocaleIdentifier)
+
+        let absValue = abs(number)
+        let isInteger = number.truncatingRemainder(dividingBy: 1) == 0
+
+        if isInteger {
+            // 10 → 10.00
+            formatter.minimumFractionDigits = 2
+            formatter.maximumFractionDigits = 2
+
+        } else if absValue >= 0.1 && absValue < 1 {
+            // 0.1 → 0.100
+            formatter.minimumFractionDigits = 3
+            formatter.maximumFractionDigits = 3
+
+        } else if absValue >= 0.01 && absValue < 0.1 {
+            // 0.04 → 0.04
+            formatter.minimumFractionDigits = 2
+            formatter.maximumFractionDigits = 2
+
+        } else if absValue < 0.01 {
+            // 0.004 → 0.004
+            formatter.minimumFractionDigits = 3
+            formatter.maximumFractionDigits = 4
+
+        } else {
+            // 1.23, 10.45
+            formatter.minimumFractionDigits = 2
+            formatter.maximumFractionDigits = 2
+        }
+
+        
         // Format the double and add a thousand separator
         if let formattedString = formatter.string(from: NSNumber(value: number)) {
             return formattedString // Output: "1,234,568"

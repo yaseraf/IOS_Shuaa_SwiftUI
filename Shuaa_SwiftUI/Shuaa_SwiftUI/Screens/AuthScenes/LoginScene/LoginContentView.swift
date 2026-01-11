@@ -236,11 +236,18 @@ struct LoginContentView: View {
 }
 
 #Preview {
-    LoginContentView(isPasswordHidden: false, username: .constant(""), password: .constant(""), onChangeLanguage: {
+    LoginContentView(
+        isPasswordHidden: false,
+        username: .constant(""),
+        password: .constant(""),
+        onChangeLanguage: {
         
-    }, onSignUpTap: {
-        
-    }, onVideoTutorialTap: {
-        
-    })
+        },
+        onSignUpTap: {
+            
+        },
+        onVideoTutorialTap: {
+            
+        }
+    )
 }

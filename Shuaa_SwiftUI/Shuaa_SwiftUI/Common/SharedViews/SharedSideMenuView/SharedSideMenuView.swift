@@ -160,29 +160,43 @@ struct MenuItemView: View {
 }
 
 #Preview {
-    SideMenuView(isMenuOpen: .constant(true), onAccountInformationTap: {
+    SideMenuView(
+        isMenuOpen: .constant(true),
+        onAccountInformationTap: {
         
-    }, onMyDocumentsTap: {
-        
-    }, onMarketsInsightTap: {
-        
-    }, onMyAlertsTap: {
-        
-    }, onAccountStatements: {
-        
-    }, onCashDeposit: {
-        
-    }, onEquityTransferTap: {
-        
-    }, onTransfersTap: {
-        
-    }, onClientPortalTap: {
-        
-    }, onIPOTap: {
-        
-    }, onSettingsTap: {
+        },
+        onMyDocumentsTap: {
             
-    }, onLogoutTap: {
-        
-    })
+        },
+        onMarketsInsightTap: {
+            
+        },
+        onMyAlertsTap: {
+            
+        },
+        onAccountStatements: {
+            
+        },
+        onCashDeposit: {
+            
+        },
+        onEquityTransferTap: {
+            
+        },
+        onTransfersTap: {
+            
+        },
+        onClientPortalTap: {
+            
+        },
+        onIPOTap: {
+            
+        },
+        onSettingsTap: {
+                
+        },
+        onLogoutTap: {
+            
+        }
+    )
 }
