@@ -6,7 +6,7 @@ import Foundation
 import SwiftUI
 import FlagAndCountryCode
 
-class OrderListCoordinator:  ObservableObject {
+class PortfolioCoordinator:  ObservableObject {
     var childCoordinator: [Coordinator] = []
     var navigationController: BaseNavigationController
 
@@ -22,7 +22,7 @@ class OrderListCoordinator:  ObservableObject {
             animated: AppConstants.isScreenTransitionAnimated
         )
         
-        openOrderListScene()
+        openPortfolioScene()
     }
 
     func restart() {
@@ -31,11 +31,11 @@ class OrderListCoordinator:  ObservableObject {
     
 }
 
-extension OrderListCoordinator:OrderListCoordinatorProtocol {
+extension PortfolioCoordinator:PortfolioCoordinatorProtocol {
 
-    func openOrderListScene() {
-        let viewModel = OrderListViewModel(coordinator: self)
-        let view = OrderListScene(viewModel: viewModel)
+    func openPortfolioScene() {
+        let viewModel = PortfolioViewModel(coordinator: self)
+        let view = PortfolioScene(viewModel: viewModel)
         let viewWithCoordinator = view.withThemeEnvironment
         let viewController = UIHostingController(rootView: viewWithCoordinator)
         self.navigationController.pushViewController(viewController, animated: true)

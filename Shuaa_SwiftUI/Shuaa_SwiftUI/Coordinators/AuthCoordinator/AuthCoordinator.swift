@@ -26,7 +26,12 @@ class AuthCoordinator:  ObservableObject {
     }
 
     func start() {        
-        AppUtility.shared.screenTransition(navigationController: navigationController, animationOptions: .transitionCrossDissolve, duration: 0.3, animated: false)
+        AppUtility.shared.screenTransition(
+            navigationController: navigationController,
+            animationOptions: AppConstants.screenTransition,
+            duration: AppConstants.screenTransitionDuration,
+            animated: AppConstants.isScreenTransitionAnimated
+        )
         
         switch startViewType {
         case .login:

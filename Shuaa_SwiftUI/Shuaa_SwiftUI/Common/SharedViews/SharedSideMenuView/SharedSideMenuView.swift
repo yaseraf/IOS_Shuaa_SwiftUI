@@ -19,7 +19,7 @@ struct SharedSideMenuView: View {
                 Color.black.opacity(0.3)
                     .ignoresSafeArea()
                     .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.3)) {
+                        withAnimation {
                             viewModel.isMenuOpen = false
                         }
                     }

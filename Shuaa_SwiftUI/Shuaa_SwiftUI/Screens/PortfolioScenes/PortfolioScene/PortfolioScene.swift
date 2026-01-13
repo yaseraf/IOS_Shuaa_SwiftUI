@@ -1,5 +1,5 @@
 //
-//  AccountsScene.swift
+//  PortfolioScene.swift
 //  Shuaa_SwiftUI
 //
 //  Created by FIT on 11/01/2026.
@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 import Combine
 
-struct AccountsScene: BaseSceneType {
-    @ObservedObject var viewModel: AccountsViewModel
+struct PortfolioScene: BaseSceneType {
+    @ObservedObject var viewModel: PortfolioViewModel
     @State var anyCancellable = Set<AnyCancellable>()
     @State var viewTypeAction:BaseSceneViewType = DefaultBaseSceneViewType()
     
@@ -21,8 +21,9 @@ struct AccountsScene: BaseSceneType {
                     withScroll:false,
                     paddingValue: 0,
                     content: {
-                        AccountsContentView(
-                            userAccountsData: $viewModel.userAccountsData
+                        PortfolioContentView(
+                            userAccountsData: $viewModel.userAccountsData,
+                            portfolioData: $viewModel.portfolioData
                         )
                         .onAppear {
                             viewModel.getUserAccountsData()

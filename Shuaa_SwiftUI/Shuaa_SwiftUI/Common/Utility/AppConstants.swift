@@ -7,9 +7,13 @@
 //
 
 import Foundation
+import UIKit
 
 struct AppConstants {
     static var appName: String { return "Shuaa"}
     static let emptyValue = "--"
     static let appleLanguages = "AppleLanguages"
+    static let screenTransitionDuration = 0.1
+    static let screenTransition: UIView.AnimationOptions = .transitionCrossDissolve
+    static let isScreenTransitionAnimated = false
 }

@@ -51,7 +51,7 @@ struct MarketOverviewContentView: View {
         HStack {
             Text("indices".localized)
                 .font(.apply(.regular, size: 14))
-                .foregroundStyle(Color.colorTextPrimary)
+                .foregroundStyle(Color.white)
                 .frame(maxWidth: 150, alignment: .leading)
 
             Spacer()
@@ -59,19 +59,19 @@ struct MarketOverviewContentView: View {
             HStack(spacing: 0) {
                 Text("value".localized)
                     .font(.apply(.regular, size: 14))
-                    .foregroundStyle(Color.colorTextPrimary)
+                    .foregroundStyle(Color.white)
 
                 Spacer()
 
                 Text("change".localized)
                     .font(.apply(.regular, size: 14))
-                    .foregroundStyle(Color.colorTextPrimary)
+                    .foregroundStyle(Color.white)
 
                 Spacer()
 
                 Text("change_percent".localized)
                     .font(.apply(.regular, size: 14))
-                    .foregroundStyle(Color.colorTextPrimary)
+                    .foregroundStyle(Color.white)
             }
             .frame(maxWidth: .infinity)
 

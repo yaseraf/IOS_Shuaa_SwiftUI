@@ -113,6 +113,15 @@
 "net_profit_loss" = "Net Profit Loss";
 "net_portfolio_value" = "Net Portfolio Value";
 
+// MARK: Portfolio Screen
+"quantity" = "Quantity";
+"close_price" = "Close Price";
+"average_cost" = "Avg. Cost";
+"unrealize_pnl" = "Unrealize P/L";
+"perc_pnl" = "%P/L";
+"perc_holding" = "%Holding";
+"no_symbols_yet" = "No Symbols Yet";
+
 // MARK: Countries
 "Afghanistan" = "Afghanistan";
 "Åland Islands" = "Åland Islands";

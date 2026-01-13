@@ -1,5 +1,5 @@
 //
-//  ManageContentView.swift
+//  SettingsContentView.swift
 //  Shuaa_SwiftUI
 //
 //  Created by FIT on 27/07/2025.

@@ -1,5 +1,5 @@
 //
-//  ManageViewModel.swift
+//  SettingsViewModel.swift
 //  Shuaa_SwiftUI
 //
 //  Created by FIT on 27/07/2025.
@@ -38,15 +38,14 @@ extension SettingsViewModel {
     func onLanguageChange(newLanguage:LanguageType){
         selectedLanguage = newLanguage
         AppUtility.shared.updateAppLanguage(language: newLanguage)        
-        SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.start()
+        SceneDelegate.getAppCoordinator()?.restart()
     }
     
     func onAppThemeChange(type:ThemeType){
         UserDefaultController().appTheme = type
         selectedTheme = type
         SceneDelegate.getAppCoordinator()?.updateWindowBackground()
-        
-        SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.start()
+        SceneDelegate.getAppCoordinator()?.restart()
     }
 
     func onFontSizeIncrease() {

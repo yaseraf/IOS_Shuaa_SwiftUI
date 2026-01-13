@@ -113,6 +113,15 @@
 "net_profit_loss" = "صافي الربح / الخسارة";
 "net_portfolio_value" = "صافي قيمة المحفظة";
 
+// MARK: Portfolio Screen
+"quantity" = "الكمية";
+"close_price" = "سعر الإغلاق";
+"average_cost" = "متوسط التكلفة";
+"unrealize_pnl" = "الربح / الخسارة غير المحققة";
+"perc_pnl" = "٪ الربح / الخسارة";
+"perc_holding" = "٪ نسبة الاحتفاظ";
+"no_symbols_yet" = "لا توجد رموز بعد";
+
 // MARK: Countries
 "Afghanistan" = "أفغانستان";
 "Aland Islands" = "جزر آلاند";

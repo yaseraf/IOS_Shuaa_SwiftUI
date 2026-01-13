@@ -183,7 +183,7 @@ struct TopStocksContentView: View {
         HStack {
             Text(title)
                 .font(.apply(.regular, size: 14))
-                .foregroundStyle(Color.colorTextPrimary)
+                .foregroundStyle(Color.white)
             
             Spacer()
             
@@ -212,7 +212,7 @@ struct TopStocksContentView: View {
         HStack {
             Text("symbol".localized)
                 .font(.apply(.regular, size: 12))
-                .foregroundStyle(Color.colorTextPrimary)
+                .foregroundStyle(Color.white)
                 .minimumScaleFactor(0.5)
                 .frame(maxWidth: 85, alignment: .leading)
 
@@ -220,22 +220,22 @@ struct TopStocksContentView: View {
                 HStack(spacing: 0) {
                     Text("price".localized)
                         .font(.apply(.regular, size: 12))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(Color.white)
                         .frame(maxWidth: .infinity)
 
                     Text(type == .topGainers || type == .topLosers ? "volume".localized : "turnover".localized)
                         .font(.apply(.regular, size: 12))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(Color.white)
                         .frame(maxWidth: .infinity)
                     
                     Text(type == .topGainers || type == .topLosers ? "top_stocks_change".localized : type == .topTurnover || type == .topTrades ? "trades".localized : "volume".localized)
                         .font(.apply(.regular, size: 12))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(Color.white)
                         .frame(maxWidth: .infinity)
 
                     Text("top_stocks_change_perc".localized)
                         .font(.apply(.regular, size: 12))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(Color.white)
                         .frame(maxWidth: .infinity)
                 }
                 .frame(maxWidth: .infinity)
@@ -244,7 +244,7 @@ struct TopStocksContentView: View {
                 
                 Text(type == .topGainers || type == .topLosers ? "top_stocks_change_perc".localized : type == .topTurnover ? "value".localized : type == .topVolume ? "volume".localized : type == .topTrades ? "trades".localized : "")
                     .font(.apply(.regular, size: 12))
-                    .foregroundStyle(Color.colorTextPrimary)
+                    .foregroundStyle(Color.white)
                     .padding(.horizontal, 6)
             }
         }
@@ -261,13 +261,13 @@ struct TopStocksContentView: View {
             
         } label: {
             HStack {
+                if !isChartView {
                 Text(symbol)
                     .font(.apply(.bold, size: 14))
                     .foregroundStyle(Color.colorTextPrimary)
                     .minimumScaleFactor(0.5)
                     .frame(maxWidth: 85, alignment: .leading)
                 
-                if !isChartView {
                     HStack(spacing: 0) {
                             Text("\(AppUtility.shared.formatThousandSeparator(number: price))")
                                 .font(.apply(.bold, size: 12))
@@ -292,11 +292,17 @@ struct TopStocksContentView: View {
                     .minimumScaleFactor(0.85)
                     .frame(maxWidth: .infinity)
                 } else {
+                    Text(symbol)
+                        .font(.apply(.bold, size: 14))
+                        .foregroundStyle(Color.white)
+                        .minimumScaleFactor(0.5)
+                        .frame(maxWidth: 85, alignment: .leading)
+
                     Spacer()
                     
                     Text("\(AppUtility.shared.formatThousandSeparator(number: valueWithChart))\(isPerc ? "%" : "")")
                         .font(.apply(.bold, size: 12))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(Color.white)
                         .padding(.horizontal, 6)
                 }
             }

@@ -13,6 +13,7 @@ struct OrderListContentView: View {
     @State private var isSearching = false
     
     var labelsHeaderFontSize: CGFloat = 12
+    var labelsHeaderFontColor = Color.white
     
     var userAccountsData:Binding<UserAccountsUIModel?>
     
@@ -197,55 +198,55 @@ struct OrderListContentView: View {
                 VStack(spacing: 2) {
                     Text("symbol".localized)
                         .font(.apply(.medium, size: labelsHeaderFontSize))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(labelsHeaderFontColor)
                     Text("order_number".localized)
                         .font(.apply(.medium, size: labelsHeaderFontSize))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(labelsHeaderFontColor)
                 }
                 Spacer()
                 VStack(spacing: 2) {
                     Text("date".localized)
                         .font(.apply(.medium, size: labelsHeaderFontSize))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(labelsHeaderFontColor)
                     Text("time".localized)
                         .font(.apply(.medium, size: labelsHeaderFontSize))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(labelsHeaderFontColor)
                 }
                 Spacer()
                 VStack(spacing: 2) {
                     Text("price".localized)
                         .font(.apply(.medium, size: labelsHeaderFontSize))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(labelsHeaderFontColor)
                     Text("avg_price".localized)
                         .font(.apply(.medium, size: labelsHeaderFontSize))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(labelsHeaderFontColor)
                 }
                 Spacer()
                 VStack(spacing: 2) {
                     Text("action".localized)
                         .font(.apply(.medium, size: labelsHeaderFontSize))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(labelsHeaderFontColor)
                     Text("exchange".localized)
                         .font(.apply(.medium, size: labelsHeaderFontSize))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(labelsHeaderFontColor)
                 }
                 Spacer()
                 VStack(spacing: 2) {
                     Text("status".localized)
                         .font(.apply(.medium, size: labelsHeaderFontSize))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(labelsHeaderFontColor)
                     Text("".localized)
                         .font(.apply(.medium, size: labelsHeaderFontSize))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(labelsHeaderFontColor)
                 }
                 Spacer()
                 VStack(spacing: 2) {
                     Text("order_qty".localized)
                         .font(.apply(.medium, size: labelsHeaderFontSize))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(labelsHeaderFontColor)
                     Text("filled_qty".localized)
                         .font(.apply(.medium, size: labelsHeaderFontSize))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(labelsHeaderFontColor)
                 }
             }
         }
@@ -260,7 +261,7 @@ struct OrderListContentView: View {
         VStack {
             Text("no_orders_yet".localized)
                 .font(.apply(.medium, size: 16))
-                .foregroundStyle(Color.colorTextPrimary)
+                .foregroundStyle(Color.white)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

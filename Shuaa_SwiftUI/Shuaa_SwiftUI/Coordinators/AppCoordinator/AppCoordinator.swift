@@ -34,6 +34,12 @@ class AppCoordinator:  ObservableObject {
            SceneDelegate.getAppCoordinator()?.getChildCoordinator(coordinator: OrderListCoordinator.self) as? OrderListCoordinator
         }
     }
+    
+    var currentPortfolioCoordinator:PortfolioCoordinator? {
+        get {
+           SceneDelegate.getAppCoordinator()?.getChildCoordinator(coordinator: PortfolioCoordinator.self) as? PortfolioCoordinator
+        }
+    }
 
     init(window: UIWindow) {
         self.window = window
@@ -49,8 +55,14 @@ class AppCoordinator:  ObservableObject {
     func logout(){
         // clear data
         childCoordinator.removeAll()
-        AppUtility.shared.screenTransition(navigationController: navigationController, animationOptions: .transitionCrossDissolve, duration: 0.3, animated: false)
-
+        
+        AppUtility.shared.screenTransition(
+            navigationController: navigationController,
+            animationOptions: AppConstants.screenTransition,
+            duration: AppConstants.screenTransitionDuration,
+            animated: AppConstants.isScreenTransitionAnimated
+        )
+        
         startFlow(startWith: .login)
 
     }
@@ -74,13 +86,25 @@ class AppCoordinator:  ObservableObject {
 
     func restart() {
         childCoordinator.last?.start()
-        AppUtility.shared.screenTransition(navigationController: navigationController, animationOptions: .transitionCrossDissolve, duration: 0.3, animated: false)
+        
+        AppUtility.shared.screenTransition(
+            navigationController: navigationController,
+            animationOptions: AppConstants.screenTransition,
+            duration: AppConstants.screenTransitionDuration,
+            animated: AppConstants.isScreenTransitionAnimated
+        )
     }
     
     func restartForTheme() {
         SceneDelegate.getAppCoordinator()?.topViewController()?.dismiss(animated: false, completion: nil)
         childCoordinator.last?.start()
-        AppUtility.shared.screenTransition(navigationController: navigationController, animationOptions: .transitionCrossDissolve, duration: 0.3, animated: false)
+        
+        AppUtility.shared.screenTransition(
+            navigationController: navigationController,
+            animationOptions: AppConstants.screenTransition,
+            duration: AppConstants.screenTransitionDuration,
+            animated: AppConstants.isScreenTransitionAnimated
+        )
     }
 
     var isUserLoggedIn:Bool {
@@ -149,29 +173,43 @@ extension AppCoordinator: AppCoordinatorProtocol {
     func showOrderListFlow() {
         removeAllChildCoordinator()
 
-        let homeCoordinator:OrderListCoordinator
+        let orderListCoordinator:OrderListCoordinator
         if let childCoordinator = self.getChildCoordinator(coordinator: OrderListCoordinator.self) as? OrderListCoordinator {
-            homeCoordinator = childCoordinator
+            orderListCoordinator = childCoordinator
         } else {
             childCoordinator.removeAll()
-            homeCoordinator =  .init(navigationController: navigationController)
-            childCoordinator.append(homeCoordinator)
+            orderListCoordinator =  .init(navigationController: navigationController)
+            childCoordinator.append(orderListCoordinator)
         }
-        homeCoordinator.start()
+        orderListCoordinator.start()
     }
     
     func showAccountsFlow() {
         removeAllChildCoordinator()
 
-        let homeCoordinator:AccountsCoordinator
+        let accountsCoordinator:AccountsCoordinator
         if let childCoordinator = self.getChildCoordinator(coordinator: AccountsCoordinator.self) as? AccountsCoordinator {
-            homeCoordinator = childCoordinator
+            accountsCoordinator = childCoordinator
         } else {
             childCoordinator.removeAll()
-            homeCoordinator =  .init(navigationController: navigationController)
-            childCoordinator.append(homeCoordinator)
+            accountsCoordinator =  .init(navigationController: navigationController)
+            childCoordinator.append(accountsCoordinator)
         }
-        homeCoordinator.start()
+        accountsCoordinator.start()
+    }
+    
+    func showPortfolioFlow() {
+        removeAllChildCoordinator()
+
+        let portfolioCoordinator:PortfolioCoordinator
+        if let childCoordinator = self.getChildCoordinator(coordinator: PortfolioCoordinator.self) as? PortfolioCoordinator {
+            portfolioCoordinator = childCoordinator
+        } else {
+            childCoordinator.removeAll()
+            portfolioCoordinator =  .init(navigationController: navigationController)
+            childCoordinator.append(portfolioCoordinator)
+        }
+        portfolioCoordinator.start()
     }
 
     func removeAllChildCoordinator(){
