@@ -65,7 +65,7 @@
 "settings" = "الإعدادات";
 "logout" = "تسجيل الخروج";
 
-// MARK: Settings
+// MARK: Settings Screen
 "app_language" = "لغة التطبيق";
 "preferred_language" = "اللغة المفضلة";
 "notification" = "الإشعارات";
@@ -79,7 +79,7 @@
 "light" = "فاتح";
 "dark" = "داكن";
 
-// MARK: Order List
+// MARK: Order List Screen
 "order_search" = "البحث عن الأوامر";
 "trades_list" = "قائمة الصفقات";
 "date" = "التاريخ";
@@ -100,6 +100,18 @@
 "cancel" = "إلغاء";
 "search_order" = "البحث عن أمر";
 "select_symbol" = "اختر الرمز";
+
+// MARK: Accounts Screen
+"balance" = "الرصيد";
+"buy_power" = "قوة الشراء";
+"expected_profit_loss" = "الربح / الخسارة المتوقعة";
+"available_cash" = "النقد المتاح";
+"realised_profit_loss" = "الربح / الخسارة المحققة";
+"facility_amount" = "قيمة التسهيلات";
+"cost_value" = "قيمة التكلفة";
+"market_value" = "القيمة السوقية";
+"net_profit_loss" = "صافي الربح / الخسارة";
+"net_portfolio_value" = "صافي قيمة المحفظة";
 
 // MARK: Countries
 "Afghanistan" = "أفغانستان";

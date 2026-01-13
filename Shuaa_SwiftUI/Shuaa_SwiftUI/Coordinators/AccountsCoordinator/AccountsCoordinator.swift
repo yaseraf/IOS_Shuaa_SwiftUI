@@ -1,12 +1,12 @@
 //
-//  OrderListCoorindator.swift
+//  HomeCoorindator.swift
 //  Shuaa
 
 import Foundation
 import SwiftUI
 import FlagAndCountryCode
 
-class OrderListCoordinator:  ObservableObject {
+class AccountsCoordinator:  ObservableObject {
     var childCoordinator: [Coordinator] = []
     var navigationController: BaseNavigationController
 
@@ -16,7 +16,7 @@ class OrderListCoordinator:  ObservableObject {
 
     func start() {
         AppUtility.shared.screenTransition(navigationController: navigationController, animationOptions: .transitionCrossDissolve, duration: 0.3, animated: false)
-        openOrderListScene()
+        openAccountsScene()
     }
 
     func restart() {
@@ -25,11 +25,11 @@ class OrderListCoordinator:  ObservableObject {
     
 }
 
-extension OrderListCoordinator:OrderListCoordinatorProtocol {
+extension AccountsCoordinator:AccountsCoordinatorProtocol {
 
-    func openOrderListScene() {
-        let viewModel = OrderListViewModel(coordinator: self)
-        let view = OrderListScene(viewModel: viewModel)
+    func openAccountsScene() {
+        let viewModel = AccountsViewModel(coordinator: self)
+        let view = AccountsScene(viewModel: viewModel)
         let viewWithCoordinator = view.withThemeEnvironment
         let viewController = UIHostingController(rootView: viewWithCoordinator)
         self.navigationController.pushViewController(viewController, animated: true)

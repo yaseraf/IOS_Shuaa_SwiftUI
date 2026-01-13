@@ -61,7 +61,7 @@ extension SharedSideMenuViewModel {
     }
     
     func openSettingsScene() {
-        SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.openSettingsScene()
+        SceneDelegate.getAppCoordinator()?.openSettingsScene()
     }
 }
 

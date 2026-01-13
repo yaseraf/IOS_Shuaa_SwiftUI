@@ -28,6 +28,12 @@ class AppCoordinator:  ObservableObject {
            SceneDelegate.getAppCoordinator()?.getChildCoordinator(coordinator: OrderListCoordinator.self) as? OrderListCoordinator
         }
     }
+    
+    var currentAccountsCoordinator:OrderListCoordinator? {
+        get {
+           SceneDelegate.getAppCoordinator()?.getChildCoordinator(coordinator: OrderListCoordinator.self) as? OrderListCoordinator
+        }
+    }
 
     init(window: UIWindow) {
         self.window = window
@@ -153,6 +159,20 @@ extension AppCoordinator: AppCoordinatorProtocol {
         }
         homeCoordinator.start()
     }
+    
+    func showAccountsFlow() {
+        removeAllChildCoordinator()
+
+        let homeCoordinator:AccountsCoordinator
+        if let childCoordinator = self.getChildCoordinator(coordinator: AccountsCoordinator.self) as? AccountsCoordinator {
+            homeCoordinator = childCoordinator
+        } else {
+            childCoordinator.removeAll()
+            homeCoordinator =  .init(navigationController: navigationController)
+            childCoordinator.append(homeCoordinator)
+        }
+        homeCoordinator.start()
+    }
 
     func removeAllChildCoordinator(){
         for coordinator in self.childCoordinator {
@@ -171,6 +191,15 @@ extension AppCoordinator: AppCoordinatorProtocol {
         let viewController = UIHostingController(rootView: viewWithCoordinator)
         self.navigationController.pushViewController(viewController, animated: true)
     }
+    
+    // MARK: ============================ Side Menu ============================
+    
+    func openSettingsScene() {
+        let viewModel = SettingsViewModel(coordinator: self)
+        let view =  SettingsScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+
 }
-
-

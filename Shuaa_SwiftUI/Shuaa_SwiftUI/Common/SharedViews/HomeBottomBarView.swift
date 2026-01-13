@@ -72,7 +72,7 @@ struct HomeBottomBarView: View {
         case .trade:
             SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.start()
         case .accounts:
-            SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.start()
+            SceneDelegate.getAppCoordinator()?.showAccountsFlow()
         case .portfolio:
             SceneDelegate.getAppCoordinator()?.currentHomeCoordinator?.start()
         }

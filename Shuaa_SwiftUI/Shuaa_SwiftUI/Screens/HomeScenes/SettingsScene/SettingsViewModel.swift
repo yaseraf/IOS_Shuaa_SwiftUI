@@ -10,13 +10,13 @@ import WebKit
 
 class SettingsViewModel: ObservableObject {
     
-    private let coordinator: HomeCoordinatorProtocol
+    private let coordinator: AppCoordinatorProtocol
     
     @Published var fontSize = UserDefaultController().fontSizeChangeResult
     @Published var selectedLanguage:LanguageType
     @Published var selectedTheme:ThemeType
 
-    init(coordinator: HomeCoordinatorProtocol) {
+    init(coordinator: AppCoordinatorProtocol) {
         self.coordinator = coordinator
         
         if AppUtility.shared.isRTL {

@@ -65,7 +65,7 @@
 "settings" = "Settings";
 "logout" = "Logout";
 
-// MARK: Settings
+// MARK: Settings Screen
 "app_language" = "App Language";
 "preferred_language" = "Preferred Language";
 "notification" = "Notification";
@@ -79,7 +79,7 @@
 "light" = "Light";
 "dark" = "Dark";
 
-// MARK: Order List
+// MARK: Order List Screen
 "order_search" = "Order Search";
 "trades_list" = "Trades List";
 "date" = "Date";
@@ -100,6 +100,18 @@
 "cancel" = "Cancel";
 "search_order" = "Search Order";
 "select_symbol" = "Select Symbol";
+
+// MARK: Accounts Screen
+"balance" = "Balance";
+"buy_power" = "Buy Power";
+"expected_profit_loss" = "Expected Profit Loss";
+"available_cash" = "Available Cash";
+"realised_profit_loss" = "Realised Profit Loss";
+"facility_amount" = "Facility Amount";
+"cost_value" = "Cost Value";
+"market_value" = "Market Value";
+"net_profit_loss" = "Net Profit Loss";
+"net_portfolio_value" = "Net Portfolio Value";
 
 // MARK: Countries
 "Afghanistan" = "Afghanistan";
