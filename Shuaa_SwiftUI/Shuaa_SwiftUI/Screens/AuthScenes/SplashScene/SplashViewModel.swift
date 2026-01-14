@@ -18,8 +18,9 @@ class SplashViewModel: ObservableObject {
 
 }
 
-// MARK: API Calls
+// MARK: Mock Data
 extension SplashViewModel {
+    
 }
 
 // MARK: Routing
@@ -33,3 +34,23 @@ extension SplashViewModel {
         coordinator.showHomeFlow()
     }
 }
+
+// MARK: API Calls
+extension SplashViewModel {
+    
+}
+
+// MARK: Functions
+extension SplashViewModel {
+    
+}
+
+// MARK: SingalRs
+extension SplashViewModel {
+    
+}
+
+// MARK: Delegates
+
+
+

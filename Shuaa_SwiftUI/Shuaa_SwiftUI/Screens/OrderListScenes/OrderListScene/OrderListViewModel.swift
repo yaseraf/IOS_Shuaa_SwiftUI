@@ -17,9 +17,31 @@ class OrderListViewModel: ObservableObject {
     }
 }
 
-// Mock Data
+// MARK: Mock Data
 extension OrderListViewModel {
     func getUserAccountsData() {
         userAccountsData = .initMockData()
     }
 }
+
+// MARK: Routing
+extension OrderListViewModel {
+    
+}
+
+// MARK: API Calls
+extension OrderListViewModel {
+    
+}
+
+// MARK: Functions
+extension OrderListViewModel {
+    
+}
+
+// MARK: SingalRs
+extension OrderListViewModel {
+    
+}
+
+// MARK: Delegates

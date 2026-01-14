@@ -44,3 +44,25 @@ extension TopStocksViewModel {
         topTradesData = TopTradesUIModel.initMockDataArray()
     }
 }
+
+// MARK: Routing
+extension TopStocksViewModel {
+    
+}
+
+// MARK: API Calls
+extension TopStocksViewModel {
+    
+}
+
+// MARK: Functions
+extension TopStocksViewModel {
+    
+}
+
+// MARK: SingalRs
+extension TopStocksViewModel {
+    
+}
+
+// MARK: Delegates

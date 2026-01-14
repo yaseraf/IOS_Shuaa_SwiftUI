@@ -57,6 +57,11 @@ class LoginViewModel: ObservableObject {
     }
 }
 
+// MARK: Mock Data
+extension LoginViewModel {
+    
+}
+
 // MARK: Routing
 extension LoginViewModel {
     
@@ -75,3 +80,10 @@ extension LoginViewModel {
         SceneDelegate.getAppCoordinator()?.restart()
     }
 }
+
+// MARK: SignalRs
+extension LoginViewModel {
+    
+}
+
+// MARK: Delegates

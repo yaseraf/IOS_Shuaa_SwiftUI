@@ -107,7 +107,7 @@
 "expected_profit_loss" = "Expected Profit Loss";
 "available_cash" = "Available Cash";
 "realised_profit_loss" = "Realised Profit Loss";
-"facility_amount" = "Facility Amount";
+"facility_amount" = "Facility Amt.";
 "cost_value" = "Cost Value";
 "market_value" = "Market Value";
 "net_profit_loss" = "Net Profit Loss";
@@ -121,6 +121,37 @@
 "perc_pnl" = "%P/L";
 "perc_holding" = "%Holding";
 "no_symbols_yet" = "No Symbols Yet";
+
+// MARK: Trade Screen
+"new_order" = "New Order";
+"select_account" = "Select Account";
+"bid_volume" = "Bid Volume";
+"bid" = "Bid";
+"last_trade" = "Last Trade";
+"offer" = "Offer";
+"offer_volume" = "Offer Volume";
+"open" = "Open";
+"close" = "Close";
+"top_price" = "Top Price";
+"low" = "Low";
+"high" = "High";
+"day_range" = "Day Range";
+"52_wk_range" = "52 WK Range";
+"cash" = "Cash";
+"sell_order" = "Sell Order";
+"buy_order" = "Buy Order";
+"margin_amount" = "Margin Amt.";
+"min" = "Min";
+"max" = "Max";
+"buy" = "Buy";
+"sell" = "Sell";
+"order_type" = "Order Type";
+"validity_date" = "Validity Date";
+"limit" = "Limit";
+"day" = "Day";
+"calculate_quantity" = "Calculate Quantity";
+"advance" = "Advance";
+"order_value" = "Order Value";
 
 // MARK: Countries
 "Afghanistan" = "Afghanistan";

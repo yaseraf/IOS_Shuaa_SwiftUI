@@ -133,3 +133,11 @@ enum TopStocksType {
     case topVolume
     case topTrades
 }
+
+// ===================================
+// MARK: OrderType
+
+enum OrderType {
+    case buy
+    case sell
+}

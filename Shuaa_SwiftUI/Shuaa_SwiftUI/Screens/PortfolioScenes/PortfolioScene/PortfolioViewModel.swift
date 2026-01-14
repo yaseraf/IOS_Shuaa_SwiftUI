@@ -18,7 +18,7 @@ class PortfolioViewModel: ObservableObject {
     }
 }
 
-// Mock Data
+// MARK: Mock Data
 extension PortfolioViewModel {
     func getUserAccountsData() {
         userAccountsData = .initMockData()
@@ -28,3 +28,25 @@ extension PortfolioViewModel {
         portfolioData = .initMockData()
     }
 }
+
+// MARK: Routing
+extension PortfolioViewModel {
+    
+}
+
+// MARK: API Calls
+extension PortfolioViewModel {
+    
+}
+
+// MARK: Functions
+extension PortfolioViewModel {
+    
+}
+
+// MARK: SingalRs
+extension PortfolioViewModel {
+    
+}
+
+// MARK: Delegates

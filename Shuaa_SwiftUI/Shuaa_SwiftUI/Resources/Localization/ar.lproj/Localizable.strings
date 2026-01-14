@@ -122,6 +122,38 @@
 "perc_holding" = "٪ نسبة الاحتفاظ";
 "no_symbols_yet" = "لا توجد رموز بعد";
 
+// MARK: Trade Screen
+"new_order" = "أمر جديد";
+"select_account" = "اختيار الحساب";
+"bid_volume" = "حجم الطلب";
+"bid" = "طلب";
+"last_trade" = "آخر صفقة";
+"offer" = "عرض";
+"offer_volume" = "حجم العرض";
+"open" = "الافتتاح";
+"close" = "الإغلاق";
+"top_price" = "أعلى سعر";
+"low" = "أدنى سعر";
+"high" = "أعلى";
+"day_range" = "نطاق اليوم";
+"52_wk_range" = "نطاق 52 أسبوع";
+"cash" = "نقد";
+"sell_order" = "أمر بيع";
+"buy_order" = "أمر شراء";
+"margin_amount" = "مبلغ الهامش";
+"min" = "الحد الأدنى";
+"max" = "الحد الأقصى";
+"buy" = "شراء";
+"sell" = "بيع";
+"order_type" = "نوع الأمر";
+"validity_date" = "تاريخ الصلاحية";
+"limit" = "محدد";
+"day" = "يومي";
+"calculate_quantity" = "حساب الكمية";
+"advance" = "متقدم";
+"order_value" = "قيمة الأمر";
+
+
 // MARK: Countries
 "Afghanistan" = "أفغانستان";
 "Aland Islands" = "جزر آلاند";

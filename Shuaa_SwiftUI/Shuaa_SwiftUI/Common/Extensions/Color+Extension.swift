@@ -59,6 +59,7 @@ extension Color {
     private static let colorRedLight: Color = Color.init(hex: "#EB0600")
     private static let colorBlueLight: Color = Color.init(hex: "#63AAD5")
     private static let colorSymbolLight: Color = Color.init(hex: "#FFFFFF")
+    private static let colorSymbolSecondaryLight: Color = Color.init(hex: "#22438A")
     private static let colorSymbolPrimaryLight: Color = Color.init(hex: "#22438A")
     private static let colorTextFieldLight: Color = Color.init(hex: "#537387")
     private static let colorTextPrimaryLight: Color = Color.init(hex: "#0A3754")
@@ -82,6 +83,7 @@ extension Color {
     private static let colorRedDark: Color = Color.init(hex: "#EB0600")
     private static let colorBlueDark: Color = Color.init(hex: "#63AAD5")
     private static let colorSymbolDark: Color = Color.init(hex: "#FFFFFF")
+    private static let colorSymbolSecondaryDark: Color = Color.init(hex: "#FFFFFF")
     private static let colorSymbolPrimaryDark: Color = Color.init(hex: "#FFFFFF")
     private static let colorTextFieldDark: Color = Color.init(hex: "#5D5E5F")
     private static let colorTextPrimaryDark: Color = Color.init(hex: "#FFFFFF")
@@ -167,6 +169,12 @@ extension Color {
     static var colorSymbol: Color {
         get {
             AppUtility.shared.isDarkTheme ? colorSymbolDark : colorSymbolLight
+        }
+    }
+    
+    static var colorSymbolSecondary: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorSymbolSecondaryDark : colorSymbolSecondaryLight
         }
     }
     

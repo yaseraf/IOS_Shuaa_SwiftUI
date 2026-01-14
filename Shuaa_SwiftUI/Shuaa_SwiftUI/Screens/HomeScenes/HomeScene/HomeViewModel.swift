@@ -66,12 +66,12 @@ extension HomeViewModel {
     }
 }
 
-// MARK: API CALLS
+// MARK: API Calls
 extension HomeViewModel {
     
 }
 
-// MARK: FUNCTIONS
+// MARK: Funtions
 extension HomeViewModel {
         
     func connectAndSetupSignalR() {

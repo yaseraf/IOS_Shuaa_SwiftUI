@@ -29,6 +29,12 @@ class AppCoordinator:  ObservableObject {
         }
     }
     
+    var currentTradeCoordinator:TradeCoordinator? {
+        get {
+           SceneDelegate.getAppCoordinator()?.getChildCoordinator(coordinator: TradeCoordinator.self) as? TradeCoordinator
+        }
+    }
+    
     var currentAccountsCoordinator:OrderListCoordinator? {
         get {
            SceneDelegate.getAppCoordinator()?.getChildCoordinator(coordinator: OrderListCoordinator.self) as? OrderListCoordinator
@@ -175,6 +181,20 @@ extension AppCoordinator: AppCoordinatorProtocol {
 
         let orderListCoordinator:OrderListCoordinator
         if let childCoordinator = self.getChildCoordinator(coordinator: OrderListCoordinator.self) as? OrderListCoordinator {
+            orderListCoordinator = childCoordinator
+        } else {
+            childCoordinator.removeAll()
+            orderListCoordinator =  .init(navigationController: navigationController)
+            childCoordinator.append(orderListCoordinator)
+        }
+        orderListCoordinator.start()
+    }
+    
+    func showTradeFlow() {
+        removeAllChildCoordinator()
+
+        let orderListCoordinator:TradeCoordinator
+        if let childCoordinator = self.getChildCoordinator(coordinator: TradeCoordinator.self) as? TradeCoordinator {
             orderListCoordinator = childCoordinator
         } else {
             childCoordinator.removeAll()

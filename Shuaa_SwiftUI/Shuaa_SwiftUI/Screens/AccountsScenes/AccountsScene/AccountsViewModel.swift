@@ -17,9 +17,31 @@ class AccountsViewModel: ObservableObject {
     }
 }
 
-// Mock Data
+// MARK: Mock Data
 extension AccountsViewModel {
     func getUserAccountsData() {
         userAccountsData = .initMockData()
     }
 }
+
+// MARK: Routing
+extension AccountsViewModel {
+    
+}
+
+// MARK: API Calls
+extension AccountsViewModel {
+    
+}
+
+// MARK: Functions
+extension AccountsViewModel {
+    
+}
+
+// MARK: SingalRs
+extension AccountsViewModel {
+    
+}
+
+// MARK: Delegates

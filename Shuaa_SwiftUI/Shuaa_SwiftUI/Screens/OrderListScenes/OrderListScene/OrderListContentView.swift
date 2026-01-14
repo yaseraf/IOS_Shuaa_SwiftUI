@@ -115,7 +115,7 @@ struct OrderListContentView: View {
                 } label: {
                     Text("cancel".localized)
                         .font(.apply(.regular, size: 14))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(Color.white)
                 }
                 .frame(maxWidth: .infinity)
                 .frame(minHeight: 24)
@@ -129,7 +129,7 @@ struct OrderListContentView: View {
                 } label: {
                     Text("search_order".localized)
                         .font(.apply(.regular, size: 14))
-                        .foregroundStyle(Color.colorTextPrimary)
+                        .foregroundStyle(Color.white)
                 }
                 .frame(maxWidth: .infinity)
                 .frame(minHeight: 24)
@@ -148,7 +148,7 @@ struct OrderListContentView: View {
         VStack(alignment: .leading, spacing: 2) {
            Text(title)
                .font(.apply(.bold, size: 14))
-               .foregroundStyle(Color.colorTextPrimary)
+               .foregroundStyle(Color.white)
                .padding(.horizontal, 8)
             
             if isBottomSheet {

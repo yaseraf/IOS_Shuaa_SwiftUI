@@ -30,3 +30,25 @@ extension MarketOverviewViewModel {
         indicesData = MarketOverviewUIModel.initMockDataArray()
     }
 }
+
+// MARK: Routing
+extension MarketOverviewViewModel {
+    
+}
+
+// MARK: API Calls
+extension MarketOverviewViewModel {
+    
+}
+
+// MARK: Funtions
+extension MarketOverviewViewModel {
+        
+}
+
+// MARK: SignalRs
+extension MarketOverviewViewModel {
+    
+}
+
+// MARK: Delegates

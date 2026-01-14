@@ -33,11 +33,26 @@ class SettingsViewModel: ObservableObject {
     }
 }
 
+// MARK: Mock Data
+extension SettingsViewModel {
+    
+}
+
+// MARK: Routing
+extension SettingsViewModel {
+    
+}
+
+// MARK: API Calls
+extension SettingsViewModel {
+    
+}
+
 // MARK: Functions
 extension SettingsViewModel {
     func onLanguageChange(newLanguage:LanguageType){
         selectedLanguage = newLanguage
-        AppUtility.shared.updateAppLanguage(language: newLanguage)        
+        AppUtility.shared.updateAppLanguage(language: newLanguage)
         SceneDelegate.getAppCoordinator()?.restart()
     }
     
@@ -69,3 +84,12 @@ extension SettingsViewModel {
     }
 
 }
+
+// MARK: SignalRs
+extension SettingsViewModel {
+    
+}
+
+// MARK: Delegates
+
+
