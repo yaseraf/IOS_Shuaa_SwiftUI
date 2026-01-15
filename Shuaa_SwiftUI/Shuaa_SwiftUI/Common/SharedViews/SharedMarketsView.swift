@@ -54,7 +54,6 @@ struct SharedMarketsView: View {
                         Text("\(AppUtility.shared.formatThousandSeparator(number: marketsData.wrappedValue?.first?.netChangePerc ?? 0))%")
                             .font(.apply(.regular, size: 8))
                             .foregroundStyle(Color.colorGreen)
-
                     }
                 }
                 

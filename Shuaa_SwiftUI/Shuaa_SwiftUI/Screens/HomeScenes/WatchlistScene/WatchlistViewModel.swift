@@ -1,5 +1,5 @@
 //
-//  MarketTimeSaleViewModel.swift
+//  WatchlistViewModel.swift
 //  Shuaa_SwiftUI
 //
 //  Created by FIT on 08/01/2026.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MarketTimeSaleViewModel:ObservableObject {
+class WatchlistViewModel:ObservableObject {
     
     private let coordinator: HomeCoordinatorProtocol
     
@@ -19,7 +19,7 @@ class MarketTimeSaleViewModel:ObservableObject {
 }
 
 // MARK: Mock Data
-extension MarketTimeSaleViewModel {
+extension WatchlistViewModel {
     func getMarketsData() {
         marketsData = []
         marketsData?.append(.initMockData())
@@ -27,22 +27,22 @@ extension MarketTimeSaleViewModel {
 }
 
 // MARK: Routing
-extension MarketTimeSaleViewModel {
+extension WatchlistViewModel {
     
 }
 
 // MARK: API Calls
-extension MarketTimeSaleViewModel {
+extension WatchlistViewModel {
     
 }
 
 // MARK: Functions
-extension MarketTimeSaleViewModel {
+extension WatchlistViewModel {
     
 }
 
 // MARK: SingalRs
-extension MarketTimeSaleViewModel {
+extension WatchlistViewModel {
     
 }
 

@@ -153,6 +153,10 @@
 "advance" = "متقدم";
 "order_value" = "قيمة الأمر";
 
+// MARK: Watchlist Screen
+"select_watchlist" = "اختر قائمة المتابعة";
+"last" = "آخر";
+"no_symbols_in_this_profile_for_now" = "لا توجد رموز في هذا الملف حالياً";
 
 // MARK: Countries
 "Afghanistan" = "أفغانستان";

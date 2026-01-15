@@ -1,5 +1,5 @@
 //
-//  MarketTimeSaleScene.swift
+//  WatchlistScene.swift
 //  Shuaa_SwiftUI
 //
 //  Created by FIT on 08/01/2026.
@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 import Combine
 
-struct MarketTimeSaleScene: BaseSceneType {
-    @ObservedObject var viewModel: MarketTimeSaleViewModel
+struct WatchlistScene: BaseSceneType {
+    @ObservedObject var viewModel: WatchlistViewModel
     @State var anyCancellable = Set<AnyCancellable>()
     @State var viewTypeAction:BaseSceneViewType = DefaultBaseSceneViewType()
     
@@ -21,11 +21,11 @@ struct MarketTimeSaleScene: BaseSceneType {
                     withScroll:false,
                     paddingValue: 0,
                     content: {
-                        MarketTimeSaleContentView(
+                        WatchlistContentView(
                             marketsData: $viewModel.marketsData
                         )
                         .onAppear {
-                            viewModel.getMarketsData()
+
                         }
                     }
                 )

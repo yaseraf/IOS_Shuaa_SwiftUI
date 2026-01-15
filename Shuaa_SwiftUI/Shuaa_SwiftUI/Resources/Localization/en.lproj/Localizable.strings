@@ -154,6 +154,11 @@
 "advance" = "Advance";
 "order_value" = "Order Value";
 
+// MARK: Watchlist Screen
+"select_watchlist" = "Select Watchlist";
+"last" = "Last";
+"no_symbols_in_this_profile_for_now" = "No Symbols in this Profile for now";
+
 // MARK: Countries
 "Afghanistan" = "Afghanistan";
 "Åland Islands" = "Åland Islands";

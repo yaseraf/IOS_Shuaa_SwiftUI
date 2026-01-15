@@ -70,7 +70,7 @@ extension HomeViewModel {
     }
     
     func openWatchlistScene() {
-        coordinator.openMarketTimeSaleScene()
+        coordinator.openWatchlistScene()
     }
 }
 
