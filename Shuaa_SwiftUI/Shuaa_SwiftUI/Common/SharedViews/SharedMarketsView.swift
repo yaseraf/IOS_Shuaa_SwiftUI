@@ -58,19 +58,12 @@ struct SharedMarketsView: View {
                     }
                 }
                 
-                Button {
-                    withAnimation {
-                        showMarketDetails.toggle()
-                    }
-                } label: {
-                    Image("ic_upArrow")
-                        .renderingMode(.template)
-                        .resizable()
-                        .frame(width: 18, height: 18)
-                        .rotationEffect(Angle(degrees: showMarketDetails ? 0 : 180))
-                        .foregroundStyle(Color.colorTextPrimary)
-
-                }
+                Image("ic_upArrow")
+                    .renderingMode(.template)
+                    .resizable()
+                    .frame(width: 18, height: 18)
+                    .rotationEffect(Angle(degrees: showMarketDetails ? 0 : 180))
+                    .foregroundStyle(Color.colorTextPrimary)
 
             }
             
@@ -179,10 +172,14 @@ struct SharedMarketsView: View {
         .frame(maxWidth: .infinity)
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
-
         .background(RoundedRectangle(cornerRadius: 12).fill(Color.colorBackgroundSecondary))
         .padding(.vertical, 8)
         .padding(.horizontal, 12)
+        .onTapGesture {
+            withAnimation {
+                showMarketDetails.toggle()
+            }
+        }
 
     }
 }

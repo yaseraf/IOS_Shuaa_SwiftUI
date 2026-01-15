@@ -64,6 +64,14 @@ extension HomeViewModel {
     func openTopStocksScene() {
         coordinator.openTopStocksScene()
     }
+    
+    func openMarketTimeSaleScene() {
+        coordinator.openMarketTimeSaleScene()
+    }
+    
+    func openWatchlistScene() {
+        coordinator.openMarketTimeSaleScene()
+    }
 }
 
 // MARK: API Calls

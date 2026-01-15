@@ -15,6 +15,8 @@ struct HomeContentView: View {
     
     var onOverviewTap:()->Void
     var onTopStocksTap:()->Void
+    var onMarketTimeSaleTap:()->Void
+    var onWatchlistTap:()->Void
                     
     var body: some View {
         VStack {
@@ -79,7 +81,7 @@ struct HomeContentView: View {
                 
                 actionButton(
                     action: {
-                    
+                        onMarketTimeSaleTap()
                     },
                     image: "ic_marketT&S",
                     title: "market_time_sale".localized
@@ -89,7 +91,7 @@ struct HomeContentView: View {
                 
                 actionButton(
                     action: {
-                    
+                        onWatchlistTap()
                     },
                     image: "ic_watchlist",
                     title: "watchlist".localized
@@ -227,6 +229,12 @@ struct HomeContentView: View {
         },
         onTopStocksTap: {
         
+        },
+        onMarketTimeSaleTap: {
+            
+        },
+        onWatchlistTap: {
+            
         }
     )
 }

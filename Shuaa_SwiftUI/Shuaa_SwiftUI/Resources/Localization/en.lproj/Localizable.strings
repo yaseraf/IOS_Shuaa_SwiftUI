@@ -39,6 +39,7 @@
 "value" = "Value";
 "change" = "Chg";
 "change_percent" = "Chg %";
+"change_perc" = "Chg %";
 
 // MARK: Top Stocks Scene
 "top_gainers" = "Top Gainers";

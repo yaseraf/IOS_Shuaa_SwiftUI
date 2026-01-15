@@ -50,4 +50,12 @@ extension HomeCoordinator:HomeCoordinatorProtocol {
         let viewController = UIHostingController(rootView: viewWithCoordinator)
         self.navigationController.pushViewController(viewController, animated: true)
     }
+    
+    func openMarketTimeSaleScene() {
+        let viewModel = MarketTimeSaleViewModel(coordinator: self)
+        let view = MarketTimeSaleScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
 }

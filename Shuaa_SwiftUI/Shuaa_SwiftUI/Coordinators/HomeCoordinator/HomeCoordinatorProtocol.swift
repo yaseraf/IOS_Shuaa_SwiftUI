@@ -10,4 +10,5 @@ protocol HomeCoordinatorProtocol: AnyObject,Coordinator {
     func openHomeScene()
     func openMarketOverviewScene()
     func openTopStocksScene()
+    func openMarketTimeSaleScene()
 }
