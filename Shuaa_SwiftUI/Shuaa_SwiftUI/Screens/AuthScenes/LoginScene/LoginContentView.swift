@@ -92,8 +92,9 @@ struct LoginContentView: View {
                     Image(systemName: "person.circle.fill")
                         .resizable()
                         .frame(width: 16, height: 16)
-                        .foregroundStyle(.gray)
-                    
+                        .foregroundStyle(.white)
+                        .opacity(0.5)
+
                     Divider()
                         .frame(height: 24)
                         .overlay(Color.white)
@@ -108,15 +109,7 @@ struct LoginContentView: View {
                 }
                 .padding(.horizontal, 24)
                 .background(
-                    ZStack {
-                        if username.wrappedValue.isEmpty == true {
-                            RoundedRectangle(cornerRadius: 8).fill(Color.clear)
-                            RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorTextPrimary)
-                        } else {
-                            RoundedRectangle(cornerRadius: 8).fill(Color.colorPrimary.opacity(0.04))
-                            RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 0.5).fill(Color.white)
-                        }
-                    }
+                    RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 0.5).fill(Color.white)
                 )
                 .frame(height: 50)
                 .padding(.bottom, 16)
@@ -128,7 +121,8 @@ struct LoginContentView: View {
                     Image(systemName: "lock.fill")
                         .resizable()
                         .frame(width: 12, height: 16)
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(.white)
+                        .opacity(0.5)
 
                     Divider()
                         .frame(height: 24)
@@ -154,15 +148,7 @@ struct LoginContentView: View {
                 }
                 .padding(.horizontal, 24)
                 .background(
-                    ZStack {
-                        if password.wrappedValue.isEmpty == true {
-                            RoundedRectangle(cornerRadius: 8).fill(Color.clear)
-                            RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 1).fill(Color.colorTextPrimary)
-                        } else {
-                            RoundedRectangle(cornerRadius: 8).fill(Color.colorPrimary.opacity(0.04))
-                            RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 0.5).fill(Color.white)
-                        }
-                    }
+                    RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 0.5).fill(Color.white)
                 )
                 .frame(height: 50)
                 .padding(.bottom, 8)
@@ -194,7 +180,7 @@ struct LoginContentView: View {
                 .frame(height: 48)
                 .frame(maxWidth: .infinity)
                 .foregroundStyle(.white)
-                .background(RoundedRectangle(cornerRadius: 12).fill(Color.gray).opacity(0.5))
+                .background(RoundedRectangle(cornerRadius: 12).fill(Color.white).opacity(0.5))
         })
         .padding(.horizontal, 145)
         .padding(.vertical, 16)
@@ -225,7 +211,8 @@ struct LoginContentView: View {
                 Image(systemName: "play.rectangle")
                     .resizable()
                     .frame(width: 18, height: 16)
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(.white)
+                    .opacity(0.5)
 
                 Text("video_tutorial".localized)
                     .font(.apply(.regular, size: 16))

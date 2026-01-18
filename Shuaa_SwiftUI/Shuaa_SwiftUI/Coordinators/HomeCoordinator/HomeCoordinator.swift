@@ -15,7 +15,13 @@ class HomeCoordinator:  ObservableObject {
     }
 
     func start() {
-        AppUtility.shared.screenTransition(navigationController: navigationController, animationOptions: .transitionCrossDissolve, duration: AppConstants.screenTransitionDuration, animated: false)
+        AppUtility.shared.screenTransition(
+            navigationController: navigationController,
+            animationOptions: AppConstants.screenTransition,
+            duration: AppConstants.screenTransitionDuration,
+            animated: AppConstants.isScreenTransitionAnimated
+        )
+
         openHomeScene()
     }
 

@@ -43,7 +43,7 @@ struct TradeContentView: View {
     private var titleView: some View {
         Text("new_order".localized)
             .font(.apply(.bold, size: 16))
-            .foregroundStyle(Color.colorTextPrimary)
+            .foregroundStyle(Color.white)
             .padding(.top, 16)
     }
     

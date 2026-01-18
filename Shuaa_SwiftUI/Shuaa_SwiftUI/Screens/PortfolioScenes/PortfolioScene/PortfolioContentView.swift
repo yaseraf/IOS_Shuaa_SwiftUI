@@ -39,7 +39,7 @@ struct PortfolioContentView: View {
     private var titleView: some View {
         Text("portfolio".localized)
             .font(.apply(.bold, size: 16))
-            .foregroundStyle(Color.colorTextPrimary)
+            .foregroundStyle(Color.white)
             .padding(.top, 16)
     }
     

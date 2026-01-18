@@ -193,15 +193,15 @@ extension AppCoordinator: AppCoordinatorProtocol {
     func showTradeFlow() {
         removeAllChildCoordinator()
 
-        let orderListCoordinator:TradeCoordinator
+        let tradeCoordinator:TradeCoordinator
         if let childCoordinator = self.getChildCoordinator(coordinator: TradeCoordinator.self) as? TradeCoordinator {
-            orderListCoordinator = childCoordinator
+            tradeCoordinator = childCoordinator
         } else {
             childCoordinator.removeAll()
-            orderListCoordinator =  .init(navigationController: navigationController)
-            childCoordinator.append(orderListCoordinator)
+            tradeCoordinator =  .init(navigationController: navigationController)
+            childCoordinator.append(tradeCoordinator)
         }
-        orderListCoordinator.start()
+        tradeCoordinator.start()
     }
     
     func showAccountsFlow() {
@@ -252,9 +252,97 @@ extension AppCoordinator: AppCoordinatorProtocol {
     
     // MARK: ============================ Side Menu ============================
     
+    func openAccountInformationScene() {
+        let viewModel = AccountInformationViewModel(coordinator: self)
+        let view = AccountInformationScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func openMyDocumentsScene() {
+        let viewModel = MyDocumentsViewModel(coordinator: self)
+        let view = MyDocumentsScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func openMarketsInsightScene() {
+        let viewModel = MarketsInsightViewModel(coordinator: self)
+        let view = MarketsInsightScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func openAlertsScene() {
+        let viewModel = AddAlertsViewModel(coordinator: self)
+        let view = AddAlertsScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+
+    func openAddAlertsScene() {
+        let viewModel = AddAlertsViewModel(coordinator: self)
+        let view = AddAlertsScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+
+    func openAccountStatementsScene() {
+        let viewModel = AccountStatementsViewModel(coordinator: self)
+        let view = AccountStatementsScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func openCashDepositScene() {
+        let viewModel = CashDepositViewModel(coordinator: self)
+        let view = CashDepositScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func openEquityTransferScene() {
+        let viewModel = EquityTransferViewModel(coordinator: self)
+        let view = EquityTransferScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func openTransfersScene() {
+        let viewModel = TransfersViewModel(coordinator: self)
+        let view = TransfersScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func openMyAccountScene() {
+        let viewModel = MyAccountViewModel(coordinator: self)
+        let view = MyAccountScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func openIPOScene() {
+        let viewModel = IPOViewModel(coordinator: self)
+        let view = IPOScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
     func openSettingsScene() {
         let viewModel = SettingsViewModel(coordinator: self)
-        let view =  SettingsScene(viewModel: viewModel)
+        let view = SettingsScene(viewModel: viewModel)
         let viewWithCoordinator = view.withThemeEnvironment
         let viewController = UIHostingController(rootView: viewWithCoordinator)
         self.navigationController.pushViewController(viewController, animated: true)

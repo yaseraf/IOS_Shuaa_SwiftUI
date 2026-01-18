@@ -38,7 +38,7 @@ struct MarketOverviewContentView: View {
         HStack {
             Text("market_overview".localized)
                 .font(.apply(.bold, size: 20))
-                .foregroundStyle(Color.colorTextPrimary)
+                .foregroundStyle(Color.white)
             
             Spacer()
         }

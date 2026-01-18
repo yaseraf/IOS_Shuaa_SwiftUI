@@ -71,7 +71,7 @@ struct OrderListContentView: View {
         .overlay {
             Text(isSearching ? "order_search".localized : "order_list".localized)
                 .font(.apply(.bold, size: 16))
-                .foregroundStyle(Color.colorTextPrimary)
+                .foregroundStyle(Color.white)
         }
         .padding(.horizontal, 12)
         .padding(.top, 8)
