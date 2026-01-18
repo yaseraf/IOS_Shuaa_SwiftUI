@@ -332,6 +332,14 @@ extension AppCoordinator: AppCoordinatorProtocol {
         self.navigationController.pushViewController(viewController, animated: true)
     }
     
+    func openClientPortalScene() {
+        let viewModel = ClientPortalViewModel(coordinator: self)
+        let view = ClientPortalScene(viewModel: viewModel)
+        let viewWithCoordinator = view.withThemeEnvironment
+        let viewController = UIHostingController(rootView: viewWithCoordinator)
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
     func openIPOScene() {
         let viewModel = IPOViewModel(coordinator: self)
         let view = IPOScene(viewModel: viewModel)

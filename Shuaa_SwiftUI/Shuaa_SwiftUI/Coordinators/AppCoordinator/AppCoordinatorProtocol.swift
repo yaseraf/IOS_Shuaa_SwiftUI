@@ -22,6 +22,7 @@ protocol AppCoordinatorProtocol: AnyObject,Coordinator {
     func openEquityTransferScene()
     func openTransfersScene()
     func openMyAccountScene()
+    func openClientPortalScene()
     func openIPOScene()
     func openSettingsScene()
 }

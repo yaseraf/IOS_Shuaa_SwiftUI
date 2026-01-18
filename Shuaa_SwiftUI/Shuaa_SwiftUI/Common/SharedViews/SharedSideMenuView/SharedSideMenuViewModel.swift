@@ -21,43 +21,43 @@ class SharedSideMenuViewModel: ObservableObject {
 // MARK: Routing
 extension SharedSideMenuViewModel {
     func openAccountInformationScene() {
-        
+        SceneDelegate.getAppCoordinator()?.openAccountInformationScene()
     }
     
     func openMyDocumentsScene() {
-
+        SceneDelegate.getAppCoordinator()?.openMyDocumentsScene()
     }
     
     func openMarketsInsightScene() {
-
+        SceneDelegate.getAppCoordinator()?.openMarketsInsightScene()
     }
     
-    func openMyAlertsScene() {
-
+    func openAlertsScene() {
+        SceneDelegate.getAppCoordinator()?.openAlertsScene()
     }
     
     func openAccountStatementsScene() {
-
+        SceneDelegate.getAppCoordinator()?.openAccountStatementsScene()
     }
     
     func openCashDepositScene() {
-
+        SceneDelegate.getAppCoordinator()?.openCashDepositScene()
     }
     
     func openEquityTransferScene() {
-
+        SceneDelegate.getAppCoordinator()?.openEquityTransferScene()
     }
     
     func openTransferScene() {
-
+        SceneDelegate.getAppCoordinator()?.openTransfersScene()
     }
     
     func openClientPortalScene() {
-
+        SceneDelegate.getAppCoordinator()?.openClientPortalScene()
     }
     
     func openIpoScene() {
-
+        SceneDelegate.getAppCoordinator()?.openIPOScene()
     }
     
     func openSettingsScene() {

@@ -11,8 +11,12 @@ class AccountInformationViewModel: ObservableObject {
     
     private let coordinator: AppCoordinatorProtocol
     
+    @Published var accountInformationData: AccountInformationUIModel?
+    
     init(coordinator: AppCoordinatorProtocol) {
         self.coordinator = coordinator
+        
+        self.accountInformationData = .initMockData()
     }
 }
 

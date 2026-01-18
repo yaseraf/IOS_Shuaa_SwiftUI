@@ -1,5 +1,5 @@
 //
-//  AccountInformationScene.swift
+//  ClientPortalScene.swift
 //  Shuaa_SwiftUI
 //
 //  Created by FIT on 27/07/2025.
@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 import Combine
 
-struct AccountInformationScene: BaseSceneType {
-    @ObservedObject var viewModel: AccountInformationViewModel
+struct ClientPortalScene: BaseSceneType {
+    @ObservedObject var viewModel: ClientPortalViewModel
     @State var anyCancellable = Set<AnyCancellable>()
     @State var viewTypeAction:BaseSceneViewType = DefaultBaseSceneViewType()
     
@@ -21,8 +21,8 @@ struct AccountInformationScene: BaseSceneType {
                     withScroll:false,
                     paddingValue: 0,
                     content: {
-                        AccountInformationContentView(
-                            accountInformationData: $viewModel.accountInformationData
+                        ClientPortalContentView(
+
                         )
                         .onAppear {
                             

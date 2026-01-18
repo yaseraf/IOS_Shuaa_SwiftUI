@@ -33,7 +33,7 @@ struct SharedSideMenuView: View {
                     onAccountInformationTap: viewModel.openAccountInformationScene,
                     onMyDocumentsTap: viewModel.openMyDocumentsScene,
                     onMarketsInsightTap: viewModel.openMarketsInsightScene,
-                    onMyAlertsTap: viewModel.openMyAlertsScene,
+                    onMyAlertsTap: viewModel.openAlertsScene,
                     onAccountStatements: viewModel.openAccountStatementsScene,
                     onCashDeposit: viewModel.openCashDepositScene,
                     onEquityTransferTap: viewModel.openEquityTransferScene,

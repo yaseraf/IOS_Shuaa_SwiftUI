@@ -163,6 +163,14 @@
 "announcements" = "الإعلانات";
 "no_data_right_now" = "لا توجد بيانات حالياً";
 
+// MARK: Account Information Screen
+"client_id" = "رقم العميل";
+"full_name" = "الاسم الكامل";
+"phone_number" = "رقم الهاتف";
+"email" = "البريد الإلكتروني";
+"nin_dfm" = "الرقم الوطني (DFM)";
+"trading_account_dfm" = "حساب التداول (DFM)";
+
 // MARK: Countries
 "Afghanistan" = "أفغانستان";
 "Aland Islands" = "جزر آلاند";
