@@ -22,7 +22,7 @@ struct MyDocumentsScene: BaseSceneType {
                     paddingValue: 0,
                     content: {
                         MyDocumentsContentView(
-
+                            documentsData: $viewModel.documentsData
                         )
                         .onAppear {
                             

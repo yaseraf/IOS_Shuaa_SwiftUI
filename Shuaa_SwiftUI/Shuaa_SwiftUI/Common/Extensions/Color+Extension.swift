@@ -69,6 +69,9 @@ extension Color {
     private static let colorBackgroundTertiaryLight: Color = Color.init(hex: "#3B5F76")
     private static let colorBorderLight: Color = Color.init(hex: "#FFFFFF")
     private static let colorBannerLight: Color = Color.init(hex: "#F7F7F7")
+    private static let colorGrayLight: Color = Color.init(hex: "#AEADB2")
+    private static let colorWhiteLight: Color = Color.init(hex: "#FFFFFF")
+    private static let colorUpdateButtonLight: Color = Color.init(hex: "#0EBC01")
 }
 
 //=======================================
@@ -93,6 +96,9 @@ extension Color {
     private static let colorBackgroundTertiaryDark: Color = Color.init(hex: "#454749")
     private static let colorBorderDark: Color = Color.init(hex: "#242625")
     private static let colorBannerDark: Color = Color.init(hex: "#2A2D2C")
+    private static let colorGrayDark: Color = Color.init(hex: "#636366")
+    private static let colorWhiteDark: Color = Color.init(hex: "#FFFFFF")
+    private static let colorUpdateButtonDark: Color = Color.init(hex: "#0A3754")
 }
 
 //=======================================
@@ -230,6 +236,24 @@ extension Color {
     static var colorBanner: Color {
         get {
             AppUtility.shared.isDarkTheme ? colorBannerDark : colorBannerLight
+        }
+    }
+    
+    static var colorGray: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorGrayDark : colorGrayLight
+        }
+    }
+
+    static var colorWhite: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorWhiteDark : colorWhiteLight
+        }
+    }
+    
+    static var colorUpdateButton: Color {
+        get {
+            AppUtility.shared.isDarkTheme ? colorUpdateButtonDark : colorUpdateButtonLight
         }
     }
     

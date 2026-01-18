@@ -81,6 +81,11 @@ struct SideMenuView: View {
                     .padding(.top, 60)
                     .padding(.bottom, 30)
             }
+            .onTapGesture {
+                withAnimation {
+                    isMenuOpen = false
+                }
+            }
             
             Color.colorPrimary
                 .frame(height: 1)

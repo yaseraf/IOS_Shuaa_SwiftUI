@@ -24,7 +24,7 @@ struct AccountInformationContentView:View {
             
             HomeBottomBarView(selectedItem: UserDefaultController().selectedBottomTab ?? .home)
         }
-        .background(Color.colorBackground)
+        .background(Color.colorBackground) // Debug
     }
         
     private var contentView: some View {

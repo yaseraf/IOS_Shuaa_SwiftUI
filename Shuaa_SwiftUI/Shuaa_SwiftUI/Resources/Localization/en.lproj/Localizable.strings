@@ -172,6 +172,10 @@
 "nin_dfm" = "NIN (DFM)";
 "trading_account_dfm" = "Trading Account (DFM)";
 
+// MARK: My Documents Screen
+"type" = "Type";
+"update" = "Update";
+
 // MARK: Countries
 "Afghanistan" = "Afghanistan";
 "Åland Islands" = "Åland Islands";

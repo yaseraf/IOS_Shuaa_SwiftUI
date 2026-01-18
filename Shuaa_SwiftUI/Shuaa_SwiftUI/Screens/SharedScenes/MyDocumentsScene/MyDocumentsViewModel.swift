@@ -11,8 +11,13 @@ class MyDocumentsViewModel: ObservableObject {
     
     private let coordinator: AppCoordinatorProtocol
     
+    @Published var documentsData: [DocumentsUIModel]?
+    
     init(coordinator: AppCoordinatorProtocol) {
         self.coordinator = coordinator
+        
+        self.documentsData = []
+        self.documentsData = DocumentsUIModel.initMockData()
     }
 }
 

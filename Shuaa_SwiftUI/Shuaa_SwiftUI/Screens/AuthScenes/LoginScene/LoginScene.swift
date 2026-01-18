@@ -28,7 +28,7 @@ struct LoginScene: BaseSceneType {
                             onChangeLanguage: {
                                 viewModel.changeLanguage()
                             }, onSignUpTap: {
-                                SceneDelegate.getAppCoordinator()?.showHomeFlow()
+                                viewModel.onSignUpTap()
                             }, onVideoTutorialTap: {
                                 
                             }

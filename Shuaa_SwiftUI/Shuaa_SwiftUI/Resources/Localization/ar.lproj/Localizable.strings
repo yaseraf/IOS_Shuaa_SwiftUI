@@ -171,6 +171,10 @@
 "nin_dfm" = "الرقم الوطني (DFM)";
 "trading_account_dfm" = "حساب التداول (DFM)";
 
+// MARK: My Documents Screen
+"type" = "النوع";
+"update" = "تحديث";
+
 // MARK: Countries
 "Afghanistan" = "أفغانستان";
 "Aland Islands" = "جزر آلاند";

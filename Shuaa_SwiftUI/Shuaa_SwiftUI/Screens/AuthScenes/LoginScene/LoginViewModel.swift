@@ -73,7 +73,11 @@ extension LoginViewModel {
 }
 
 // MARK: Functions
-extension LoginViewModel {    
+extension LoginViewModel {
+    func onSignUpTap() {
+        SceneDelegate.getAppCoordinator()?.showHomeFlow()
+        UserDefaultController().selectedBottomTab = .home
+    }
         
     func changeLanguage() {
         AppUtility.shared.updateAppLanguage(language: AppUtility.shared.isRTL ? .english : .arabic)
