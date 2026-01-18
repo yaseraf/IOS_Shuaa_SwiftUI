@@ -276,17 +276,17 @@ extension AppCoordinator: AppCoordinatorProtocol {
         self.navigationController.pushViewController(viewController, animated: true)
     }
     
-    func openAlertsScene() {
-        let viewModel = AlertsViewModel(coordinator: self)
-        let view = AlertsScene(viewModel: viewModel)
+    func openNotificationsScene() {
+        let viewModel = NotificationsViewModel(coordinator: self)
+        let view = NotificationsScene(viewModel: viewModel)
         let viewWithCoordinator = view.withThemeEnvironment
         let viewController = UIHostingController(rootView: viewWithCoordinator)
         self.navigationController.pushViewController(viewController, animated: true)
     }
 
-    func openAddAlertsScene() {
-        let viewModel = AddAlertsViewModel(coordinator: self)
-        let view = AddAlertsScene(viewModel: viewModel)
+    func openAlertsScene() {
+        let viewModel = AlertsViewModel(coordinator: self)
+        let view = AlertsScene(viewModel: viewModel)
         let viewWithCoordinator = view.withThemeEnvironment
         let viewController = UIHostingController(rootView: viewWithCoordinator)
         self.navigationController.pushViewController(viewController, animated: true)

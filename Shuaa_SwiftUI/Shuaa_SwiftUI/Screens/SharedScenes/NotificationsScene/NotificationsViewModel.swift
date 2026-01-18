@@ -1,5 +1,5 @@
 //
-//  AddAlertsViewModel.swift
+//  NotificationsViewModel.swift
 //  Shuaa_SwiftUI
 //
 //  Created by FIT on 27/07/2025.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AddAlertsViewModel: ObservableObject {
+class NotificationsViewModel: ObservableObject {
     
     private let coordinator: AppCoordinatorProtocol
     
@@ -17,27 +17,27 @@ class AddAlertsViewModel: ObservableObject {
 }
 
 // MARK: Mock Data
-extension AddAlertsViewModel {
+extension NotificationsViewModel {
     
 }
 
 // MARK: Routing
-extension AddAlertsViewModel {
+extension NotificationsViewModel {
     
 }
 
 // MARK: API Calls
-extension AddAlertsViewModel {
+extension NotificationsViewModel {
     
 }
 
 // MARK: Functions
-extension AddAlertsViewModel {
+extension NotificationsViewModel {
     
 }
 
 // MARK: SignalRs
-extension AddAlertsViewModel {
+extension NotificationsViewModel {
     
 }
 
