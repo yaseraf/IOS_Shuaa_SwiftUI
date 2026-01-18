@@ -19,3 +19,10 @@ class SharedHeaderViewViewModel: ObservableObject {
         
     }
 }
+
+// MARK: Routing
+extension SharedHeaderViewViewModel {
+    func openAlertsScene() {
+        SceneDelegate.getAppCoordinator()?.openAlertsScene()
+    }
+}

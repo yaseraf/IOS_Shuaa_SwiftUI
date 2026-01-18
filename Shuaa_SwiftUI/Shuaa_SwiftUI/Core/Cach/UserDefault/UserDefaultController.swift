@@ -40,6 +40,7 @@ enum CachingKey: String {
     // MARK: Other
     
     case appTheme
+    case selectedBottomTab
 }
 
 class UserDefaultController: ObservableObject {
@@ -72,6 +73,7 @@ class UserDefaultController: ObservableObject {
     // MARK: Others
 
     @CachingCodable<ThemeType>(.appTheme) var appTheme
+    @CachingCodable<HomeTabBarItem>(.selectedBottomTab) var selectedBottomTab
         
     var isArabicLanguage: Bool {
         get {

@@ -158,6 +158,11 @@
 "last" = "آخر";
 "no_symbols_in_this_profile_for_now" = "لا توجد رموز في هذا الملف حالياً";
 
+// MARK: Alerts Screen
+"orders" = "الطلبات";
+"announcements" = "الإعلانات";
+"no_data_right_now" = "لا توجد بيانات حالياً";
+
 // MARK: Countries
 "Afghanistan" = "أفغانستان";
 "Aland Islands" = "جزر آلاند";

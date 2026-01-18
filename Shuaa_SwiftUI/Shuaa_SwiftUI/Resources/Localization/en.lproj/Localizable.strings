@@ -159,6 +159,11 @@
 "last" = "Last";
 "no_symbols_in_this_profile_for_now" = "No Symbols in this Profile for now";
 
+// MARK: Alerts Screen
+"orders" = "Orders";
+"announcements" = "Announcements";
+"no_data_right_now" = "No Data right now";
+
 // MARK: Countries
 "Afghanistan" = "Afghanistan";
 "Åland Islands" = "Åland Islands";

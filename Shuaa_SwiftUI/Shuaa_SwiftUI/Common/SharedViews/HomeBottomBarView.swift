@@ -67,14 +67,19 @@ struct HomeBottomBarView: View {
         switch item {
         case .home:
             SceneDelegate.getAppCoordinator()?.showHomeFlow()
+            UserDefaultController().selectedBottomTab = .home
         case .orderList:
             SceneDelegate.getAppCoordinator()?.showOrderListFlow()
+            UserDefaultController().selectedBottomTab = .orderList
         case .trade:
             SceneDelegate.getAppCoordinator()?.showTradeFlow()
+            UserDefaultController().selectedBottomTab = .trade
         case .accounts:
             SceneDelegate.getAppCoordinator()?.showAccountsFlow()
+            UserDefaultController().selectedBottomTab = .accounts
         case .portfolio:
             SceneDelegate.getAppCoordinator()?.showPortfolioFlow()
+            UserDefaultController().selectedBottomTab = .portfolio
         }
 
     }

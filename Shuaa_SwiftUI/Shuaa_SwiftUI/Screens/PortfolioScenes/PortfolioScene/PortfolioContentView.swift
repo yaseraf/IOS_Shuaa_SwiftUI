@@ -26,8 +26,10 @@ struct PortfolioContentView: View {
             accountsView
             
             headersView
+                .background {
+                    contentView
+                }
             
-            contentView
             
             Spacer()
             

@@ -57,7 +57,7 @@ enum loginState {
 // ===================================
 // MARK: HomeTabBarItem
 
-enum HomeTabBarItem {
+enum HomeTabBarItem: Codable {
     case home
     case orderList
     case trade
@@ -140,4 +140,12 @@ enum TopStocksType {
 enum OrderType {
     case buy
     case sell
+}
+
+// ===================================
+// MARK: AlertType
+
+enum AlertType {
+    case orders
+    case announcement
 }

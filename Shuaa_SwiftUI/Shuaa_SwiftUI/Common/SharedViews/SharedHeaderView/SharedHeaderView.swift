@@ -13,7 +13,7 @@ struct SharedHeaderView: View {
     @State var withBackButton = false
     
     @ObservedObject private var viewModel: SharedHeaderViewViewModel = SharedHeaderViewViewModel()
-
+    
     var body: some View {
         headerView
     }
@@ -39,11 +39,16 @@ struct SharedHeaderView: View {
                 .frame(width: 24, height: 24)
                 .foregroundStyle(Color.colorGreen)
             
-            Image("ic_notification")
-                .resizable()
-                .frame(width: 24, height: 24)
-                .foregroundStyle(Color.colorSymbol)
+            Button {
+                viewModel.openAlertsScene()
+            } label: {
+                Image("ic_notification")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .foregroundStyle(Color.colorSymbol)
+            }
 
+            
             HStack(spacing: 0) {
                 Image("ic_search")
                     .renderingMode(.template)
@@ -84,5 +89,7 @@ struct SharedHeaderView: View {
 }
 
 #Preview {
-    SharedHeaderView()
+    SharedHeaderView(
+
+    )
 }
