@@ -22,7 +22,7 @@ struct MarketsInsightScene: BaseSceneType {
                     paddingValue: 0,
                     content: {
                         MarketsInsightContentView(
-
+                            marketsInsightData: $viewModel.marketsInsightData
                         )
                         .onAppear {
                             

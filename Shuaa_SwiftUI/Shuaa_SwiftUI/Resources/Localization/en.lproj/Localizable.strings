@@ -176,6 +176,11 @@
 "type" = "Type";
 "update" = "Update";
 
+// MARK: Markets Insight Screen
+"morning_reports" = "Morning Reports";
+"market_wrap" = "Market Wrap";
+"weekly_dashboard" = "Weekly Dashboard";
+
 // MARK: Countries
 "Afghanistan" = "Afghanistan";
 "Åland Islands" = "Åland Islands";

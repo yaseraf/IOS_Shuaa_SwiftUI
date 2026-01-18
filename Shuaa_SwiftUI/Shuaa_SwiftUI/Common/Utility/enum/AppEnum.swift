@@ -149,3 +149,12 @@ enum AlertType {
     case orders
     case announcement
 }
+
+// ===================================
+// MARK: MarketsInsightDataType
+
+enum MarketsInsightDataType {
+    case morningReports
+    case marketWrap
+    case weeklyDashboard
+}

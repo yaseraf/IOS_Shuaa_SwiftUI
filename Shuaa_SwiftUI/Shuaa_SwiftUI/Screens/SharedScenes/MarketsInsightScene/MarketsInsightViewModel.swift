@@ -11,8 +11,12 @@ class MarketsInsightViewModel: ObservableObject {
     
     private let coordinator: AppCoordinatorProtocol
     
+    @Published var marketsInsightData: MarketsInsightUIModel?
+    
     init(coordinator: AppCoordinatorProtocol) {
         self.coordinator = coordinator
+        
+        self.marketsInsightData = .initMockData()
     }
 }
 

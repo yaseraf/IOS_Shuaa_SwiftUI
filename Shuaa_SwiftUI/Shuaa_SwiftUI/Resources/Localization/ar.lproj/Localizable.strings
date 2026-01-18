@@ -175,6 +175,11 @@
 "type" = "النوع";
 "update" = "تحديث";
 
+// MARK: Markets Insight Screen
+"morning_reports" = "تقارير الصباح";
+"market_wrap" = "ملخص السوق";
+"weekly_dashboard" = "لوحة المعلومات الأسبوعية";
+
 // MARK: Countries
 "Afghanistan" = "أفغانستان";
 "Aland Islands" = "جزر آلاند";

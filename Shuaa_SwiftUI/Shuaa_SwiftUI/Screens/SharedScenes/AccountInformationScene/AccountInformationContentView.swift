@@ -34,7 +34,7 @@ struct AccountInformationContentView:View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .cornerRadius(14)
                 .padding(.horizontal, 12)
-                .padding(.top, 64)
+                .padding(.top, 56)
                 .padding(.bottom, 12)
 
             VStack {
